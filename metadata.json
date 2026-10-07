@@ -1,0 +1,8 @@
+{
+  "name": "Aurum Civitas",
+  "description": "Protótipo de um jogo open-source para desenvolvedores, onde código define estratégia e o mundo visualiza o impacto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
