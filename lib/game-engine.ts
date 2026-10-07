@@ -8,6 +8,7 @@ export interface Entity {
 
 export interface Tree extends Entity {
   type: 'tree';
+  wood: number;
 }
 
 export interface Base extends Entity {
@@ -24,22 +25,24 @@ export interface Building extends Entity {
 
 export interface Worker extends Entity {
   type: 'worker';
-  state: 'to_tree' | 'to_base';
+  state: 'to_tree' | 'harvesting' | 'to_base' | 'to_home' | 'idle';
   targetTreeId: string | null;
+  homeBuildingId: string;
   carrying: boolean;
   speed: number;
-}
-
-export interface Road extends Entity {
-  type: 'road';
-  width: number;
-  height: number;
+  harvestTimer: number;
 }
 
 export interface LogEntry {
   text: string;
   timestamp: string;
 }
+
+export const GRID_SIZE = 40;
+export const HARVEST_TIME = 2;
+export const LUMBERJACK_RADIUS = 220;
+export const SPEED_OFFROAD = 20;
+export const SPEED_ROAD = 100;
 
 export interface GameState {
   money: number;
@@ -48,7 +51,7 @@ export interface GameState {
   base: Base;
   workers: Worker[];
   buildings: Building[];
-  roads: Road[];
+  roads: Record<string, boolean>; // Key: "gx,gy"
   missionComplete: boolean;
   logs: LogEntry[];
 }
@@ -57,14 +60,16 @@ export const INITIAL_STATE: GameState = {
   money: 100,
   wood: 0,
   trees: [
-    { id: 'tree-1', pos: { x: 180, y: 150 }, type: 'tree' },
-    { id: 'tree-2', pos: { x: 220, y: 200 }, type: 'tree' },
-    { id: 'tree-3', pos: { x: 160, y: 250 }, type: 'tree' },
+    { id: 'tree-1', pos: { x: 180, y: 150 }, type: 'tree', wood: 5 },
+    { id: 'tree-2', pos: { x: 220, y: 200 }, type: 'tree', wood: 5 },
+    { id: 'tree-3', pos: { x: 160, y: 250 }, type: 'tree', wood: 5 },
+    { id: 'tree-4', pos: { x: 120, y: 180 }, type: 'tree', wood: 5 },
+    { id: 'tree-5', pos: { x: 250, y: 120 }, type: 'tree', wood: 5 },
   ],
-  base: { id: 'base-1', pos: { x: 450, y: 300 }, width: 100, height: 100, type: 'base' },
+  base: { id: 'base-1', pos: { x: 440, y: 280 }, width: 80, height: 80, type: 'base' },
   workers: [],
   buildings: [],
-  roads: [],
+  roads: {},
   missionComplete: false,
   logs: [],
 };
@@ -74,79 +79,98 @@ export function updateWorker(worker: Worker, state: GameState, dt: number): { wo
   let log: string | undefined;
   const newWorker = { ...worker };
 
-  // Speed logic: 100% on roads or near targets, 10% otherwise (simulating "must use roads")
-  const isOnRoad = state.roads.some(r => 
-    newWorker.pos.x >= r.pos.x && newWorker.pos.x <= r.pos.x + r.width &&
-    newWorker.pos.y >= r.pos.y && newWorker.pos.y <= r.pos.y + r.height
-  );
-  
-  // Also consider being "at" the base or "at" a tree as "on road" for loading/unloading
-  const isAtBase = Math.abs(newWorker.pos.x - (state.base.pos.x + state.base.width/2)) < 60 && 
-                   Math.abs(newWorker.pos.y - (state.base.pos.y + state.base.height/2)) < 60;
+  const homeBuilding = state.buildings.find(b => b.id === newWorker.homeBuildingId);
+  if (!homeBuilding) return { worker: newWorker, woodGained };
 
-  const currentSpeed = (isOnRoad || isAtBase) ? newWorker.speed : newWorker.speed * 0.15;
+  // Speed check: direct position based
+  const gx = Math.floor(newWorker.pos.x / GRID_SIZE);
+  const gy = Math.floor(newWorker.pos.y / GRID_SIZE);
+  const isOnRoad = state.roads[`${gx},${gy}`];
+  const currentSpeed = isOnRoad ? SPEED_ROAD : SPEED_OFFROAD;
 
-  if (newWorker.state === 'to_tree') {
-    if (!newWorker.targetTreeId && state.trees.length > 0) {
-      // Find nearest tree
-      let minDist = Infinity;
-      let nearestTreeId = null;
-      for (const tree of state.trees) {
-        const dist = Math.sqrt(Math.pow(tree.pos.x - newWorker.pos.x, 2) + Math.pow(tree.pos.y - newWorker.pos.y, 2));
-        if (dist < minDist) {
-          minDist = dist;
+  // Search for tree if idle
+  if (newWorker.state === 'idle') {
+    let nearestTreeId = null;
+    let minDist = Infinity;
+    
+    for (const tree of state.trees) {
+      if (tree.wood <= 0) continue;
+      
+      const distToHome = Math.sqrt(Math.pow(tree.pos.x - (homeBuilding.pos.x + homeBuilding.width/2), 2) + Math.pow(tree.pos.y - (homeBuilding.pos.y + homeBuilding.height/2), 2));
+      if (distToHome <= LUMBERJACK_RADIUS) {
+        const distToWorker = Math.sqrt(Math.pow(tree.pos.x - newWorker.pos.x, 2) + Math.pow(tree.pos.y - newWorker.pos.y, 2));
+        if (distToWorker < minDist) {
+          minDist = distToWorker;
           nearestTreeId = tree.id;
         }
       }
-      newWorker.targetTreeId = nearestTreeId;
     }
 
-    if (newWorker.targetTreeId) {
-      const targetTree = state.trees.find(t => t.id === newWorker.targetTreeId);
-      if (targetTree) {
-        const arrived = moveToward(newWorker, targetTree.pos, dt, currentSpeed);
-        if (arrived) {
-          newWorker.carrying = true;
-          newWorker.state = 'to_base';
-          log = `[worker] resource harvested from ${newWorker.targetTreeId}`;
-        }
+    if (nearestTreeId) {
+      newWorker.targetTreeId = nearestTreeId;
+      newWorker.state = 'to_tree';
+    }
+  }
+
+  if (newWorker.state === 'to_tree') {
+    const tree = state.trees.find(t => t.id === newWorker.targetTreeId);
+    if (!tree || tree.wood <= 0) {
+      newWorker.targetTreeId = null;
+      newWorker.state = 'idle';
+    } else {
+      const arrived = moveToward(newWorker.pos, tree.pos, dt, currentSpeed);
+      if (arrived) {
+        newWorker.state = 'harvesting';
+        newWorker.harvestTimer = 0;
+      }
+    }
+  } else if (newWorker.state === 'harvesting') {
+    newWorker.harvestTimer += dt;
+    if (newWorker.harvestTimer >= HARVEST_TIME) {
+      const tree = state.trees.find(t => t.id === newWorker.targetTreeId);
+      if (tree && tree.wood > 0) {
+        tree.wood -= 1;
+        newWorker.carrying = true;
+        newWorker.state = 'to_base';
+        log = `[worker] resource harvested. tree wood: ${tree.wood}`;
       } else {
         newWorker.targetTreeId = null;
+        newWorker.state = 'idle';
       }
     }
   } else if (newWorker.state === 'to_base') {
-    const target = {
-      x: state.base.pos.x + state.base.width / 2,
-      y: state.base.pos.y + state.base.height / 2,
-    };
-
-    const arrived = moveToward(newWorker, target, dt, currentSpeed);
+    const target = { x: state.base.pos.x + state.base.width / 2, y: state.base.pos.y + state.base.height / 2 };
+    const arrived = moveToward(newWorker.pos, target, dt, currentSpeed);
     if (arrived) {
       woodGained = 1;
       newWorker.carrying = false;
-      newWorker.targetTreeId = null;
-      newWorker.state = 'to_tree';
-      log = `[base] resource deposited. +1 wood`;
+      newWorker.state = 'to_home';
+    }
+  } else if (newWorker.state === 'to_home') {
+    const target = { x: homeBuilding.pos.x + homeBuilding.width / 2, y: homeBuilding.pos.y + homeBuilding.height / 2 };
+    const arrived = moveToward(newWorker.pos, target, dt, currentSpeed);
+    if (arrived) {
+      newWorker.state = 'idle';
     }
   }
 
   return { worker: newWorker, woodGained, log };
 }
 
-function moveToward(entity: Worker, target: Point, dt: number, speed: number): boolean {
-  const dx = target.x - entity.pos.x;
-  const dy = target.y - entity.pos.y;
+function moveToward(pos: Point, target: Point, dt: number, speed: number): boolean {
+  const dx = target.x - pos.x;
+  const dy = target.y - pos.y;
   const distance = Math.sqrt(dx * dx + dy * dy);
 
-  if (distance < 4) {
+  if (distance < 2) {
     return true;
   }
 
   const vx = (dx / distance) * speed * dt;
   const vy = (dy / distance) * speed * dt;
 
-  entity.pos.x += vx;
-  entity.pos.y += vy;
+  pos.x += vx;
+  pos.y += vy;
 
   return false;
 }
