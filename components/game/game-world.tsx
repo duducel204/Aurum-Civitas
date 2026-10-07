@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { INITIAL_STATE, GameState, updateWorker, Worker, Building, GRID_SIZE, LUMBERJACK_RADIUS } from '@/lib/game-engine';
+import { INITIAL_STATE, GameState, updateWorker, updateBuilding, Worker, Building, GRID_SIZE, LUMBERJACK_RADIUS } from '@/lib/game-engine';
 
 export default function GameWorld() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -22,13 +22,15 @@ export default function GameWorld() {
     setGameState(prev => ({
       ...prev,
       logs: [
-        createLog('[system] simulation ready.'),
-        createLog('[tutorial] click to build. wood is finite.'),
+        createLog('[system] production simulation active.'),
+        createLog('[mission] target: produce 10 planks.'),
       ],
     }));
   }, [createLog]);
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (gameState.missionComplete) return;
+
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -50,9 +52,14 @@ export default function GameWorld() {
       const newBuilding: Building = {
         id: `lumberjack-${Date.now()}`,
         type: 'building',
+        role: 'lumberjack',
         pos: { x: snappedX, y: snappedY },
         width: 60,
         height: 60,
+        inputWood: 0,
+        outputPlanks: 0,
+        processingTimer: 0,
+        status: 'operational',
       };
 
       const newWorker: Worker = {
@@ -63,7 +70,8 @@ export default function GameWorld() {
         targetTreeId: null,
         homeBuildingId: newBuilding.id,
         carrying: false,
-        speed: 120, // This will be overriden by updateWorker's logic (ROAD/OFFROAD)
+        resource: null,
+        speed: 120, 
         harvestTimer: 0,
       };
 
@@ -72,7 +80,45 @@ export default function GameWorld() {
         money: prev.money - 50,
         buildings: [...prev.buildings, newBuilding],
         workers: [...prev.workers, newWorker],
-        logs: [...prev.logs, createLog(`[system] lumberjack station operational`)].slice(-10),
+        metrics: {
+          ...prev.metrics,
+          startTime: prev.metrics.startTime || Date.now(),
+          moneySpent: prev.metrics.moneySpent + 50,
+        },
+        logs: [...prev.logs, createLog(`[system] lumberjack operational`)].slice(-10),
+      }));
+    }
+    setMenuPos(null);
+  };
+
+  const buildSawmill = (x: number, y: number) => {
+    if (gameState.money >= 70) {
+      const snappedX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
+      const snappedY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
+
+      const newBuilding: Building = {
+        id: `sawmill-${Date.now()}`,
+        type: 'building',
+        role: 'sawmill',
+        pos: { x: snappedX, y: snappedY },
+        width: 60,
+        height: 60,
+        inputWood: 0,
+        outputPlanks: 0,
+        processingTimer: 0,
+        status: 'operational',
+      };
+
+      setGameState(prev => ({
+        ...prev,
+        money: prev.money - 70,
+        buildings: [...prev.buildings, newBuilding],
+        metrics: {
+          ...prev.metrics,
+          startTime: prev.metrics.startTime || Date.now(),
+          moneySpent: prev.metrics.moneySpent + 70,
+        },
+        logs: [...prev.logs, createLog(`[system] sawmill constructed`)].slice(-10),
       }));
     }
     setMenuPos(null);
@@ -90,6 +136,11 @@ export default function GameWorld() {
         ...prev,
         money: prev.money - 5,
         roads: { ...prev.roads, [key]: true },
+        metrics: {
+          ...prev.metrics,
+          roadsBuilt: prev.metrics.roadsBuilt + 1,
+          moneySpent: prev.metrics.moneySpent + 5,
+        },
         logs: [...prev.logs, createLog(`[system] road tile placed`)].slice(-10),
       }));
     }
@@ -101,32 +152,75 @@ export default function GameWorld() {
       const dt = (time - previousTimeRef.current) / 1000;
 
       setGameState(prev => {
-        let totalWoodGained = 0;
+        if (prev.missionComplete) return prev;
+
+        let woodHarvestedCount = 0;
+        let planksProducedCount = 0;
+        let woodDeliveredToBase = 0;
         const newLogs: string[] = [];
-        
+
+        // 1. Update Buildings (Processing)
+        const updatedBuildings = prev.buildings.map(b => {
+          const { building, plankProduced } = updateBuilding(b, dt);
+          if (plankProduced) planksProducedCount++;
+          return building;
+        });
+
+        // 2. Update Workers (Movement & Delivery)
         const updatedWorkers = prev.workers.map(w => {
-          const { worker, woodGained, log } = updateWorker(w, prev, dt);
-          totalWoodGained += woodGained;
+          const { worker, woodHarvested, woodDelivered, targetBuildingId, log } = updateWorker(w, { ...prev, buildings: updatedBuildings }, dt);
+          
+          if (woodHarvested) woodHarvestedCount++;
+          
+          if (woodDelivered && targetBuildingId) {
+             if (targetBuildingId === prev.base.id) {
+                woodDeliveredToBase++;
+             } else {
+                // Delivered to sawmill
+                const b = updatedBuildings.find(building => building.id === targetBuildingId);
+                if (b) b.inputWood += 1;
+             }
+          }
           if (log) newLogs.push(log);
           return worker;
         });
 
-        // Filter trees with wood > 0
-        const updatedTrees = prev.trees.filter(t => t.wood > 0);
+        // 3. Update Inventory
+        const baseWood = prev.base.inventory.wood + woodDeliveredToBase;
+        const basePlanks = prev.base.inventory.planks + planksProducedCount;
 
-        const newWood = prev.wood + totalWoodGained;
-        const missionComplete = !prev.missionComplete && newWood >= 20;
+        // 4. Update Trees
+        const initialTreeCount = prev.trees.length;
+        const updatedTrees = prev.trees.filter(t => t.wood > 0);
+        const treesDepletedThisFrame = initialTreeCount - updatedTrees.length;
+
+        const missionComplete = basePlanks >= 10;
         
         const logEntries = newLogs.map(l => createLog(l));
-        if (missionComplete) logEntries.push(createLog('[mission] MISSION COMPLETE: 20 wood collected.'));
+        if (missionComplete && !prev.missionComplete) {
+           logEntries.push(createLog('[mission] MISSION COMPLETE: 10 planks produced.'));
+        }
 
         return {
           ...prev,
+          buildings: updatedBuildings,
           workers: updatedWorkers,
           trees: updatedTrees,
-          wood: newWood,
-          missionComplete: prev.missionComplete || missionComplete,
+          wood: baseWood,
+          planks: basePlanks,
+          base: {
+            ...prev.base,
+            inventory: { wood: baseWood, planks: basePlanks }
+          },
+          missionComplete,
           logs: [...prev.logs, ...logEntries].slice(-10),
+          metrics: {
+            ...prev.metrics,
+            endTime: missionComplete ? Date.now() : null,
+            woodHarvested: prev.metrics.woodHarvested + woodHarvestedCount,
+            planksProduced: basePlanks,
+            treesDepleted: prev.metrics.treesDepleted + treesDepletedThisFrame,
+          }
         };
       });
     }
@@ -147,30 +241,29 @@ export default function GameWorld() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Clear
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw Roads
-    ctx.fillStyle = '#e2e8f0';
+    // Roads
+    ctx.fillStyle = '#f1f5f9';
     Object.keys(gameState.roads).forEach(key => {
       const [gx, gy] = key.split(',').map(Number);
       ctx.fillRect(gx * GRID_SIZE, gy * GRID_SIZE, GRID_SIZE, GRID_SIZE);
     });
 
-    // Range UI
+    // Radius UI
     if (menuPos) {
        ctx.beginPath();
        ctx.arc(menuPos.x, menuPos.y, LUMBERJACK_RADIUS, 0, Math.PI * 2);
-       ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
+       ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
        ctx.setLineDash([5, 5]);
        ctx.stroke();
        ctx.setLineDash([]);
     }
 
-    // Draw Base
+    // Base
     const base = gameState.base;
-    ctx.fillStyle = '#cbd5e1';
+    ctx.fillStyle = '#94a3b8';
     ctx.fillRect(base.pos.x, base.pos.y, base.width, base.height);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 2;
@@ -178,68 +271,85 @@ export default function GameWorld() {
     ctx.fillStyle = 'black';
     ctx.font = 'bold 10px monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('BASE', base.pos.x + base.width/2, base.pos.y + base.height/2 + 4);
+    ctx.fillText('BASE', base.pos.x + base.width/2, base.pos.y + base.height/2 - 5);
+    ctx.font = '9px monospace';
+    ctx.fillText(`W:${gameState.base.inventory.wood} P:${gameState.base.inventory.planks}`, base.pos.x + base.width/2, base.pos.y + base.height/2 + 10);
 
-    // Draw Trees
+    // Trees
     gameState.trees.forEach(tree => {
       ctx.fillStyle = '#78350f';
-      ctx.fillRect(tree.pos.x - 2, tree.pos.y, 4, 15);
+      ctx.fillRect(tree.pos.x - 2, tree.pos.y, 4, 12);
       ctx.fillStyle = '#166534';
-      ctx.beginPath(); ctx.arc(tree.pos.x, tree.pos.y - 5, 10, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(tree.pos.x, tree.pos.y - 5, 8, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = 'white';
-      ctx.font = '8px Arial';
+      ctx.font = '7px Arial';
       ctx.fillText(tree.wood.toString(), tree.pos.x, tree.pos.y - 4);
     });
 
-    // Draw Buildings
+    // Buildings
     gameState.buildings.forEach(b => {
-      ctx.fillStyle = '#451a03';
+      ctx.fillStyle = b.role === 'lumberjack' ? '#451a03' : '#b45309';
       ctx.fillRect(b.pos.x, b.pos.y, b.width, b.height);
       ctx.strokeStyle = 'black';
       ctx.strokeRect(b.pos.x, b.pos.y, b.width, b.height);
+      
+      ctx.fillStyle = 'white';
+      ctx.font = '8px monospace';
+      ctx.fillText(b.role.toUpperCase(), b.pos.x + b.width/2, b.pos.y + 12);
+      
+      if (b.role === 'sawmill') {
+         ctx.fillText(`IN:${b.inputWood} OUT:${b.outputPlanks}`, b.pos.x + b.width/2, b.pos.y + b.height - 8);
+         if (b.status === 'processing') {
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillRect(b.pos.x + 5, b.pos.y + b.height/2, b.width - 10, 4);
+         }
+      }
     });
 
-    // Draw Workers
+    // Workers
     gameState.workers.forEach(w => {
       const { x, y } = w.pos;
       ctx.strokeStyle = 'black';
       ctx.lineWidth = 1;
-      // Head
-      ctx.beginPath(); ctx.arc(x, y - 8, 4, 0, Math.PI * 2); ctx.stroke();
-      // Body
-      ctx.beginPath(); ctx.moveTo(x, y - 4); ctx.lineTo(x, y + 10); ctx.stroke();
-      // Arms
-      ctx.beginPath(); ctx.moveTo(x - 5, y + 2); ctx.lineTo(x + 5, y + 2); ctx.stroke();
-      // Legs
-      ctx.beginPath(); ctx.moveTo(x, y + 10); ctx.lineTo(x - 4, y + 18); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(x, y + 10); ctx.lineTo(x + 4, y + 18); ctx.stroke();
-
+      ctx.beginPath(); ctx.arc(x, y - 6, 3, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x, y - 3); ctx.lineTo(x, y + 8); ctx.stroke();
+      
       if (w.carrying) {
         ctx.fillStyle = '#78350f';
-        ctx.fillRect(x + 3, y - 4, 5, 5);
+        ctx.fillRect(x + 2, y - 2, 4, 4);
       }
       
       if (w.state === 'harvesting') {
          ctx.fillStyle = 'black';
-         ctx.font = '10px Arial';
-         ctx.fillText('...', x, y - 15);
+         ctx.font = '8px Arial';
+         ctx.fillText('...', x, y - 10);
       }
     });
 
     // UI
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
-    ctx.font = '12px monospace';
+    ctx.font = '11px monospace';
     ctx.fillText(`CASH: $${gameState.money}`, 20, 30);
-    ctx.fillText(`WOOD: ${gameState.wood}/20`, 20, 50);
+    ctx.fillText(`PLANKS: ${gameState.planks}/10`, 20, 45);
 
     if (gameState.missionComplete) {
-      ctx.fillStyle = 'rgba(0,0,0,0.8)';
-      ctx.fillRect(0, canvas.height/2 - 40, canvas.width, 80);
+      const metrics = gameState.metrics;
+      const time = metrics.startTime && metrics.endTime ? Math.floor((metrics.endTime - metrics.startTime) / 1000) : 0;
+      
+      ctx.fillStyle = 'rgba(0,0,0,0.85)';
+      ctx.fillRect(canvas.width/2 - 120, canvas.height/2 - 100, 240, 200);
       ctx.fillStyle = 'white';
-      ctx.font = 'bold 30px monospace';
       ctx.textAlign = 'center';
-      ctx.fillText('MISSION COMPLETE', canvas.width/2, canvas.height/2 + 10);
+      ctx.font = 'bold 20px monospace';
+      ctx.fillText('MISSION COMPLETE', canvas.width/2, canvas.height/2 - 70);
+      ctx.font = '12px monospace';
+      ctx.fillText(`Time: ${time}s`, canvas.width/2, canvas.height/2 - 30);
+      ctx.fillText(`Wood Harvested: ${metrics.woodHarvested}`, canvas.width/2, canvas.height/2 - 10);
+      ctx.fillText(`Planks Produced: ${metrics.planksProduced}`, canvas.width/2, canvas.height/2 + 10);
+      ctx.fillText(`Spent: $${metrics.moneySpent}`, canvas.width/2, canvas.height/2 + 30);
+      ctx.fillText(`Roads: ${metrics.roadsBuilt}`, canvas.width/2, canvas.height/2 + 50);
+      ctx.fillText(`Trees Depleted: ${metrics.treesDepleted}`, canvas.width/2, canvas.height/2 + 70);
     }
 
   }, [gameState, menuPos]);
@@ -253,7 +363,7 @@ export default function GameWorld() {
             <div className="w-3 h-3 rounded-full bg-red-500" />
             <div className="w-3 h-3 rounded-full bg-yellow-500" />
             <div className="w-3 h-3 rounded-full bg-green-500" />
-            <h1 className="text-xl font-bold text-slate-200 tracking-tight ml-2 uppercase italic">AURUM CIVITAS <span className="text-[10px] font-normal opacity-50 tracking-[0.2em] ml-2 not-italic">VIBE_SIM_BETA</span></h1>
+            <h1 className="text-xl font-bold text-slate-200 tracking-tight ml-2 uppercase italic">AURUM CIVITAS <span className="text-[10px] font-normal opacity-50 tracking-[0.2em] ml-2 not-italic">ECONOMY_SIM</span></h1>
           </div>
         </div>
 
@@ -283,6 +393,14 @@ export default function GameWorld() {
                 <span className="text-emerald-500">$50</span>
               </button>
               <button 
+                onClick={() => buildSawmill(menuPos.x, menuPos.y)}
+                disabled={gameState.money < 70}
+                className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
+              >
+                <span>Sawmill</span>
+                <span className="text-emerald-500">$70</span>
+              </button>
+              <button 
                 onClick={() => buildRoad(menuPos.x, menuPos.y)}
                 disabled={gameState.money < 5}
                 className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
@@ -303,13 +421,13 @@ export default function GameWorld() {
         {/* Terminal / Logs */}
         <div className="bg-slate-900 border border-slate-800 rounded-b-lg p-4 shadow-xl">
           <div className="flex items-center gap-2 mb-2 text-xs font-bold text-slate-500 uppercase tracking-widest border-b border-slate-800 pb-2">
-            <span className="text-slate-400">&gt;</span> runtime_output
+            <span className="text-slate-400">&gt;</span> economic_simulation
           </div>
           <div className="space-y-1 h-32 overflow-y-auto custom-scrollbar">
             {gameState.logs.map((log, i) => (
               <div key={i} className="text-xs flex gap-3">
                 <span className="text-slate-600">[{log.timestamp}]</span>
-                <span className={log.text.includes('worker') ? 'text-blue-400' : log.text.includes('base') ? 'text-emerald-400' : log.text.includes('system') ? 'text-slate-400' : 'text-yellow-400'}>
+                <span className={log.text.includes('worker') ? 'text-blue-400' : log.text.includes('plank') ? 'text-emerald-400' : 'text-slate-400'}>
                   {log.text}
                 </span>
               </div>
