@@ -1,229 +1,240 @@
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { INITIAL_STATE, GameState, updateWorker, updateBuilding, Worker, Building, GRID_SIZE, LUMBERJACK_RADIUS } from '@/lib/game-engine';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  BUILDING_DEFINITIONS,
+  BUILD_TIME,
+  BuildingRole,
+  createBuilding,
+  createInitialState,
+  createLumberjackWorker,
+  GameState,
+  GRID_SIZE,
+  LUMBERJACK_RADIUS,
+  MISSION_PLANKS,
+  nextId,
+  SAWMILL_TIME,
+  updateBuilding,
+  updateWorker,
+} from '@/lib/game-engine';
+
+const CANVAS_WIDTH = 1000;
+const CANVAS_HEIGHT = 700;
+const ROAD_COST = 5;
 
 export default function GameWorld() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [gameState, setGameState] = useState<GameState>(INITIAL_STATE);
+  const [gameState, setGameState] = useState<GameState>(() => createInitialState());
   const [menuPos, setMenuPos] = useState<{ x: number; y: number } | null>(null);
   const requestRef = useRef<number>(null);
   const previousTimeRef = useRef<number>(null);
 
-  const createLog = useCallback((text: string) => {
-    return {
-      text,
-      timestamp: new Date().toLocaleTimeString(),
-    };
-  }, []);
+  const createLog = useCallback((text: string) => ({
+    text,
+    timestamp: new Date().toLocaleTimeString(),
+  }), []);
 
-  // Initialize logs on mount to avoid hydration mismatch
   useEffect(() => {
     setGameState(prev => ({
       ...prev,
       logs: [
-        createLog('[system] production simulation active.'),
-        createLog('[mission] target: produce 10 planks.'),
+        createLog('[system] world initialized.'),
+        createLog(`[mission] produce ${MISSION_PLANKS} planks.`),
       ],
     }));
   }, [createLog]);
 
-  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (gameState.missionComplete) return;
+  const restartMission = useCallback(() => {
+    const reset = createInitialState();
+    reset.logs = [
+      createLog('[system] identical world restored.'),
+      createLog(`[mission] produce ${MISSION_PLANKS} planks.`),
+    ];
+    previousTimeRef.current = null;
+    setMenuPos(null);
+    setGameState(reset);
+  }, [createLog]);
 
+  const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (gameState.missionComplete) return;
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    if (menuPos) {
-      setMenuPos(null);
-    } else {
-      setMenuPos({ x, y });
-    }
+    const x = (event.clientX - rect.left) * (CANVAS_WIDTH / rect.width);
+    const y = (event.clientY - rect.top) * (CANVAS_HEIGHT / rect.height);
+    setMenuPos(menuPos ? null : { x, y });
   };
 
-  const buildLumberjack = (x: number, y: number) => {
-    if (gameState.money >= 50) {
-      const snappedX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
-      const snappedY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
+  const build = (role: BuildingRole, x: number, y: number) => {
+    setGameState(prev => {
+      const definition = BUILDING_DEFINITIONS[role];
+      if (prev.money < definition.cost || prev.missionComplete) return prev;
 
-      const newBuilding: Building = {
-        id: `lumberjack-${Date.now()}`,
-        type: 'building',
-        role: 'lumberjack',
-        pos: { x: snappedX, y: snappedY },
-        width: 60,
-        height: 60,
-        inputWood: 0,
-        outputPlanks: 0,
-        processingTimer: 0,
-        status: 'operational',
-      };
+      const buildingId = nextId(prev, role);
+      const building = createBuilding(role, x, y, buildingId);
+      const idIncrement = role === 'lumberjack' ? 2 : 1;
+      const workers = [...prev.workers];
 
-      const newWorker: Worker = {
-        id: `worker-${newBuilding.id}`,
-        type: 'worker',
-        pos: { x: snappedX + 30, y: snappedY + 30 },
-        state: 'idle',
-        targetTreeId: null,
-        homeBuildingId: newBuilding.id,
-        carrying: false,
-        resource: null,
-        speed: 120, 
-        harvestTimer: 0,
-      };
+      if (role === 'lumberjack') {
+        workers.push(createLumberjackWorker(building, `worker-${prev.nextEntityId + 1}`));
+      }
 
-      setGameState(prev => ({
+      return {
         ...prev,
-        money: prev.money - 50,
-        buildings: [...prev.buildings, newBuilding],
-        workers: [...prev.workers, newWorker],
+        money: prev.money - definition.cost,
+        buildings: [...prev.buildings, building],
+        workers,
+        nextEntityId: prev.nextEntityId + idIncrement,
         metrics: {
           ...prev.metrics,
-          startTime: prev.metrics.startTime || Date.now(),
-          moneySpent: prev.metrics.moneySpent + 50,
+          startTime: prev.metrics.startTime ?? Date.now(),
+          moneySpent: prev.metrics.moneySpent + definition.cost,
+          lumberjacksBuilt: prev.metrics.lumberjacksBuilt + (role === 'lumberjack' ? 1 : 0),
+          sawmillsBuilt: prev.metrics.sawmillsBuilt + (role === 'sawmill' ? 1 : 0),
         },
-        logs: [...prev.logs, createLog(`[system] lumberjack operational`)].slice(-10),
-      }));
-    }
-    setMenuPos(null);
-  };
-
-  const buildSawmill = (x: number, y: number) => {
-    if (gameState.money >= 70) {
-      const snappedX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
-      const snappedY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
-
-      const newBuilding: Building = {
-        id: `sawmill-${Date.now()}`,
-        type: 'building',
-        role: 'sawmill',
-        pos: { x: snappedX, y: snappedY },
-        width: 60,
-        height: 60,
-        inputWood: 0,
-        outputPlanks: 0,
-        processingTimer: 0,
-        status: 'operational',
+        logs: [
+          ...prev.logs,
+          createLog(`[build] ${definition.label} placed. construction: ${BUILD_TIME}s`),
+        ].slice(-12),
       };
+    });
 
-      setGameState(prev => ({
-        ...prev,
-        money: prev.money - 70,
-        buildings: [...prev.buildings, newBuilding],
-        metrics: {
-          ...prev.metrics,
-          startTime: prev.metrics.startTime || Date.now(),
-          moneySpent: prev.metrics.moneySpent + 70,
-        },
-        logs: [...prev.logs, createLog(`[system] sawmill constructed`)].slice(-10),
-      }));
-    }
     setMenuPos(null);
   };
 
   const buildRoad = (x: number, y: number) => {
-    if (gameState.money >= 5) {
-      const gridX = Math.floor(x / GRID_SIZE);
-      const gridY = Math.floor(y / GRID_SIZE);
-      const key = `${gridX},${gridY}`;
+    setGameState(prev => {
+      if (prev.money < ROAD_COST || prev.missionComplete) return prev;
 
-      if (gameState.roads[key]) return;
+      const gx = Math.floor(x / GRID_SIZE);
+      const gy = Math.floor(y / GRID_SIZE);
+      const key = `${gx},${gy}`;
+      if (prev.roads[key]) return prev;
 
-      setGameState(prev => ({
+      return {
         ...prev,
-        money: prev.money - 5,
+        money: prev.money - ROAD_COST,
         roads: { ...prev.roads, [key]: true },
         metrics: {
           ...prev.metrics,
+          startTime: prev.metrics.startTime ?? Date.now(),
           roadsBuilt: prev.metrics.roadsBuilt + 1,
-          moneySpent: prev.metrics.moneySpent + 5,
+          moneySpent: prev.metrics.moneySpent + ROAD_COST,
         },
-        logs: [...prev.logs, createLog(`[system] road tile placed`)].slice(-10),
-      }));
-    }
+        logs: [...prev.logs, createLog('[build] road tile placed.')].slice(-12),
+      };
+    });
+
     setMenuPos(null);
   };
 
   const animate = useCallback((time: number) => {
     if (previousTimeRef.current !== null) {
-      const dt = (time - previousTimeRef.current) / 1000;
+      const dt = Math.min((time - previousTimeRef.current) / 1000, 0.1);
 
       setGameState(prev => {
         if (prev.missionComplete) return prev;
 
-        let woodHarvestedCount = 0;
-        let planksProducedCount = 0;
-        let woodDeliveredToBase = 0;
-        const newLogs: string[] = [];
+        const logs: string[] = [];
+        let planksProducedThisFrame = 0;
 
-        // 1. Update Buildings (Processing)
-        const updatedBuildings = prev.buildings.map(b => {
-          const { building, plankProduced } = updateBuilding(b, dt);
-          if (plankProduced) planksProducedCount++;
-          return building;
-        });
-
-        // 2. Update Workers (Movement & Delivery)
-        const updatedWorkers = prev.workers.map(w => {
-          const { worker, woodHarvested, woodDelivered, targetBuildingId, log } = updateWorker(w, { ...prev, buildings: updatedBuildings }, dt);
-          
-          if (woodHarvested) woodHarvestedCount++;
-          
-          if (woodDelivered && targetBuildingId) {
-             if (targetBuildingId === prev.base.id) {
-                woodDeliveredToBase++;
-             } else {
-                // Delivered to sawmill
-                const b = updatedBuildings.find(building => building.id === targetBuildingId);
-                if (b) b.inputWood += 1;
-             }
+        const buildings = prev.buildings.map(building => {
+          const result = updateBuilding(building, dt);
+          if (result.becameOperational) {
+            logs.push(`[build] ${building.role} operational.`);
           }
-          if (log) newLogs.push(log);
-          return worker;
+          if (result.plankProduced) {
+            planksProducedThisFrame += 1;
+            logs.push('[sawmill] 1 plank produced.');
+          }
+          return result.building;
         });
 
-        // 3. Update Inventory
-        const baseWood = prev.base.inventory.wood + woodDeliveredToBase;
-        const basePlanks = prev.base.inventory.planks + planksProducedCount;
+        const trees = prev.trees.map(tree => ({
+          ...tree,
+          pos: { ...tree.pos },
+        }));
 
-        // 4. Update Trees
-        const initialTreeCount = prev.trees.length;
-        const updatedTrees = prev.trees.filter(t => t.wood > 0);
-        const treesDepletedThisFrame = initialTreeCount - updatedTrees.length;
+        const base = {
+          ...prev.base,
+          inventory: { ...prev.base.inventory },
+        };
 
-        const missionComplete = basePlanks >= 10;
-        
-        const logEntries = newLogs.map(l => createLog(l));
-        if (missionComplete && !prev.missionComplete) {
-           logEntries.push(createLog('[mission] MISSION COMPLETE: 10 planks produced.'));
+        const workingState: GameState = {
+          ...prev,
+          buildings,
+          trees,
+          base,
+        };
+
+        let harvestedThisFrame = 0;
+
+        const workers = prev.workers.map(worker => {
+          const result = updateWorker(worker, workingState, dt);
+
+          if (result.harvestedTreeId) {
+            const tree = workingState.trees.find(
+              item => item.id === result.harvestedTreeId && item.wood > 0
+            );
+
+            if (tree) {
+              tree.wood -= 1;
+              harvestedThisFrame += 1;
+            } else {
+              result.worker.carrying = false;
+              result.worker.resource = null;
+              result.worker.targetTreeId = null;
+              result.worker.state = 'idle';
+            }
+          }
+
+          if (result.woodDelivered && result.targetBuildingId) {
+            if (result.targetBuildingId === base.id) {
+              base.inventory.wood += 1;
+            } else {
+              const target = buildings.find(b => b.id === result.targetBuildingId);
+              if (target) target.inputWood += 1;
+            }
+          }
+
+          if (result.log) logs.push(result.log);
+          return result.worker;
+        });
+
+        const depletedNow = workingState.trees.filter(tree => tree.wood <= 0).length;
+        const treesRemaining = workingState.trees.filter(tree => tree.wood > 0);
+        const previouslyDepleted = prev.metrics.treesDepleted;
+        const newlyDepleted = Math.max(0, depletedNow);
+
+        const totalPlanks = prev.metrics.planksProduced + planksProducedThisFrame;
+        const missionComplete = totalPlanks >= MISSION_PLANKS;
+
+        if (missionComplete) {
+          logs.push(`[mission] complete: ${MISSION_PLANKS} planks produced.`);
         }
 
         return {
           ...prev,
-          buildings: updatedBuildings,
-          workers: updatedWorkers,
-          trees: updatedTrees,
-          wood: baseWood,
-          planks: basePlanks,
-          base: {
-            ...prev.base,
-            inventory: { wood: baseWood, planks: basePlanks }
-          },
+          base,
+          buildings,
+          workers,
+          trees: treesRemaining,
           missionComplete,
-          logs: [...prev.logs, ...logEntries].slice(-10),
           metrics: {
             ...prev.metrics,
             endTime: missionComplete ? Date.now() : null,
-            woodHarvested: prev.metrics.woodHarvested + woodHarvestedCount,
-            planksProduced: basePlanks,
-            treesDepleted: prev.metrics.treesDepleted + treesDepletedThisFrame,
-          }
+            woodHarvested: prev.metrics.woodHarvested + harvestedThisFrame,
+            planksProduced: totalPlanks,
+            treesDepleted: previouslyDepleted + newlyDepleted,
+          },
+          logs: [
+            ...prev.logs,
+            ...logs.map(createLog),
+          ].slice(-12),
         };
       });
     }
+
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);
   }, [createLog]);
@@ -238,179 +249,101 @@ export default function GameWorld() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Roads
-    ctx.fillStyle = '#f1f5f9';
-    Object.keys(gameState.roads).forEach(key => {
-      const [gx, gy] = key.split(',').map(Number);
-      ctx.fillRect(gx * GRID_SIZE, gy * GRID_SIZE, GRID_SIZE, GRID_SIZE);
-    });
+    drawGrid(ctx);
+    drawRoads(ctx, gameState);
+    drawBase(ctx, gameState);
+    drawTrees(ctx, gameState);
+    drawBuildings(ctx, gameState);
+    drawWorkers(ctx, gameState);
+    drawHud(ctx, gameState);
 
-    // Radius UI
     if (menuPos) {
-       ctx.beginPath();
-       ctx.arc(menuPos.x, menuPos.y, LUMBERJACK_RADIUS, 0, Math.PI * 2);
-       ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
-       ctx.setLineDash([5, 5]);
-       ctx.stroke();
-       ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.arc(menuPos.x, menuPos.y, LUMBERJACK_RADIUS, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+      ctx.setLineDash([6, 6]);
+      ctx.stroke();
+      ctx.setLineDash([]);
     }
 
-    // Base
-    const base = gameState.base;
-    ctx.fillStyle = '#94a3b8';
-    ctx.fillRect(base.pos.x, base.pos.y, base.width, base.height);
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(base.pos.x, base.pos.y, base.width, base.height);
-    ctx.fillStyle = 'black';
-    ctx.font = 'bold 10px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText('BASE', base.pos.x + base.width/2, base.pos.y + base.height/2 - 5);
-    ctx.font = '9px monospace';
-    ctx.fillText(`W:${gameState.base.inventory.wood} P:${gameState.base.inventory.planks}`, base.pos.x + base.width/2, base.pos.y + base.height/2 + 10);
-
-    // Trees
-    gameState.trees.forEach(tree => {
-      ctx.fillStyle = '#78350f';
-      ctx.fillRect(tree.pos.x - 2, tree.pos.y, 4, 12);
-      ctx.fillStyle = '#166534';
-      ctx.beginPath(); ctx.arc(tree.pos.x, tree.pos.y - 5, 8, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = 'white';
-      ctx.font = '7px Arial';
-      ctx.fillText(tree.wood.toString(), tree.pos.x, tree.pos.y - 4);
-    });
-
-    // Buildings
-    gameState.buildings.forEach(b => {
-      ctx.fillStyle = b.role === 'lumberjack' ? '#451a03' : '#b45309';
-      ctx.fillRect(b.pos.x, b.pos.y, b.width, b.height);
-      ctx.strokeStyle = 'black';
-      ctx.strokeRect(b.pos.x, b.pos.y, b.width, b.height);
-      
-      ctx.fillStyle = 'white';
-      ctx.font = '8px monospace';
-      ctx.fillText(b.role.toUpperCase(), b.pos.x + b.width/2, b.pos.y + 12);
-      
-      if (b.role === 'sawmill') {
-         ctx.fillText(`IN:${b.inputWood} OUT:${b.outputPlanks}`, b.pos.x + b.width/2, b.pos.y + b.height - 8);
-         if (b.status === 'processing') {
-            ctx.fillStyle = '#f59e0b';
-            ctx.fillRect(b.pos.x + 5, b.pos.y + b.height/2, b.width - 10, 4);
-         }
-      }
-    });
-
-    // Workers
-    gameState.workers.forEach(w => {
-      const { x, y } = w.pos;
-      ctx.strokeStyle = 'black';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.arc(x, y - 6, 3, 0, Math.PI * 2); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(x, y - 3); ctx.lineTo(x, y + 8); ctx.stroke();
-      
-      if (w.carrying) {
-        ctx.fillStyle = '#78350f';
-        ctx.fillRect(x + 2, y - 2, 4, 4);
-      }
-      
-      if (w.state === 'harvesting') {
-         ctx.fillStyle = 'black';
-         ctx.font = '8px Arial';
-         ctx.fillText('...', x, y - 10);
-      }
-    });
-
-    // UI
-    ctx.fillStyle = 'black';
-    ctx.textAlign = 'left';
-    ctx.font = '11px monospace';
-    ctx.fillText(`AURUM: ${gameState.money}ᗘ`, 20, 30);
-    ctx.fillText(`PLANKS: ${gameState.planks}/10`, 20, 45);
-
-    if (gameState.missionComplete) {
-      const metrics = gameState.metrics;
-      const time = metrics.startTime && metrics.endTime ? Math.floor((metrics.endTime - metrics.startTime) / 1000) : 0;
-      
-      ctx.fillStyle = 'rgba(0,0,0,0.85)';
-      ctx.fillRect(canvas.width/2 - 120, canvas.height/2 - 100, 240, 200);
-      ctx.fillStyle = 'white';
-      ctx.textAlign = 'center';
-      ctx.font = 'bold 20px monospace';
-      ctx.fillText('MISSION COMPLETE', canvas.width/2, canvas.height/2 - 70);
-      ctx.font = '12px monospace';
-      ctx.fillText(`Time: ${time}s`, canvas.width/2, canvas.height/2 - 30);
-      ctx.fillText(`Wood Harvested: ${metrics.woodHarvested}`, canvas.width/2, canvas.height/2 - 10);
-      ctx.fillText(`Planks Produced: ${metrics.planksProduced}`, canvas.width/2, canvas.height/2 + 10);
-      ctx.fillText(`Spent: ${metrics.moneySpent}ᗘ`, canvas.width/2, canvas.height/2 + 30);
-      ctx.fillText(`Roads: ${metrics.roadsBuilt}`, canvas.width/2, canvas.height/2 + 50);
-      ctx.fillText(`Trees Depleted: ${metrics.treesDepleted}`, canvas.width/2, canvas.height/2 + 70);
-    }
-
+    if (gameState.missionComplete) drawMissionComplete(ctx, gameState);
   }, [gameState, menuPos]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 p-4 font-mono">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-slate-950 p-4 font-mono">
       <div className="w-full max-w-5xl space-y-4">
-        {/* Header */}
-        <div className="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-t-lg shadow-xl">
-          <div className="flex items-center gap-4">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-            <h1 className="text-xl font-bold text-slate-200 tracking-tight ml-2 uppercase italic">AURUM CIVITAS <span className="text-[10px] font-normal opacity-50 tracking-[0.2em] ml-2 not-italic">ECONOMY_SIM</span></h1>
+        <header className="flex items-center justify-between rounded-t-lg border border-slate-800 bg-slate-900 p-4 shadow-xl">
+          <div>
+            <h1 className="text-xl font-bold uppercase tracking-tight text-slate-200">
+              AURUM CIVITAS
+            </h1>
+            <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">
+              minimal economy world · mission 001
+            </p>
           </div>
-        </div>
+          <button
+            onClick={restartMission}
+            className="rounded border border-slate-700 px-3 py-2 text-xs text-slate-300 hover:bg-slate-800"
+          >
+            Restart same world
+          </button>
+        </header>
 
-        {/* Main Game Canvas */}
-        <div className="relative border-x border-slate-800 shadow-2xl bg-white overflow-hidden group">
+        <div className="relative overflow-hidden border-x border-slate-800 bg-white shadow-2xl">
           <canvas
             ref={canvasRef}
-            width={1000}
-            height={700}
+            width={CANVAS_WIDTH}
+            height={CANVAS_HEIGHT}
             onClick={handleCanvasClick}
-            className="cursor-crosshair w-full h-auto"
+            className="h-auto w-full cursor-crosshair"
           />
 
-          {/* Build Menu Overlay */}
           {menuPos && !gameState.missionComplete && (
-            <div 
-              className="absolute z-10 bg-slate-900 border border-slate-700 shadow-2xl rounded-md p-1 min-w-[150px] animate-in fade-in zoom-in duration-200"
-              style={{ left: menuPos.x, top: menuPos.y }}
+            <div
+              className="absolute z-10 min-w-[180px] rounded-md border border-slate-700 bg-slate-900 p-1 shadow-2xl"
+              style={{
+                left: `${Math.min((menuPos.x / CANVAS_WIDTH) * 100, 82)}%`,
+                top: `${Math.min((menuPos.y / CANVAS_HEIGHT) * 100, 75)}%`,
+              }}
             >
-              <div className="text-[10px] text-slate-500 px-2 py-1 uppercase font-bold border-b border-slate-800 mb-1">Construct</div>
-              <button 
-                onClick={() => buildLumberjack(menuPos.x, menuPos.y)}
-                disabled={gameState.money < 50}
-                className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
-              >
-                <span>Lumberjack</span>
-                <span className="text-emerald-500">50ᗘ</span>
-              </button>
-              <button 
-                onClick={() => buildSawmill(menuPos.x, menuPos.y)}
-                disabled={gameState.money < 70}
-                className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
-              >
-                <span>Sawmill</span>
-                <span className="text-emerald-500">70ᗘ</span>
-              </button>
-              <button 
+              <div className="mb-1 border-b border-slate-800 px-2 py-1 text-[10px] font-bold uppercase text-slate-500">
+                Construct
+              </div>
+
+              {(Object.keys(BUILDING_DEFINITIONS) as BuildingRole[]).map(role => {
+                const definition = BUILDING_DEFINITIONS[role];
+                return (
+                  <button
+                    key={role}
+                    onClick={() => build(role, menuPos.x, menuPos.y)}
+                    disabled={gameState.money < definition.cost}
+                    className="flex w-full items-center justify-between px-3 py-2 text-left text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30"
+                  >
+                    <span>{definition.label}</span>
+                    <span className="text-emerald-500">{definition.cost}A</span>
+                  </button>
+                );
+              })}
+
+              <button
                 onClick={() => buildRoad(menuPos.x, menuPos.y)}
-                disabled={gameState.money < 5}
-                className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
+                disabled={gameState.money < ROAD_COST}
+                className="flex w-full items-center justify-between px-3 py-2 text-left text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30"
               >
-                <span>Road Tile</span>
-                <span className="text-emerald-500">5ᗘ</span>
+                <span>Road tile</span>
+                <span className="text-emerald-500">{ROAD_COST}A</span>
               </button>
-              <button 
+
+              <button
                 onClick={() => setMenuPos(null)}
-                className="w-full text-left px-3 py-1 text-[10px] text-slate-500 hover:bg-slate-800 transition-colors border-t border-slate-800 mt-1"
+                className="mt-1 w-full border-t border-slate-800 px-3 py-1 text-left text-[10px] text-slate-500 hover:bg-slate-800"
               >
                 Cancel
               </button>
@@ -418,23 +351,225 @@ export default function GameWorld() {
           )}
         </div>
 
-        {/* Terminal / Logs */}
-        <div className="bg-slate-900 border border-slate-800 rounded-b-lg p-4 shadow-xl">
-          <div className="flex items-center gap-2 mb-2 text-xs font-bold text-slate-500 uppercase tracking-widest border-b border-slate-800 pb-2">
-            <span className="text-slate-400">&gt;</span> economic_simulation
+        <section className="rounded-b-lg border border-slate-800 bg-slate-900 p-4 shadow-xl">
+          <div className="mb-2 border-b border-slate-800 pb-2 text-xs font-bold uppercase tracking-widest text-slate-500">
+            &gt; world_event_log
           </div>
-          <div className="space-y-1 h-32 overflow-y-auto custom-scrollbar">
-            {gameState.logs.map((log, i) => (
-              <div key={i} className="text-xs flex gap-3">
+          <div className="h-32 space-y-1 overflow-y-auto">
+            {gameState.logs.map((log, index) => (
+              <div key={index} className="flex gap-3 text-xs">
                 <span className="text-slate-600">[{log.timestamp}]</span>
-                <span className={log.text.includes('worker') ? 'text-blue-400' : log.text.includes('plank') ? 'text-emerald-400' : 'text-slate-400'}>
-                  {log.text}
-                </span>
+                <span className="text-slate-400">{log.text}</span>
               </div>
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
+}
+
+function drawGrid(ctx: CanvasRenderingContext2D) {
+  ctx.strokeStyle = '#f8fafc';
+  ctx.lineWidth = 1;
+
+  for (let x = 0; x <= CANVAS_WIDTH; x += GRID_SIZE) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, CANVAS_HEIGHT);
+    ctx.stroke();
+  }
+
+  for (let y = 0; y <= CANVAS_HEIGHT; y += GRID_SIZE) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(CANVAS_WIDTH, y);
+    ctx.stroke();
+  }
+}
+
+function drawRoads(ctx: CanvasRenderingContext2D, state: GameState) {
+  for (const key of Object.keys(state.roads)) {
+    const [gx, gy] = key.split(',').map(Number);
+    const x = gx * GRID_SIZE;
+    const y = gy * GRID_SIZE;
+
+    ctx.fillStyle = '#d6d3d1';
+    ctx.fillRect(x + 4, y + 4, GRID_SIZE - 8, GRID_SIZE - 8);
+    ctx.strokeStyle = '#a8a29e';
+    ctx.strokeRect(x + 4, y + 4, GRID_SIZE - 8, GRID_SIZE - 8);
+  }
+}
+
+function drawBase(ctx: CanvasRenderingContext2D, state: GameState) {
+  const base = state.base;
+  ctx.fillStyle = '#94a3b8';
+  ctx.fillRect(base.pos.x, base.pos.y, base.width, base.height);
+  ctx.strokeStyle = '#0f172a';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(base.pos.x, base.pos.y, base.width, base.height);
+
+  ctx.fillStyle = '#0f172a';
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 11px monospace';
+  ctx.fillText('BASE', base.pos.x + base.width / 2, base.pos.y + 34);
+  ctx.font = '9px monospace';
+  ctx.fillText(
+    `WOOD ${base.inventory.wood}`,
+    base.pos.x + base.width / 2,
+    base.pos.y + 50
+  );
+}
+
+function drawTrees(ctx: CanvasRenderingContext2D, state: GameState) {
+  for (const tree of state.trees) {
+    ctx.fillStyle = '#78350f';
+    ctx.fillRect(tree.pos.x - 3, tree.pos.y, 6, 18);
+
+    ctx.fillStyle = '#166534';
+    ctx.beginPath();
+    ctx.arc(tree.pos.x, tree.pos.y - 7, 13, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.font = '8px monospace';
+    ctx.fillText(String(tree.wood), tree.pos.x, tree.pos.y - 5);
+  }
+}
+
+function drawBuildings(ctx: CanvasRenderingContext2D, state: GameState) {
+  for (const building of state.buildings) {
+    ctx.fillStyle = building.status === 'constructing'
+      ? '#cbd5e1'
+      : building.role === 'lumberjack'
+        ? '#92400e'
+        : '#b45309';
+
+    ctx.fillRect(building.pos.x, building.pos.y, building.width, building.height);
+    ctx.strokeStyle = '#0f172a';
+    ctx.strokeRect(building.pos.x, building.pos.y, building.width, building.height);
+
+    ctx.fillStyle = building.status === 'constructing' ? '#334155' : '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 8px monospace';
+    ctx.fillText(
+      building.role.toUpperCase(),
+      building.pos.x + building.width / 2,
+      building.pos.y + 13
+    );
+
+    if (building.status === 'constructing') {
+      const progress = Math.min(1, building.constructionTimer / BUILD_TIME);
+      ctx.fillStyle = '#475569';
+      ctx.fillRect(
+        building.pos.x + 5,
+        building.pos.y + building.height - 9,
+        (building.width - 10) * progress,
+        4
+      );
+    }
+
+    if (building.role === 'sawmill' && building.status !== 'constructing') {
+      ctx.font = '8px monospace';
+      ctx.fillText(
+        `W:${building.inputWood} P:${building.outputPlanks}`,
+        building.pos.x + building.width / 2,
+        building.pos.y + building.height - 8
+      );
+
+      if (building.status === 'processing') {
+        const progress = Math.min(1, building.processingTimer / SAWMILL_TIME);
+        ctx.fillStyle = '#fde68a';
+        ctx.fillRect(
+          building.pos.x + 5,
+          building.pos.y + building.height / 2,
+          (building.width - 10) * progress,
+          4
+        );
+      }
+    }
+  }
+}
+
+function drawWorkers(ctx: CanvasRenderingContext2D, state: GameState) {
+  for (const worker of state.workers) {
+    const { x, y } = worker.pos;
+
+    ctx.strokeStyle = '#020617';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(x, y - 7, 4, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x, y - 3);
+    ctx.lineTo(x, y + 10);
+    ctx.moveTo(x - 7, y + 2);
+    ctx.lineTo(x + 7, y + 2);
+    ctx.moveTo(x, y + 10);
+    ctx.lineTo(x - 5, y + 17);
+    ctx.moveTo(x, y + 10);
+    ctx.lineTo(x + 5, y + 17);
+    ctx.stroke();
+
+    if (worker.carrying) {
+      ctx.fillStyle = '#78350f';
+      ctx.fillRect(x + 7, y - 1, 6, 6);
+    }
+
+    if (worker.state === 'harvesting') {
+      ctx.fillStyle = '#020617';
+      ctx.font = '9px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('chop', x, y - 15);
+    }
+  }
+}
+
+function drawHud(ctx: CanvasRenderingContext2D, state: GameState) {
+  ctx.fillStyle = '#020617';
+  ctx.textAlign = 'left';
+  ctx.font = 'bold 13px monospace';
+  ctx.fillText(`AURUM: ${state.money}`, 20, 28);
+  ctx.fillText(`PLANKS: ${state.metrics.planksProduced}/${MISSION_PLANKS}`, 20, 48);
+
+  ctx.font = '10px monospace';
+  ctx.fillText('Roads are preferred by workers when connected.', 20, 68);
+
+  if (state.metrics.startTime && !state.missionComplete) {
+    const elapsed = Math.floor((Date.now() - state.metrics.startTime) / 1000);
+    ctx.fillText(`TIME: ${elapsed}s`, 20, 88);
+  }
+}
+
+function drawMissionComplete(ctx: CanvasRenderingContext2D, state: GameState) {
+  const elapsed =
+    state.metrics.startTime && state.metrics.endTime
+      ? Math.floor((state.metrics.endTime - state.metrics.startTime) / 1000)
+      : 0;
+
+  ctx.fillStyle = 'rgba(2, 6, 23, 0.9)';
+  ctx.fillRect(CANVAS_WIDTH / 2 - 155, CANVAS_HEIGHT / 2 - 125, 310, 250);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 20px monospace';
+  ctx.fillText('MISSION COMPLETE', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 88);
+
+  ctx.font = '12px monospace';
+  const lines = [
+    `Time: ${elapsed}s`,
+    `Wood harvested: ${state.metrics.woodHarvested}`,
+    `Planks produced: ${state.metrics.planksProduced}`,
+    `Money spent: ${state.metrics.moneySpent}`,
+    `Road tiles: ${state.metrics.roadsBuilt}`,
+    `Trees depleted: ${state.metrics.treesDepleted}`,
+    `Lumberjacks: ${state.metrics.lumberjacksBuilt}`,
+    `Sawmills: ${state.metrics.sawmillsBuilt}`,
+  ];
+
+  lines.forEach((line, index) => {
+    ctx.fillText(line, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 50 + index * 20);
+  });
 }
