@@ -330,7 +330,7 @@ export default function GameWorld() {
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
     ctx.font = '11px monospace';
-    ctx.fillText(`CASH: $${gameState.money}`, 20, 30);
+    ctx.fillText(`AURUM: ${gameState.money}ᗘ`, 20, 30);
     ctx.fillText(`PLANKS: ${gameState.planks}/10`, 20, 45);
 
     if (gameState.missionComplete) {
@@ -347,7 +347,7 @@ export default function GameWorld() {
       ctx.fillText(`Time: ${time}s`, canvas.width/2, canvas.height/2 - 30);
       ctx.fillText(`Wood Harvested: ${metrics.woodHarvested}`, canvas.width/2, canvas.height/2 - 10);
       ctx.fillText(`Planks Produced: ${metrics.planksProduced}`, canvas.width/2, canvas.height/2 + 10);
-      ctx.fillText(`Spent: $${metrics.moneySpent}`, canvas.width/2, canvas.height/2 + 30);
+      ctx.fillText(`Spent: ${metrics.moneySpent}ᗘ`, canvas.width/2, canvas.height/2 + 30);
       ctx.fillText(`Roads: ${metrics.roadsBuilt}`, canvas.width/2, canvas.height/2 + 50);
       ctx.fillText(`Trees Depleted: ${metrics.treesDepleted}`, canvas.width/2, canvas.height/2 + 70);
     }
@@ -390,7 +390,7 @@ export default function GameWorld() {
                 className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
               >
                 <span>Lumberjack</span>
-                <span className="text-emerald-500">$50</span>
+                <span className="text-emerald-500">50ᗘ</span>
               </button>
               <button 
                 onClick={() => buildSawmill(menuPos.x, menuPos.y)}
@@ -398,7 +398,7 @@ export default function GameWorld() {
                 className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
               >
                 <span>Sawmill</span>
-                <span className="text-emerald-500">$70</span>
+                <span className="text-emerald-500">70ᗘ</span>
               </button>
               <button 
                 onClick={() => buildRoad(menuPos.x, menuPos.y)}
@@ -406,7 +406,7 @@ export default function GameWorld() {
                 className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 disabled:opacity-30 flex justify-between items-center transition-colors"
               >
                 <span>Road Tile</span>
-                <span className="text-emerald-500">$5</span>
+                <span className="text-emerald-500">5ᗘ</span>
               </button>
               <button 
                 onClick={() => setMenuPos(null)}
