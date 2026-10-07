@@ -1,0 +1,212 @@
+{
+  "seed_digest": "7a6d58d67ee53293fe92a7e9d6313bb7b9f8453e1d44d9fd06db28a8a0b619ea",
+  "manifest_digest": "1929f4ff969e565a53f634d7f654fba16eff6fd3125daf4d649240fe3cc6a8d4",
+  "module_count": 14,
+  "test_obligations": 14,
+  "mission_count": 14,
+  "searches": {
+    "repository": {
+      "plans": [
+        {
+          "operators": [
+            "RX0",
+            "RX1",
+            "RX2",
+            "RX3",
+            "RX4",
+            "RX5",
+            "RX6",
+            "RX7",
+            "RX8",
+            "RX9",
+            "RXA",
+            "RXB",
+            "RXC",
+            "RXD"
+          ],
+          "facts": [
+            "RM0",
+            "RM1",
+            "RM2",
+            "RM3",
+            "RM4",
+            "RM5",
+            "RM6",
+            "RM7",
+            "RM8",
+            "RM9",
+            "RMA",
+            "RMB",
+            "RMC",
+            "RMD"
+          ],
+          "waves": [
+            [
+              "RX0"
+            ],
+            [
+              "RX1",
+              "RX6"
+            ],
+            [
+              "RX2",
+              "RX3",
+              "RXD"
+            ],
+            [
+              "RX4",
+              "RX7"
+            ],
+            [
+              "RX5",
+              "RX8"
+            ],
+            [
+              "RX9",
+              "RXA"
+            ],
+            [
+              "RXB",
+              "RXC"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 14,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 15,
+      "budget": 20000
+    },
+    "next_proof": {
+      "plans": [
+        {
+          "operators": [
+            "RX0",
+            "RX1",
+            "RX2",
+            "RX3",
+            "RX4",
+            "RX5",
+            "RXD"
+          ],
+          "facts": [
+            "RM0",
+            "RM1",
+            "RM2",
+            "RM3",
+            "RM4",
+            "RM5",
+            "RMD"
+          ],
+          "waves": [
+            [
+              "RX0"
+            ],
+            [
+              "RX1"
+            ],
+            [
+              "RX2",
+              "RX3",
+              "RXD"
+            ],
+            [
+              "RX4"
+            ],
+            [
+              "RX5"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 7,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 8,
+      "budget": 20000
+    },
+    "collective": {
+      "plans": [
+        {
+          "operators": [
+            "RX0",
+            "RX1",
+            "RX2",
+            "RX3",
+            "RX4",
+            "RX5",
+            "RX6",
+            "RX7",
+            "RX8",
+            "RX9",
+            "RXA",
+            "RXB",
+            "RXD"
+          ],
+          "facts": [
+            "RM0",
+            "RM1",
+            "RM2",
+            "RM3",
+            "RM4",
+            "RM5",
+            "RM6",
+            "RM7",
+            "RM8",
+            "RM9",
+            "RMA",
+            "RMB",
+            "RMD"
+          ],
+          "waves": [
+            [
+              "RX0"
+            ],
+            [
+              "RX1",
+              "RX6"
+            ],
+            [
+              "RX2",
+              "RX3",
+              "RXD"
+            ],
+            [
+              "RX4",
+              "RX7"
+            ],
+            [
+              "RX5",
+              "RX8"
+            ],
+            [
+              "RX9",
+              "RXA"
+            ],
+            [
+              "RXB"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 13,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 14,
+      "budget": 20000
+    }
+  },
+  "checks": {
+    "all_module_refs_valid": true,
+    "all_derived_capabilities_covered": true,
+    "manifest_id_roundtrip": true,
+    "independent_prerequisite_walk_matches": true,
+    "missing_membership_blocks_shared_world": true,
+    "missing_qualification_blocks_recognition": true,
+    "current_UI_candidate_rejected": true,
+    "compliant_single_module_retained_as_challenger": true
+  },
+  "gameplay_runs": 0,
+  "full_target_status": "UNRESOLVED: ACE/GF and empirical guards"
+}
