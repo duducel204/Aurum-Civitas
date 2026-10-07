@@ -235,8 +235,6 @@ export function updateWorker(
     return { worker: next, woodDelivered };
   }
 
-  const speed = movementSpeed(next.pos, state);
-
   if (next.state === 'idle') {
     const tree = nearestEligibleTree(next.pos, home, state.trees);
     if (tree) {
@@ -254,7 +252,7 @@ export function updateWorker(
       return { worker: next, woodDelivered };
     }
 
-    if (moveToward(next.pos, tree.pos, dt, speed)) {
+    if (moveUsingRoads(next.pos, tree.pos, state, dt)) {
       next.state = 'harvesting';
       next.harvestTimer = 0;
     }
@@ -284,7 +282,7 @@ export function updateWorker(
 
   if (next.state === 'to_delivery') {
     const delivery = chooseWoodDelivery(next.pos, state);
-    if (moveToward(next.pos, delivery.pos, dt, speed)) {
+    if (moveUsingRoads(next.pos, delivery.pos, state, dt)) {
       woodDelivered = true;
       targetBuildingId = delivery.id;
       next.carrying = false;
@@ -301,7 +299,7 @@ export function updateWorker(
       x: home.pos.x + home.width / 2,
       y: home.pos.y + home.height / 2,
     };
-    if (moveToward(next.pos, target, dt, speed)) next.state = 'idle';
+    if (moveUsingRoads(next.pos, target, state, dt)) next.state = 'idle';
   }
 
   return { worker: next, woodDelivered };
@@ -343,10 +341,105 @@ function buildingCenter(building: Building): Point {
   };
 }
 
-function movementSpeed(pos: Point, state: GameState): number {
-  const gx = Math.floor(pos.x / GRID_SIZE);
-  const gy = Math.floor(pos.y / GRID_SIZE);
-  return state.roads[`${gx},${gy}`] ? SPEED_ROAD : SPEED_OFFROAD;
+function roadCenter(key: string): Point {
+  const [gx, gy] = key.split(',').map(Number);
+  return {
+    x: gx * GRID_SIZE + GRID_SIZE / 2,
+    y: gy * GRID_SIZE + GRID_SIZE / 2,
+  };
+}
+
+function roadNeighbors(key: string, roads: Record<string, boolean>): string[] {
+  const [gx, gy] = key.split(',').map(Number);
+  return [
+    `${gx + 1},${gy}`,
+    `${gx - 1},${gy}`,
+    `${gx},${gy + 1}`,
+    `${gx},${gy - 1}`,
+  ].filter(next => roads[next]);
+}
+
+function nearestRoadKey(point: Point, roads: Record<string, boolean>): string | null {
+  const keys = Object.keys(roads);
+  if (keys.length === 0) return null;
+
+  let best: string | null = null;
+  let bestDistance = Infinity;
+
+  for (const key of keys) {
+    const d = distance(point, roadCenter(key));
+    if (d < bestDistance) {
+      bestDistance = d;
+      best = key;
+    }
+  }
+  return best;
+}
+
+function findRoadPath(
+  startKey: string,
+  endKey: string,
+  roads: Record<string, boolean>
+): string[] | null {
+  if (startKey === endKey) return [startKey];
+
+  const queue = [startKey];
+  const previous = new Map<string, string | null>([[startKey, null]]);
+
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    for (const next of roadNeighbors(current, roads)) {
+      if (previous.has(next)) continue;
+      previous.set(next, current);
+
+      if (next === endKey) {
+        const path: string[] = [];
+        let cursor: string | null = next;
+        while (cursor) {
+          path.push(cursor);
+          cursor = previous.get(cursor) ?? null;
+        }
+        return path.reverse();
+      }
+
+      queue.push(next);
+    }
+  }
+
+  return null;
+}
+
+function moveUsingRoads(
+  pos: Point,
+  target: Point,
+  state: GameState,
+  dt: number
+): boolean {
+  const startRoad = nearestRoadKey(pos, state.roads);
+  const endRoad = nearestRoadKey(target, state.roads);
+
+  if (startRoad && endRoad) {
+    const path = findRoadPath(startRoad, endRoad, state.roads);
+
+    if (path && path.length > 0) {
+      const startCenter = roadCenter(path[0]);
+
+      if (distance(pos, startCenter) > 4) {
+        return moveToward(pos, startCenter, dt, SPEED_OFFROAD);
+      }
+
+      for (const key of path.slice(1)) {
+        const waypoint = roadCenter(key);
+        if (distance(pos, waypoint) > 4) {
+          return moveToward(pos, waypoint, dt, SPEED_ROAD);
+        }
+      }
+
+      return moveToward(pos, target, dt, SPEED_OFFROAD);
+    }
+  }
+
+  return moveToward(pos, target, dt, SPEED_OFFROAD);
 }
 
 function distance(a: Point, b: Point): number {
