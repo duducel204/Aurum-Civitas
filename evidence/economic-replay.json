@@ -1,0 +1,415 @@
+{
+  "trace": {
+    "semantic_id": "RM4",
+    "rules": {
+      "version": "test-fixture",
+      "mapSeed": "fixture-map-001",
+      "tickMs": 1000,
+      "capacity": 30,
+      "harvestTicks": 1,
+      "gridSize": 1,
+      "roadSpeed": 10,
+      "offroadSpeed": 1,
+      "allowOffroad": true,
+      "recipes": {
+        "sawmill": {
+          "inputs": {
+            "wood": 1
+          },
+          "outputs": {
+            "planks": 1
+          },
+          "ticks": 1
+        }
+      },
+      "construction": {
+        "storehouse": {
+          "materials": {
+            "planks": 2
+          },
+          "ticks": 2
+        }
+      },
+      "mission": {
+        "id": "test-fixture",
+        "resource": "planks",
+        "delivered": 3,
+        "maxTicks": 500
+      }
+    },
+    "initial": {
+      "tick": 0,
+      "version": 0,
+      "rulesVersion": "test-fixture",
+      "stores": [
+        {
+          "id": "forest",
+          "pos": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "kind": "source",
+          "inventory": {
+            "wood": 25
+          },
+          "capacity": 30,
+          "incorporated": {},
+          "buildTicks": 0,
+          "status": "operational"
+        },
+        {
+          "id": "sawmill",
+          "pos": {
+            "x": 10.5,
+            "y": 0.5
+          },
+          "kind": "producer",
+          "recipe": "sawmill",
+          "inventory": {},
+          "capacity": 30,
+          "incorporated": {},
+          "buildTicks": 0,
+          "status": "operational"
+        },
+        {
+          "id": "depot",
+          "pos": {
+            "x": 15.5,
+            "y": 0.5
+          },
+          "kind": "depot",
+          "inventory": {},
+          "capacity": 30,
+          "incorporated": {},
+          "buildTicks": 0,
+          "status": "operational"
+        }
+      ],
+      "carriers": [
+        {
+          "id": "worker-1",
+          "pos": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "cargo": {},
+          "target": null,
+          "source": null,
+          "route": [],
+          "waypoint": 0,
+          "roadVersion": 0,
+          "phase": "idle",
+          "harvest": 0
+        },
+        {
+          "id": "worker-2",
+          "pos": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "cargo": {},
+          "target": null,
+          "source": null,
+          "route": [],
+          "waypoint": 0,
+          "roadVersion": 0,
+          "phase": "idle",
+          "harvest": 0
+        }
+      ],
+      "roads": {},
+      "roadVersion": 0,
+      "produced": {},
+      "incorporated": {},
+      "bootstrap": {
+        "wood": 25
+      },
+      "events": [],
+      "commandIds": [],
+      "initialTotal": {
+        "wood": 25
+      },
+      "completed": false
+    },
+    "initialHash": "9e10dd2ff1bed13cb3ea0823739f6bf74d8351538340e5977aa25846cdf1f46a",
+    "finalHash": "468abce3d2dde7af745292a22f3ced4779baa539075321bd822afea0978e388f",
+    "frameCount": 28,
+    "frames": [
+      {
+        "tick": 1,
+        "commands": [
+          {
+            "id": "r0",
+            "kind": "road",
+            "x": 0.5,
+            "y": 0.5
+          },
+          {
+            "id": "r1",
+            "kind": "road",
+            "x": 1.5,
+            "y": 0.5
+          },
+          {
+            "id": "r2",
+            "kind": "road",
+            "x": 2.5,
+            "y": 0.5
+          },
+          {
+            "id": "r3",
+            "kind": "road",
+            "x": 3.5,
+            "y": 0.5
+          },
+          {
+            "id": "r4",
+            "kind": "road",
+            "x": 4.5,
+            "y": 0.5
+          },
+          {
+            "id": "r5",
+            "kind": "road",
+            "x": 5.5,
+            "y": 0.5
+          },
+          {
+            "id": "r6",
+            "kind": "road",
+            "x": 6.5,
+            "y": 0.5
+          },
+          {
+            "id": "r7",
+            "kind": "road",
+            "x": 7.5,
+            "y": 0.5
+          },
+          {
+            "id": "r8",
+            "kind": "road",
+            "x": 8.5,
+            "y": 0.5
+          },
+          {
+            "id": "r9",
+            "kind": "road",
+            "x": 9.5,
+            "y": 0.5
+          },
+          {
+            "id": "r10",
+            "kind": "road",
+            "x": 10.5,
+            "y": 0.5
+          },
+          {
+            "id": "r11",
+            "kind": "road",
+            "x": 11.5,
+            "y": 0.5
+          },
+          {
+            "id": "r12",
+            "kind": "road",
+            "x": 12.5,
+            "y": 0.5
+          },
+          {
+            "id": "r13",
+            "kind": "road",
+            "x": 13.5,
+            "y": 0.5
+          },
+          {
+            "id": "r14",
+            "kind": "road",
+            "x": 14.5,
+            "y": 0.5
+          },
+          {
+            "id": "r15",
+            "kind": "road",
+            "x": 15.5,
+            "y": 0.5
+          }
+        ],
+        "previous_hash": "9e10dd2ff1bed13cb3ea0823739f6bf74d8351538340e5977aa25846cdf1f46a",
+        "next_hash": "48ad7ab89a2ae53f4f25f9b2eda0bb6d1c1eec49316c79ef9a57a2f63c3eea01"
+      },
+      {
+        "tick": 2,
+        "commands": [],
+        "previous_hash": "48ad7ab89a2ae53f4f25f9b2eda0bb6d1c1eec49316c79ef9a57a2f63c3eea01",
+        "next_hash": "d19fb15828d91bb662df62025668b8edc0ad921d85b30a681d7102d907139812"
+      },
+      {
+        "tick": 3,
+        "commands": [],
+        "previous_hash": "d19fb15828d91bb662df62025668b8edc0ad921d85b30a681d7102d907139812",
+        "next_hash": "76a845b97b62145247fc7a254cb0e379c021da1ee0dee4131f1be16f5cceb3e6"
+      },
+      {
+        "tick": 4,
+        "commands": [],
+        "previous_hash": "76a845b97b62145247fc7a254cb0e379c021da1ee0dee4131f1be16f5cceb3e6",
+        "next_hash": "39d538edd223dbe5960ab6c98a5c3839c4dcd595e64d1ec8768b2c63c355d05d"
+      },
+      {
+        "tick": 5,
+        "commands": [],
+        "previous_hash": "39d538edd223dbe5960ab6c98a5c3839c4dcd595e64d1ec8768b2c63c355d05d",
+        "next_hash": "88c87b0e50bdda0caa7c8b29646d065d5317fd31072a0eb8f484bd6a0eff7e37"
+      },
+      {
+        "tick": 6,
+        "commands": [],
+        "previous_hash": "88c87b0e50bdda0caa7c8b29646d065d5317fd31072a0eb8f484bd6a0eff7e37",
+        "next_hash": "3db5dd2304829618fc6aea8c2ec30160a1e7666c255e7580ecfb4f455b8c842d"
+      },
+      {
+        "tick": 7,
+        "commands": [],
+        "previous_hash": "3db5dd2304829618fc6aea8c2ec30160a1e7666c255e7580ecfb4f455b8c842d",
+        "next_hash": "60e06a5eda6cfadd39a320e83feabdccc1f52c3b19f90c798dc4ac93d0fc277c"
+      },
+      {
+        "tick": 8,
+        "commands": [],
+        "previous_hash": "60e06a5eda6cfadd39a320e83feabdccc1f52c3b19f90c798dc4ac93d0fc277c",
+        "next_hash": "75a2043bd229ad49d8c5c140194816107ba64e47b062b28a1c66c3c688e9ea77"
+      },
+      {
+        "tick": 9,
+        "commands": [],
+        "previous_hash": "75a2043bd229ad49d8c5c140194816107ba64e47b062b28a1c66c3c688e9ea77",
+        "next_hash": "089fe7a88e8efc02905fc312f4d078f9eab356e733d5180d56c511fb344725fc"
+      },
+      {
+        "tick": 10,
+        "commands": [],
+        "previous_hash": "089fe7a88e8efc02905fc312f4d078f9eab356e733d5180d56c511fb344725fc",
+        "next_hash": "5a90d7b1c431e6785c49868fa1e1fde4832a4d415a55cf1a4fbfeeba38cd6777"
+      },
+      {
+        "tick": 11,
+        "commands": [],
+        "previous_hash": "5a90d7b1c431e6785c49868fa1e1fde4832a4d415a55cf1a4fbfeeba38cd6777",
+        "next_hash": "229ce61b105b9c00b7ff55afed0a46ad3b632107702b9056cf72f58a2a34bad2"
+      },
+      {
+        "tick": 12,
+        "commands": [],
+        "previous_hash": "229ce61b105b9c00b7ff55afed0a46ad3b632107702b9056cf72f58a2a34bad2",
+        "next_hash": "1a3c5443d20ab460e9e0e27bc841268eddb0590053950881a52c4f1597fc02c1"
+      },
+      {
+        "tick": 13,
+        "commands": [],
+        "previous_hash": "1a3c5443d20ab460e9e0e27bc841268eddb0590053950881a52c4f1597fc02c1",
+        "next_hash": "df82a1881f99fef27488afdc406561ba3a58ea1a47e67b520515d8519cd4ddfc"
+      },
+      {
+        "tick": 14,
+        "commands": [],
+        "previous_hash": "df82a1881f99fef27488afdc406561ba3a58ea1a47e67b520515d8519cd4ddfc",
+        "next_hash": "3dd1028038593207a7891be26f8d6986f01d2d87e2b849c859017dc941d1e90b"
+      },
+      {
+        "tick": 15,
+        "commands": [],
+        "previous_hash": "3dd1028038593207a7891be26f8d6986f01d2d87e2b849c859017dc941d1e90b",
+        "next_hash": "df4221d22c171188a5255bea259c429c58b91e14b524b977bb2851e5ae1584ff"
+      },
+      {
+        "tick": 16,
+        "commands": [],
+        "previous_hash": "df4221d22c171188a5255bea259c429c58b91e14b524b977bb2851e5ae1584ff",
+        "next_hash": "3da92b5bc93f040a288c19899f13e13f724de36365239dc3f654511f9db5b018"
+      },
+      {
+        "tick": 17,
+        "commands": [],
+        "previous_hash": "3da92b5bc93f040a288c19899f13e13f724de36365239dc3f654511f9db5b018",
+        "next_hash": "0757305836014fa81f22d95623b8a199a1623844b99ad2a745932748778e731a"
+      },
+      {
+        "tick": 18,
+        "commands": [],
+        "previous_hash": "0757305836014fa81f22d95623b8a199a1623844b99ad2a745932748778e731a",
+        "next_hash": "3e90bb08e56ddc96607590862570065a8433c37823131fcc38d251dea0383630"
+      },
+      {
+        "tick": 19,
+        "commands": [],
+        "previous_hash": "3e90bb08e56ddc96607590862570065a8433c37823131fcc38d251dea0383630",
+        "next_hash": "b7eced46f19dea513e4077ae6578b9e615f7d64021377a80c31baa6cd68559c5"
+      },
+      {
+        "tick": 20,
+        "commands": [],
+        "previous_hash": "b7eced46f19dea513e4077ae6578b9e615f7d64021377a80c31baa6cd68559c5",
+        "next_hash": "9f51bf8fd58af68c288bffbb1d25bdda527a85de272a5a80f3bb6798c03cda3f"
+      },
+      {
+        "tick": 21,
+        "commands": [],
+        "previous_hash": "9f51bf8fd58af68c288bffbb1d25bdda527a85de272a5a80f3bb6798c03cda3f",
+        "next_hash": "18ebda031c79e408d928db698c6145bb7d1b153b3678ab9ea279e489e63770cf"
+      },
+      {
+        "tick": 22,
+        "commands": [],
+        "previous_hash": "18ebda031c79e408d928db698c6145bb7d1b153b3678ab9ea279e489e63770cf",
+        "next_hash": "48463393398224f32d3882471a8a57ab7ab0a1fbebf94f94d099564ba22d3438"
+      },
+      {
+        "tick": 23,
+        "commands": [],
+        "previous_hash": "48463393398224f32d3882471a8a57ab7ab0a1fbebf94f94d099564ba22d3438",
+        "next_hash": "669d610a766b54a51a84da21a22941721523d386dd852510a85d6f02731a58de"
+      },
+      {
+        "tick": 24,
+        "commands": [],
+        "previous_hash": "669d610a766b54a51a84da21a22941721523d386dd852510a85d6f02731a58de",
+        "next_hash": "27f45f5dda90bba08ca44a1e513d142600180145c9092a06f24ee1c0e3bb6780"
+      },
+      {
+        "tick": 25,
+        "commands": [],
+        "previous_hash": "27f45f5dda90bba08ca44a1e513d142600180145c9092a06f24ee1c0e3bb6780",
+        "next_hash": "5a71aaa9f660d189e233b7a9f4b3591585b94cbeea5e03e865c94e54bfe8e66b"
+      },
+      {
+        "tick": 26,
+        "commands": [],
+        "previous_hash": "5a71aaa9f660d189e233b7a9f4b3591585b94cbeea5e03e865c94e54bfe8e66b",
+        "next_hash": "f780cc5985549df361361d8ca464dbcf4a73ca38cf5a1d2cdb4fc5f4925807eb"
+      },
+      {
+        "tick": 27,
+        "commands": [],
+        "previous_hash": "f780cc5985549df361361d8ca464dbcf4a73ca38cf5a1d2cdb4fc5f4925807eb",
+        "next_hash": "ba278f9676f2827fa62ae71b68de081ecb4f40c59b82e4312aed563ad7ade84d"
+      },
+      {
+        "tick": 28,
+        "commands": [],
+        "previous_hash": "ba278f9676f2827fa62ae71b68de081ecb4f40c59b82e4312aed563ad7ade84d",
+        "next_hash": "468abce3d2dde7af745292a22f3ced4779baa539075321bd822afea0978e388f"
+      }
+    ]
+  },
+  "verdict": {
+    "semantic_id": "RM5",
+    "status": "VERIFIED",
+    "missionId": "test-fixture",
+    "stateHash": "468abce3d2dde7af745292a22f3ced4779baa539075321bd822afea0978e388f",
+    "rulesHash": "8f188879f351262f157b3bb0770d108a81eb2a6493264ed8ffecfac17c4be55f",
+    "ticks": 28,
+    "delivered": 3,
+    "acceptedCommands": 16
+  }
+}

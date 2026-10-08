@@ -1,0 +1,20 @@
+{
+  "id": "RT0",
+  "semantic_id": "RM0",
+  "capability": "AC1",
+  "mission_id": "RJ0",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/rules.ts",
+  "code_sha256": "b1e9d83e0e0434853fa0cd315d0a6084c44d3f956d58871618fee118073443f4",
+  "test_path": "tests/aurum/rules.test.ts",
+  "test_sha256": "2a6b481d504e18327c475725a946f7f0dabe5dfce1dcb760b5bb3d985942cc20",
+  "mission_path": "missions/RJ0.json",
+  "mission_sha256": "048f241d5afc9fa2c46096060c12e3212d41e9102c456fe6791c816927cfcb35",
+  "passed_tests": [
+    "ok 10 - RT0 RM0: mandatory numeric contracts and recipe versions"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

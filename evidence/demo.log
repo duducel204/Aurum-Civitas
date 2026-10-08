@@ -1,0 +1,19 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> ai-studio-applet@0.1.0 demo
+> node --experimental-strip-types scripts/demo.ts
+
+{
+  "classification": "EXPERIMENTAL_FIXTURE_NOT_CANONICAL_BALANCE",
+  "verdict": {
+    "semantic_id": "RM5",
+    "status": "VERIFIED",
+    "missionId": "fixture-ten-planks",
+    "stateHash": "0ba6e98de790b298f192ed1c673fb6cc758236deddcc4a5ea0b2a067efe38ca4",
+    "rulesHash": "05b17b4d8fda0f8d8c0e603e9731cba4fdf2ad1006ec080e6b1e4baa2b11f927",
+    "ticks": 1154,
+    "delivered": 10,
+    "acceptedCommands": 12
+  },
+  "replayMatches": true
+}

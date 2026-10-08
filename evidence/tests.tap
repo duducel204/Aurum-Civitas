@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: RTA RMA: independently reviewed replay evidence required for upgrades
+ok 1 - RTA RMA: independently reviewed replay evidence required for upgrades
+  ---
+  duration_ms: 209.593548
+  type: 'test'
+  ...
+# Subtest: RT2 RM2: last finite unit, recipe balance and delivered construction
+ok 2 - RT2 RM2: last finite unit, recipe balance and delivered construction
+  ---
+  duration_ms: 116.027713
+  type: 'test'
+  ...
+# Subtest: RT5 RM5: false success rejected and matched runs independently checked
+ok 3 - RT5 RM5: false success rejected and matched runs independently checked
+  ---
+  duration_ms: 617.367336
+  type: 'test'
+  ...
+# Subtest: RT8 RM8: authenticated boundary and cross-territory rights
+ok 4 - RT8 RM8: authenticated boundary and cross-territory rights
+  ---
+  duration_ms: 1.324439
+  type: 'test'
+  ...
+# Subtest: RTD RMD: view cannot mutate nested canonical state
+ok 5 - RTD RMD: view cannot mutate nested canonical state
+  ---
+  duration_ms: 4.275261
+  type: 'test'
+  ...
+# Subtest: RTC RMC: provenance required, append corrections and never relabel fiction as reality
+ok 6 - RTC RMC: provenance required, append corrections and never relabel fiction as reality
+  ---
+  duration_ms: 2.210149
+  type: 'test'
+  ...
+# Subtest: RTB RMB: permanent idempotent monuments, explicit era bounds and forged awards rejected
+ok 7 - RTB RMB: permanent idempotent monuments, explicit era bounds and forged awards rejected
+  ---
+  duration_ms: 177.506336
+  type: 'test'
+  ...
+# Subtest: RT6 RM6: all archetypes explicit, region topology and production advantages
+ok 8 - RT6 RM6: all archetypes explicit, region topology and production advantages
+  ---
+  duration_ms: 2.607185
+  type: 'test'
+  ...
+# Subtest: RT4 RM4: exact replay, tampering, truncation and incompatible rules
+ok 9 - RT4 RM4: exact replay, tampering, truncation and incompatible rules
+  ---
+  duration_ms: 195.751507
+  type: 'test'
+  ...
+# Subtest: RT0 RM0: mandatory numeric contracts and recipe versions
+ok 10 - RT0 RM0: mandatory numeric contracts and recipe versions
+  ---
+  duration_ms: 2.83637
+  type: 'test'
+  ...
+# Subtest: RT1 RM1: deterministic ticks, exact ordering and rejected commands
+ok 11 - RT1 RM1: deterministic ticks, exact ordering and rejected commands
+  ---
+  duration_ms: 18.714075
+  type: 'test'
+  ...
+# Subtest: RT7 RM7: explicit hunger, finite harvest and bounded regeneration
+ok 12 - RT7 RM7: explicit hunger, finite harvest and bounded regeneration
+  ---
+  duration_ms: 0.957408
+  type: 'test'
+  ...
+# Subtest: RT3 RM3: persistent progress and measured connected-road benefit
+ok 13 - RT3 RM3: persistent progress and measured connected-road benefit
+  ---
+  duration_ms: 59.851064
+  type: 'test'
+  ...
+# Subtest: RT3 RM3: disconnected road blocks without teleporting or dropping cargo
+ok 14 - RT3 RM3: disconnected road blocks without teleporting or dropping cargo
+  ---
+  duration_ms: 24.704211
+  type: 'test'
+  ...
+# Subtest: RT3 RM3: base inventory physically supplies sawmill and bounded delivery waits
+ok 15 - RT3 RM3: base inventory physically supplies sawmill and bounded delivery waits
+  ---
+  duration_ms: 80.225992
+  type: 'test'
+  ...
+# Subtest: RT9/RT4 RM9/RM4: ordered cross-city replay reproduces canonical checkpoint
+ok 16 - RT9/RT4 RM9/RM4: ordered cross-city replay reproduces canonical checkpoint
+  ---
+  duration_ms: 17.664348
+  type: 'test'
+  ...
+# Subtest: RT9 RM9: shared order, finite transit, retries, concurrent claims and checkpoint recovery
+ok 17 - RT9 RM9: shared order, finite transit, retries, concurrent claims and checkpoint recovery
+  ---
+  duration_ms: 2.102948
+  type: 'test'
+  ...
+# Subtest: RT9 RM9: disconnected routes and capacity-limited arrival conserve transit
+ok 18 - RT9 RM9: disconnected routes and capacity-limited arrival conserve transit
+  ---
+  duration_ms: 1.386913
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 894.8338

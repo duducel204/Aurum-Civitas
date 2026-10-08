@@ -1,0 +1,15 @@
+{
+  "id": "RJB",
+  "module_id": "RMB",
+  "capability": "ACC",
+  "requires": [
+    "RM8",
+    "RMA"
+  ],
+  "acceptance": "Forged awards rejected; repeated attribution idempotent; old era seals cannot be newly fabricated.",
+  "test_id": "RTB",
+  "test_path": "tests/aurum/recognition.test.ts",
+  "evidence_path": "evidence/RTB/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

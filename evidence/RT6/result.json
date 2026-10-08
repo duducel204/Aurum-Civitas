@@ -1,0 +1,20 @@
+{
+  "id": "RT6",
+  "semantic_id": "RM6",
+  "capability": "AC9",
+  "mission_id": "RJ6",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/regions.ts",
+  "code_sha256": "f9e3444471a52559caf4fa725c63a529f523f18792cc7b0786f4755285d6ebdb",
+  "test_path": "tests/aurum/regions.test.ts",
+  "test_sha256": "9d126867cb6998da6a26356cb1e492e16dad7c5c2b9033e4bacc2222000bf6ea",
+  "mission_path": "missions/RJ6.json",
+  "mission_sha256": "2a858e8a5102d7bda3c27c1ce3d5cafcb6f591075acff7bebdc2c5479ed779b1",
+  "passed_tests": [
+    "ok 8 - RT6 RM6: all archetypes explicit, region topology and production advantages"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

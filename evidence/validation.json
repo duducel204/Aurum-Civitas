@@ -1,0 +1,35 @@
+{
+  "id": "AC-VALIDATION2",
+  "checks": {
+    "tests": {
+      "exit_code": 0,
+      "count": 18
+    },
+    "materialization_verifier": {
+      "exit_code": 0
+    },
+    "build": {
+      "exit_code": 0
+    },
+    "types": {
+      "exit_code": 0
+    },
+    "lint": {
+      "exit_code": 0
+    },
+    "http_smoke": {
+      "exit_code": 0,
+      "http_status": 200
+    }
+  },
+  "logs": {
+    "evidence/build.log": "1b35c99ceddc4b7882b2162c532b823c7ba7ef20e4b2f231674a2a420ee2ede7",
+    "evidence/lint.log": "ed2e2fe5084334f9f25f7a1726043967131f83bde937aa32b58ecc59de6f763a",
+    "evidence/types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/demo.log": "a6378b6dafd6ced75f5e7f1cd2c4aad505b6317383a630391a209b751d32ce9f",
+    "evidence/verify.log": "f11ae2e5465e98c489fa10d70b371fb2d504218742e17b6c0d773c2c6a64d323"
+  },
+  "http_receipt": "evidence/http-smoke.json",
+  "browser_interaction": "NOT_EXECUTED",
+  "limits": "Configured module tests and local executable; full MMO integration and real production providers remain unresolved."
+}

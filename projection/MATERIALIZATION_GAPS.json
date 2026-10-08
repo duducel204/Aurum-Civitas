@@ -1,0 +1,13 @@
+{
+  "id": "AC-MG2",
+  "seed": "AC-RS2",
+  "status": "EXECUTABLE_CONFIGURED_MATERIALIZATION; FULL_TARGET_UNRESOLVED",
+  "gaps": [
+    {"ids":["RM0","RM6","RM7","RMB"],"cause":"Canonical numerical rules, yields, bootstrap and era/title thresholds were left unresolved by the Seed.","implemented":"Mandatory explicit configuration; labeled fixtures; functional validation/calculation.","pending":"Admit and calibrate official game parameters."},
+    {"ids":["RM8","RM9"],"cause":"Identity, durable storage, wire protocol and hosting providers are explicitly unbound.","implemented":"Permission functions, ordered commands, exactly-once transit, checkpoint hash validation and world replay.","pending":"Production bindings and real multi-user end-to-end session/persistence proof."},
+    {"ids":["RM6","RM7","RM9","RMA","RMB","RMC"],"cause":"Full shared gameplay integration depends on unresolved canonical rules and provider bindings.","implemented":"Executable module APIs and acceptance fixtures.","pending":"Regional world UI, ecology/world loop integration, historical monuments and external-evidence workflows."},
+    {"ids":["RMA","RMB","RMC"],"cause":"Authentic review authorization, source/diff verification and real-world evidence origin require trusted external adapters.","implemented":"Mandatory verification callbacks, independent reviewer checks, authoritative world-tick input and append-only corrections.","pending":"Bind and verify real adapters; fixture callbacks do not certify authenticity."},
+    {"ids":["RMD"],"cause":"Chromium binary absent; attempted download was truncated.","implemented":"Production build, type/lint checks and HTTP page smoke test.","pending":"Browser hydration, click-through and visual interaction QA."},
+    {"ids":["ACE","GF","AU1","AU2","AU3"],"cause":"No external-demand, novelty, player engagement or operational-cost empirical evidence exists in the Seed.","implemented":"No fabricated success claim.","pending":"External use-case proof, novelty judge and live-player/operating measurements."}
+  ]
+}

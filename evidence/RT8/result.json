@@ -1,0 +1,20 @@
+{
+  "id": "RT8",
+  "semantic_id": "RM8",
+  "capability": "AC7",
+  "mission_id": "RJ8",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/membership.ts",
+  "code_sha256": "d22cc198528c57cce0a29e9f28198baa2f4de12d02b1c070627946ba1529889b",
+  "test_path": "tests/aurum/membership.test.ts",
+  "test_sha256": "e9ded5c13d0cfd49ed4ffec5674ef058adca1795c18b4e5b7a0b945d45c5229f",
+  "mission_path": "missions/RJ8.json",
+  "mission_sha256": "39ee7e2c9b14458344a50a9e9adeaffef387c96842170ec352707cbb5d277575",
+  "passed_tests": [
+    "ok 4 - RT8 RM8: authenticated boundary and cross-territory rights"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

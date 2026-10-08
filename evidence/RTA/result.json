@@ -1,0 +1,20 @@
+{
+  "id": "RTA",
+  "semantic_id": "RMA",
+  "capability": "ACB",
+  "mission_id": "RJA",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/contributions.ts",
+  "code_sha256": "3bc70d4f82f91c028879d016a0f4fb453b86c29774352533548d2bc1661cf1f6",
+  "test_path": "tests/aurum/contributions.test.ts",
+  "test_sha256": "b9af2eaac48f37c5ae72366d8f22c3baf7b85f134201aa82162b7ce83115fb9e",
+  "mission_path": "missions/RJA.json",
+  "mission_sha256": "651f66cb49713c007d2421584671aa97078c49ea68b596e51552b43ca9081c6d",
+  "passed_tests": [
+    "ok 1 - RTA RMA: independently reviewed replay evidence required for upgrades"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

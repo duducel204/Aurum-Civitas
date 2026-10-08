@@ -1,0 +1,20 @@
+{
+  "id": "RT1",
+  "semantic_id": "RM1",
+  "capability": "AC2",
+  "mission_id": "RJ1",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/simulation.ts",
+  "code_sha256": "ca5bc8e0aa3065d27c392342183e2f1130dda6cffc7cca0ccc8dce26485c8a90",
+  "test_path": "tests/aurum/simulation.test.ts",
+  "test_sha256": "e44cf61aaef9a0afb0c91ccc6eb04bd18232f56538e34cc99e16c1e0d4b225ff",
+  "mission_path": "missions/RJ1.json",
+  "mission_sha256": "2165d8564ca460fc21ddbe885f531e0bb726a6f4488ba1ac55a0018a8c550b0b",
+  "passed_tests": [
+    "ok 11 - RT1 RM1: deterministic ticks, exact ordering and rejected commands"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

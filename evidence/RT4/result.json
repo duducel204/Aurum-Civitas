@@ -1,0 +1,21 @@
+{
+  "id": "RT4",
+  "semantic_id": "RM4",
+  "capability": "AC5",
+  "mission_id": "RJ4",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/replay.ts",
+  "code_sha256": "ac36349602fc65c24246826b605607f97b5adda90196df4882ff8ff4e32655ec",
+  "test_path": "tests/aurum/replay.test.ts",
+  "test_sha256": "cfb27867706d05cd55faafed9b094809762c9c25cc3501aff277162f557feb5c",
+  "mission_path": "missions/RJ4.json",
+  "mission_sha256": "502892bc893e84f2599497379df70ab2cc919e1f8ebdeb4bfd455d70ddc34b12",
+  "passed_tests": [
+    "ok 9 - RT4 RM4: exact replay, tampering, truncation and incompatible rules",
+    "ok 16 - RT9/RT4 RM9/RM4: ordered cross-city replay reproduces canonical checkpoint"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

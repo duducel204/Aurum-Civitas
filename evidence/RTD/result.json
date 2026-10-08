@@ -1,0 +1,20 @@
+{
+  "id": "RTD",
+  "semantic_id": "RMD",
+  "capability": null,
+  "mission_id": "RJD",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/observer.ts",
+  "code_sha256": "c38d2698e96c61874f1ee7f52eda4e4f995602f7943dcd7572d50a827456b9a6",
+  "test_path": "tests/aurum/observer.test.ts",
+  "test_sha256": "9c0a22610e6d783390b118a3db33e56f31a8dce3b441df9627befbcbdb2270c2",
+  "mission_path": "missions/RJD.json",
+  "mission_sha256": "7257d819142f8b3a480dced2c3f1238d638c786170dc01745e78cf49ffe343be",
+  "passed_tests": [
+    "ok 5 - RTD RMD: view cannot mutate nested canonical state"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

@@ -1,0 +1,16 @@
+{
+  "semantic_ids": [
+    "RM1",
+    "RMD"
+  ],
+  "http_status": 200,
+  "html_sha256": "1c85ba66e98944b6cf9653b425723f7c6af369218e1203267a5b39f0d92ca720",
+  "checks": [
+    "app responds",
+    "scenario label visible",
+    "canvas rendered in HTML",
+    "configuration loader present"
+  ],
+  "browser_interaction": "NOT_EXECUTED: browser binary unavailable; download returned truncated archive",
+  "source_sha256": "fab1a66f7aa78bd697be43f1acd1782a269d332200890c21cfaff1cf9a9be274"
+}
