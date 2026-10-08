@@ -17,13 +17,16 @@ import type { MapView } from "@/lib/aurum/map-renderer.ts";
 const scenario = scenarioJson as unknown as { rules: Rules; stores: Store[]; carriers: Carrier[]; suggestions: Point[] };
 const map = mapJson as unknown as MapData;
 const rules = scenario.rules;
-const materialLabels: Record<string, string> = { planks: "tábuas", stone: "pedras", metal: "metal" };
+const materialLabels: Record<string, string> = { planks: "tábuas", stone: "pedras", metal: "metal", wood: "madeira" };
 const reasons: Record<string, string> = {
   "outside-map": "Fora do mapa", "mapped-terrain-blocked": "Área mapeada preservada",
   "occupied-cell": "Lote ocupado", "no-road-access": "Lote sem acesso à rua",
   "no-delivery-route": "Sem rota de entrega desde o depósito", "awaiting_materials": "Aguardando materiais",
   "building": "Em construção", "serviced": "Em operação",
   "insufficient-power": "Energia ou capacidade insuficiente", "no-powered-distribution": "Falta conexão elétrica",
+  "unknown-construction": "Tipo de construção desconhecido", "duplicate-or-empty-id": "Comando duplicado ou sem identificação",
+  "invalid-position": "Posição inválida", "mapped-roads-fixed": "Ruas mapeadas não podem ser alteradas",
+  "existing-road": "Rua já existente", "unknown-command": "Comando desconhecido",
 };
 const depot = scenario.stores.find((s) => s.kind === "depot")!;
 const initialView: MapView = { center: { ...depot.pos }, width: 900 };
@@ -60,13 +63,21 @@ export default function ItaipuWorld() {
   const selectedService = selectedStore ? state.services?.buildings[selectedStore.id] : null;
   const stock = state.stores.find((s) => s.kind === "depot")!.inventory;
   const costs = rules.construction[role].materials;
+  const missing = Object.entries(costs).filter(([r, n]) => (stock[r] ?? 0) < n);
+  const preview = reason ? (reasons[reason] ?? reason) : missing.length
+    ? `Obra possível, mas aguardará: ${missing.map(([r, n]) => `${n - (stock[r] ?? 0)} ${materialLabels[r] ?? r}`).join(", ")}`
+    : "Lote acessível e materiais disponíveis no depósito";
+  const production = state.stores.find((s) => s.id === "itaipu:sawmill-1");
+  const forest = state.stores.find((s) => s.id === "itaipu:forest-source-1");
   function build() {
-    if (placementReason(selected, canonical.current, rules)) return;
+    if (placementReason(selected, canonical.current, rules)) { setMessage("Construção bloqueada: " + preview); return; }
     let id = "itaipu-ui-" + nextId.current++;
     while (canonical.current.commandIds.includes(id)) id = "itaipu-ui-" + nextId.current++;
     const next = advance([{ id, kind: "build", role, ...selected }]);
     if (next) {
-      setMessage("Obra aberta. Os trabalhadores entregam os materiais pelas ruas existentes.");
+      const rejected = next.events.find((e) => e.tick === next.tick && e.commandId === id && e.kind === "command-rejected");
+      setMessage(rejected ? `Comando rejeitado: ${reasons[String(rejected.reason)] ?? rejected.reason}` :
+        missing.length ? "Canteiro criado. Aguarda materiais da cadeia produtiva." : "Obra aberta. Os trabalhadores entregam os materiais pelas ruas existentes.");
       setRunning(true);
     }
   }
@@ -105,6 +116,8 @@ export default function ItaipuWorld() {
           <span>Energia <strong>{state.services?.supplied ?? 0}/{state.services?.demand ?? 0}</strong> atendida</span>
           <span>Geração <strong>{state.services?.generation ?? 0}</strong> u/tick</span>
           <span>Depósito {Object.entries(stock).map(([r, n]) => `${n} ${materialLabels[r] ?? r}`).join(" · ")}</span>
+          {forest && <span>Madeira na fonte <strong>{forest.inventory.wood ?? 0}</strong></span>}
+          {production && <span>Serraria <strong>{production.inventory.planks ?? 0}</strong> tábuas · {production.work ? "produzindo" : "aguardando madeira"}</span>}
         </div>
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <button className="rounded bg-emerald-800 px-3 py-2" disabled={busy} onClick={() => setRunning(!running)}>{running ? "Pausar" : "Rodar"}</button>
@@ -145,6 +158,7 @@ export default function ItaipuWorld() {
           <span aria-live="polite">Lote {cell?.key ?? "—"} · {selectedStore ? reasons[selectedService?.reason ?? selectedStore.status] ?? selectedStore.status : reasons[reason] ?? "Livre com acesso"}
             {selectedService?.housing ? ` · ${selectedService.residents}/${selectedService.housing} moradores · ${selectedService.supplied}/${selectedService.demand} energia` : ""}</span>
         </div>
+        <p className="text-sm text-slate-300" aria-live="polite">Prévia: {preview}. {role === "house" ? "Energia será avaliada após a obra; uma casa pode existir sem atendimento elétrico." : ""}</p>
         <p role="status" className="text-sm text-slate-300">{message}</p>
         <div className="flex flex-wrap gap-2 text-sm">
           <button disabled={busy} onClick={save} className="rounded bg-slate-800 px-3 py-2">Verificar e salvar partida</button>
