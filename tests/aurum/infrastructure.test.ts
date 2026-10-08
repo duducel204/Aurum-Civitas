@@ -17,7 +17,7 @@ test("RTF RMF: real-map delivery, inhabited home, solar, substation and identica
   const streams: Command[][] = [commands];
   let s = step(initial, commands, f.rules);
   assert.equal(s.services!.residents, 0);
-  assert.equal(s.stores.at(-3)!.status, "awaiting_materials");
+  assert.equal(s.stores.find((store) => store.id === "site:house")!.status, "awaiting_materials");
   while (s.tick < 300 && s.stores.some((s) => s.kind === "site" && s.status !== "operational")) {
     s = step(s, [], f.rules); streams.push([]); assert(checkConservation(s));
   }
