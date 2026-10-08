@@ -1,0 +1,28 @@
+{
+  "id": "AC-IM1",
+  "seed": "AC-IS1",
+  "bindings": [
+    {
+      "module_id": "RME",
+      "implementation": "lib/aurum/geography.ts",
+      "test_id": "RTE",
+      "test_path": "tests/aurum/geography.test.ts",
+      "mission_id": "RJE",
+      "mission_path": "missions/RJE.json",
+      "evidence_path": "evidence/itaipu.json"
+    },
+    {
+      "module_id": "RMF",
+      "implementation": "lib/aurum/infrastructure.ts",
+      "test_id": "RTF",
+      "test_path": "tests/aurum/infrastructure.test.ts",
+      "mission_id": "RJF",
+      "mission_path": "missions/RJF.json",
+      "evidence_path": "evidence/itaipu.json"
+    }
+  ],
+  "runtime_owner": "RM1",
+  "shared_transition": true,
+  "sourceHash": "f8137a3aa99c61910e767ae57b5e8dc5e33e027f38d1419428fc343883cb293c",
+  "mapHash": "24e47604de0d76033faefa6b95c89775d3ea09cb68219bddf930f3a2efc03453"
+}

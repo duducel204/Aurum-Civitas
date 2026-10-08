@@ -1,4 +1,8 @@
 /** RM0 / AC1: mandatory configuration and canonical state contracts. */
+import { validateGeography } from "./geography.ts";
+import type { Geography } from "./geography.ts";
+import { validateServices } from "./infrastructure.ts";
+import type { ServicesRules, ServicesState } from "./infrastructure.ts";
 export const semanticId = "RM0";
 export type Stock = Record<string, number>;
 export type Point = { x: number; y: number };
@@ -15,17 +19,20 @@ export type Rules = {
   allowOffroad: boolean;
   recipes: Record<string, Recipe>;
   construction: Record<string, { materials: Stock; ticks: number }>;
+  geography?: Geography;
+  services?: ServicesRules;
   mission: {
     id: string;
     resource: string;
     delivered: number;
     maxTicks: number;
+    poweredHouses?: number;
   };
 };
 export type Store = {
   id: string;
   pos: Point;
-  kind: "source" | "depot" | "producer" | "site";
+  kind: "source" | "depot" | "producer" | "site" | "infrastructure";
   inventory: Stock;
   capacity: number;
   recipe?: string;
@@ -35,6 +42,8 @@ export type Store = {
   buildTicks: number;
   status: "awaiting_materials" | "building" | "operational";
   cityId?: string;
+  serviceRole?: string;
+  sourceFeatureId?: string;
 };
 export type Carrier = {
   id: string;
@@ -77,6 +86,8 @@ export type State = {
   commandIds: string[];
   initialTotal: Stock;
   completed: boolean;
+  mapVersion?: string;
+  services?: ServicesState;
 };
 export function stockValid(stock: Stock): boolean {
   return (
@@ -132,7 +143,21 @@ export function validateRules(r: Rules): Rules {
       b.ticks <= 0
     )
       throw Error("RM0: incomplete construction");
+  if (r.geography) validateGeography(r.geography, r.gridSize);
+  if (r.services) {
+    if (!r.geography) throw Error("RM0: services require a geographic road network");
+    validateServices(r.services);
+  }
+  if (r.mission.poweredHouses !== undefined &&
+      (!r.services || !Number.isSafeInteger(r.mission.poweredHouses) || r.mission.poweredHouses <= 0))
+    throw Error("RM0: invalid housing goal");
   return structuredClone(r);
+}
+export function missionSatisfied(state: State, rules: Rules): boolean {
+  return rules.mission.poweredHouses !== undefined
+    ? (state.services?.poweredHouses ?? 0) >= rules.mission.poweredHouses
+    : state.stores.filter((s) => s.kind === "depot")
+      .reduce((n, s) => n + (s.inventory[rules.mission.resource] ?? 0), 0) >= rules.mission.delivered;
 }
 export function canonical(value: unknown): string {
   if (value === null || typeof value !== "object") return JSON.stringify(value);
@@ -146,3 +171,4 @@ export function canonical(value: unknown): string {
     "}"
   );
 }
+

@@ -1,0 +1,75 @@
+{
+  "id": "AC-IP1",
+  "seed_digest": "bdd7b357a4f6fb691ea18320b8bb7556a9e052a85aac2333bed777458defa81c",
+  "status": "CONDITIONAL_ON_EXPLICIT_GAME_PARAMETERS",
+  "search": {
+    "plans": [
+      {
+        "operators": [
+          "IO0",
+          "IO1",
+          "IO2",
+          "IO3",
+          "IO4",
+          "IO5",
+          "IO6"
+        ],
+        "facts": [
+          "I0",
+          "I1",
+          "I2",
+          "I3",
+          "IC",
+          "IE",
+          "IG",
+          "IH",
+          "IR",
+          "IU",
+          "IV"
+        ],
+        "waves": [
+          [
+            "IO0"
+          ],
+          [
+            "IO1",
+            "IO2"
+          ],
+          [
+            "IO3"
+          ],
+          [
+            "IO4"
+          ],
+          [
+            "IO5"
+          ],
+          [
+            "IO6"
+          ]
+        ],
+        "unresolved_facts": [],
+        "structural_steps": 7,
+        "status": "CONDITIONAL_PROJECTION"
+      }
+    ],
+    "expanded": 8,
+    "budget": 20000
+  },
+  "exhaustive_oracle": [
+    [
+      "IO0",
+      "IO1",
+      "IO2",
+      "IO3",
+      "IO4",
+      "IO5",
+      "IO6"
+    ]
+  ],
+  "challenges": {
+    "no_roads_blocks_end_to_end_proof": true,
+    "no_energy_blocks_housing": true
+  },
+  "scope": "Structural closure, not predicted development time or proof of gameplay quality"
+}

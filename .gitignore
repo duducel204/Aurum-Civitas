@@ -8,3 +8,5 @@ coverage/
 
 !evidence/*.log
 *.tsbuildinfo
+
+__pycache__/

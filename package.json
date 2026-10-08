@@ -10,6 +10,7 @@
     "clean": "next clean",
     "test": "node --experimental-strip-types --test tests/aurum/*.test.ts",
     "demo": "node --experimental-strip-types scripts/demo.ts",
+    "demo:itaipu": "node --experimental-strip-types scripts/demo-itaipu.ts",
     "verify:materialization": "node --experimental-strip-types scripts/verify-materialization.ts",
     "smoke:http": "node scripts/http-smoke.mjs"
   },
@@ -45,3 +46,4 @@
     "node": ">=24.0.0"
   }
 }
+

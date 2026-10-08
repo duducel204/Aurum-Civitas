@@ -1,0 +1,1 @@
+{"id":"RJE","module_id":"RME","capability":"IG/IR","acceptance":"The supplied source/map hashes match. All 4,977 existing road cells are present at initialization without purchases. Protected and occupied cells reject construction; map-version changes reject existing state.","test":"tests/aurum/geography.test.ts"}

@@ -1,0 +1,187 @@
+{
+  "semantic_ids": [
+    "RME",
+    "RMF",
+    "RM1",
+    "RM2",
+    "RM3",
+    "RM4",
+    "RM5"
+  ],
+  "sourceHash": "f8137a3aa99c61910e767ae57b5e8dc5e33e027f38d1419428fc343883cb293c",
+  "mapHash": "24e47604de0d76033faefa6b95c89775d3ea09cb68219bddf930f3a2efc03453",
+  "roadCells": 4977,
+  "roadCommands": 0,
+  "ticks": 102,
+  "operational": [
+    {
+      "id": "site:house",
+      "incorporated": {
+        "planks": 4,
+        "stone": 2
+      }
+    },
+    {
+      "id": "site:solar",
+      "incorporated": {
+        "planks": 2,
+        "stone": 2,
+        "metal": 6
+      }
+    },
+    {
+      "id": "site:substation",
+      "incorporated": {
+        "planks": 2,
+        "stone": 4,
+        "metal": 4
+      }
+    }
+  ],
+  "services": {
+    "generation": 136,
+    "demand": 2,
+    "supplied": 2,
+    "curtailed": 134,
+    "unserved": 0,
+    "housing": 4,
+    "residents": 4,
+    "poweredHouses": 1,
+    "buildings": {
+      "osm:way/1497605063": {
+        "role": "solar-existing",
+        "powered": true,
+        "supplied": 0,
+        "demand": 0,
+        "residents": 0,
+        "housing": 0,
+        "generation": 8,
+        "provider": null,
+        "reason": "serviced"
+      },
+      "osm:way/32236291": {
+        "role": "hydro-existing",
+        "powered": true,
+        "supplied": 0,
+        "demand": 0,
+        "residents": 0,
+        "housing": 0,
+        "generation": 120,
+        "provider": null,
+        "reason": "serviced"
+      },
+      "osm:way/32302779": {
+        "role": "substation-existing",
+        "powered": true,
+        "supplied": 0,
+        "demand": 0,
+        "residents": 0,
+        "housing": 0,
+        "generation": 0,
+        "provider": null,
+        "reason": "serviced"
+      },
+      "osm:way/510234533": {
+        "role": "substation-existing",
+        "powered": true,
+        "supplied": 0,
+        "demand": 0,
+        "residents": 0,
+        "housing": 0,
+        "generation": 0,
+        "provider": null,
+        "reason": "serviced"
+      },
+      "site:house": {
+        "role": "house",
+        "powered": true,
+        "supplied": 2,
+        "demand": 2,
+        "residents": 4,
+        "housing": 4,
+        "generation": 0,
+        "provider": "osm:way/32302779",
+        "reason": "serviced"
+      },
+      "site:solar": {
+        "role": "solar",
+        "powered": true,
+        "supplied": 0,
+        "demand": 0,
+        "residents": 0,
+        "housing": 0,
+        "generation": 8,
+        "provider": null,
+        "reason": "serviced"
+      },
+      "site:substation": {
+        "role": "substation",
+        "powered": true,
+        "supplied": 0,
+        "demand": 0,
+        "residents": 0,
+        "housing": 0,
+        "generation": 0,
+        "provider": null,
+        "reason": "serviced"
+      }
+    },
+    "connections": [
+      {
+        "from": "osm:way/32236291",
+        "to": "osm:way/32302779",
+        "kind": "existing"
+      },
+      {
+        "from": "osm:way/32236291",
+        "to": "osm:way/510234533",
+        "kind": "existing"
+      },
+      {
+        "from": "osm:way/1497605063",
+        "to": "osm:way/32302779",
+        "kind": "road-corridor"
+      },
+      {
+        "from": "osm:way/1497605063",
+        "to": "site:solar",
+        "kind": "road-corridor"
+      },
+      {
+        "from": "osm:way/1497605063",
+        "to": "site:substation",
+        "kind": "road-corridor"
+      },
+      {
+        "from": "osm:way/32302779",
+        "to": "site:solar",
+        "kind": "road-corridor"
+      },
+      {
+        "from": "osm:way/32302779",
+        "to": "site:substation",
+        "kind": "road-corridor"
+      },
+      {
+        "from": "site:solar",
+        "to": "site:substation",
+        "kind": "road-corridor"
+      }
+    ]
+  },
+  "conservation": true,
+  "replayIdentical": true,
+  "verdict": {
+    "semantic_id": "RM5",
+    "status": "VERIFIED",
+    "missionId": "itaipu-first-powered-home",
+    "stateHash": "a957b1b91edc7e59469df85404d0968c6d91493e487290ade0a1645ff3b5121c",
+    "rulesHash": "e6df0105f74576e0b297c00be8749dae0c00501917f483a3180a34fc5630211b",
+    "ticks": 102,
+    "delivered": 52,
+    "poweredHouses": 1,
+    "residents": 4,
+    "acceptedCommands": 3
+  },
+  "browser_playtest": "DEFERRED_TO_USER"
+}

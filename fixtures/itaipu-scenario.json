@@ -1,0 +1,528 @@
+{
+  "id": "AC-ITAIPU-001",
+  "classification": "EXPERIMENTAL_GAME_SCENARIO",
+  "semantic_ids": [
+    "RME",
+    "RMF",
+    "RM0",
+    "RM1",
+    "RM2",
+    "RM3",
+    "RM4",
+    "RM5",
+    "RMD"
+  ],
+  "note": "OSM facility IDs/geometry are sourced. Initial road anchors are virtual entrances. Materials, residents, capacities and electrical circuits are explicit game assumptions, not measured infrastructure data.",
+  "rules": {
+    "version": "itaipu-game-001",
+    "mapSeed": "itaipu-osm-prototype-001",
+    "tickMs": 250,
+    "capacity": 200,
+    "harvestTicks": 4,
+    "gridSize": 30,
+    "roadSpeed": 200,
+    "offroadSpeed": 60,
+    "allowOffroad": false,
+    "recipes": {
+      "sawmill": {
+        "inputs": {
+          "wood": 1
+        },
+        "outputs": {
+          "planks": 1
+        },
+        "ticks": 12
+      }
+    },
+    "construction": {
+      "house": {
+        "materials": {
+          "planks": 4,
+          "stone": 2
+        },
+        "ticks": 12
+      },
+      "solar": {
+        "materials": {
+          "planks": 2,
+          "stone": 2,
+          "metal": 6
+        },
+        "ticks": 24
+      },
+      "substation": {
+        "materials": {
+          "planks": 2,
+          "stone": 4,
+          "metal": 4
+        },
+        "ticks": 20
+      }
+    },
+    "geography": {
+      "id": "itaipu-osm-prototype-001",
+      "version": "itaipu-map-001",
+      "sourceTimestamp": "2026-10-08T01:58:17Z",
+      "sourceHash": "f8137a3aa99c61910e767ae57b5e8dc5e33e027f38d1419428fc343883cb293c",
+      "mapHash": "24e47604de0d76033faefa6b95c89775d3ea09cb68219bddf930f3a2efc03453",
+      "cols": 202,
+      "rows": 185,
+      "cellSizeM": 30,
+      "lastMileCells": 1,
+      "grid": [
+        "ggr.g........................................................................................................................................wwwwwwww.....................................................",
+        "grr..........................................................................................................................................wwwwwww......................................................",
+        "rrr..........................................................................................................................................wwwwwww......................................................",
+        "rrrrr........................................................................................................................................wwwwwww......................................................",
+        "rrrrrrrr.g..................................................................................................................................wwwwwwww......................................................",
+        "rrrrrrrrrrr...............................rrrrrr............................................................................................wwwwwww.......................................................",
+        "rbrbrrrrrrrrrr.gg....g......rrr.........rrrr...rrr..........................................................................................wwwwwww.......................................................",
+        "rrrbrbrrrrbrrrrrrg.........rwwwwrrr.b.rrr......rrrr.........................................................................................wwwwwww.......................................................",
+        "grrrrbrbrrrrbrrrrrrr.......rwwwwwwwrrrr........rrgrr.......................................................................................wwwwwwww.......................................................",
+        "bggrrrrbrbrrrrbrrrrrrrr....rwwwwwwwrrr.........rgggr.......................................................................................wwwwwwww.......................................................",
+        "rrgrbrrrrbrbrbrrrrbrrrrrrr.rrwwwwwrrr.........rrgggr.......................................................................................wwwwwww........................................................",
+        "rrrrrrbrrrrrrbrbrrrrrrrrrrrrr.rrrrrrr.........rggggrr......................................................................................wwwwwww........................................................",
+        "rbrrrrrrbrrrrrrbrbrrrrrrbrrrrrrrrrrrr........rrgggggr......................................................................................wwwwwww........................................................",
+        "rbrbrrrrrrrrbrrrrbrbrbrrrrrrrrrrrrrr.........rrgggggr.....................................................................................wwwwwwww........................................................",
+        "rrrbrbrrrrrrrrbrrrrrrbrbrrrrrrbrrrrr.........rgggggrrr....................................................................................wwwwwww.........................................................",
+        "brrrrbrbrbrrrrrrbrbrrrrbrbrbrrrrbrrr........rrgggggrrr....................................................................................wwwwwww.........................................................",
+        "brbrrrrrrbrbrrrrrrrrbrrrrrrbrbrrrrrg........rrgggggrrr....................................................................................wwwwwww.........................................................",
+        "rrbrbrbrrrrbrbrrrrrrrrbrrrrrrbrbrrrg........rgggggggrrr..................................................................................wwwwwwww.........................................................",
+        "rrrrbrbrbrrrrbrbrbrrrrrrrrbrrrrbrrr.........rgggggggrgr..................................................................................wwwwwwww.........................................................",
+        "rrrrrrrrbrbrrrrrrbrbrrrrrrrrbrrrrr.........rrgggggggrrrr.................................................................................wwwwwww..........................................................",
+        "rbrbrrrrrrbrbrbrrrrbrbrrrrrrrrrrrr.........rgggggggggrgr.................................................................................wwwwwww..........................................................",
+        "rrrrrgrrrrrrrrbrbrrrrbrbrbrrrrrrrr.........rgggggggggrrrr................................................................................wwwwwww..........................................................",
+        "grrrrrrgrbrrrrrrbrbrrrrrrbrbrrrrrg........rrgggggggggrrgrr..............................................................................wwwwwwww..........................................................",
+        "rrrrgrrrrbrbrrrrrrbrbrbrrrrbrbrrr.........rgggggggggggrrgrr.............................................................................wwwwwwww..........................................................",
+        "rrrrbrbrrrrrrbrrrrrrbrbrbrrrrbrrr.........rgggggggggggrrggr.............................................................................wwwwwww...........................................................",
+        "rrrrrrbrbrbrrrrbrbrrrrrrbrbrrrrr..........rggggggggggggrrrrr............................................................................wwwwwww...........................................................",
+        "rrrbrrrrrrbrbrrrrbrbrrrrrrbrbrrr..........rggggggggggggrrrrr...........................................................................wwwwwwww...........................................................",
+        "rrrrrrrbrrrrbrbrrrrbrbrbrrrrrrrrg.........rrggggggggggrrrggr...........................................................................wwwwwwww...........................................................",
+        "rrg..rrrrbrrrrbrbrgrrrrbrbrrrrr............rrggggggggrrgrggr...........................................................................wwwwwww............................................................",
+        "rrrrrrrrrrrrrrrrrrgrbrrrrbrbrrrg............rgggggggrrggrggr...........................................................................wwwwwww............................................................",
+        "rrrrrrbrrrrrrrrbrrrrbrbrrrrrrrr............rrggggggrrgggrgrr...........................................................................wwwwwww............................................................",
+        "rbgrrrbrbrrrrrrrrrrrrrbrbrbrrrr............rrgggggrrrgggrgr...........................................................ffffffffffff....wwwwwwww............................................................",
+        "rbrrrrrrbrbrrrrrrrrrrrrrbrbrrrr...........rrbggggrrrggggrgr.........................................................ffffffffffffffffffwwwwwwww............................................................",
+        "rrrrrbrrrrbrbrbrrrrrrrrrrrrrrrr........brrrrggggrrrgggggrrr........................................................ffffrrrrrfffffffffffffffww.............................................................",
+        "rrrrrbrbrrrrrrbrbrrrrbrrrrrrrrr........rrggggggrrrggggggrr........................................................ffffrrrbbrffffffffffffffffffff..........................................................",
+        "rrrrrrrbrbrrrrrrbrbrrrrrrrrrr..........rrgggrrrrr..ggggrr........................................................ffff.rrrbb.fffffffffffffffffffffffff.....................................................",
+        "rbbrbrrrrrrbrbrrrrbrbrbrrrrr..........rrrggrrbgr..g.rrrrb........................................................fffrrrrrrrrfffffffffffffffffffffffffffff.................................................",
+        "rrrrbrbrrrrrrbrbrrrrrrbrbrrr..........rgrggrrbbr.ggrrrrrb.......................................................fffr.rrrbrr.fffffffffffffffffffffffffffffff...............................................",
+        "brrbrrrrbrrrrrrrrbrrrrrrbrrr.........rrrrrgrg.grrgrrggg.........................................................ffr...rrrrrr..ffffffffffffffffffffffffffffffffff..........................................",
+        "brrrrbrrrrgbg.rrrrrbrbrrrrr..........rrrrrrrbbbrrrrgggg........................................................fffr....rrrrr......fffffffffffffffffffffffffffffffffffff...................................",
+        "rrbrrrrbrr.......rrrrrrbrrr..........r..rrrrr..bbrrggg.........................................................ffr......rrrr........wwwfffffffffffffffffffffrrffffffffffff................................",
+        "rrrrrrrrrg.........brrrrrr..........rr...rrrrbbbbrrgg.........................................................fffr......rrrr........wwwwwwwfffffffffffffrrr..r.rr.fffffffffff.............................",
+        "rrrbrrbrrg.........bbrrrrr..........rgggg.brrrrrgrgg..........................................................fff.......rrr........wwwwwwww....fffffffffrrrrrr..rrfffffffffffff...........................",
+        "rrrrrbrr...........gbrbrrr..........rgggggbrbrrrrrgg..........................................................ffr.......rrrr.......wwwwwwww..........fffrr.r.rgg.rrfffffffffffffff........................",
+        ".grrrrr............grrbrr..........rrggggggrrr..bbg...........................................................ffr........rrr......wwwwwwww....rr.......rrrgrrrggggrrrffffffffffffff.......................",
+        "gg.rrrr............grrrrr..........rgggggggrrr..b............................................................fff.........rrr......wwwwwwww.....rrr.....rrrgrrggggggrrrr..ffffffffffff.....................",
+        "gg.ggrr.....bb.....grbrrr..........rgggggggrr................................................................ffr.........r.r.....wwwwwwww.......rrrrr.rrrrggggggggggggrrrrrrffffffffff....................",
+        "......rr....bb.....rrbrr..........rrggggggrr.................................................................ffr.........r.r.....wwwwwwww..........rrrrrrrggggggggggggrrrgggrrrfffffffff..................",
+        "...ggwwww.www......rrrrr..........rgggggggrr.................................................................ffr.........rrr.....wwwwwww..............rrrrggggggggggggrrggggggrrfffffffff.................",
+        "..ggwwwwwwww.......rbr.r.........rrgggggggr..............fffff...............................................ffr........rrr.....wwwwwwww.............rrrrrggggggggggggrrggggggggrrffffffff................",
+        "gwwwwwr..rr.......rrrr.r.........rrgggggggr..............fffff...............................................ffr........r.r.....wwwwwwww............rrggrrggggggggggggrrggggggggggrffffffff...............",
+        "wwwwrrrr..rr......rrrr.r.........rggggggggrr.............fffff...............................................ffr.......rrrr.....wwwwwww............rrrggrrggggggggggggrrgggggggggggrffffffff..............",
+        "w..rrrbrrbbrr....rrrr..r........rrgggggggggr.............fffff..........g......ggggg.........................ffr.......rrrr....wwwwwwww............rrgggrrggggggggggggrrrggggggggggggrfffffff.............",
+        "..rrbrrbrrbrrr..rrbrr..r........rrgggggggggrr.............gg.....gg.gggggg.....ggggg.........................ffr.......r.r.....wwwwwwww...........rrggggrrgggggggggggrrrrrrgggggggggggrfffffff............",
+        "ggrrrbrrbrrrrrrrrbrr...r........rggggggggggrr............ggg...gggggggggg......gg............................ffr.......rrr.....wwwwwww...........rrgggggrrgggggggggggrrgggrrrggggggggggrfffffff...........",
+        "bgrbrrbrrrrrbrrrrrr....r.......rrgggggggggggrrr.......ggggggg..gggggggg......................................fffr.....rrrr....wwwwwwww..........rrggggggrrgggggggggggrggggggrrrggggggggrrffffff...........",
+        "bgrrbrrbrrbrrbrrrrr....r.......rrgggggggggggrrrrrrrr.gggggggg...ggggggg......................................fffr.....rrr.....wwwwwwww........rrrrggggggrrggggggggggrrggggggggrrgggggggrrfffffff..........",
+        "gggrrbrrrrrbrrbrrr.....r.......rrrggggggggggrrgggrrrrrrgggggg..gggggggg......................................fffrr...rrrr.....wwwwwww........rrrrrrggggrrrrgggggggggrrggggggggrrrggggggrrrfffffff.........",
+        "ggrrrrrrrbrrbrrrrrr....r......rrrrggggggggggbrrgggggggrrgggggg...ggggg....................................ffffffrrrrrrrr.....wwwwwwww.......rrrrrrrgggrrrrrrggggggggrgggggggrrrrrrggggrrggrffffff.........",
+        "grrrrrrbrrbrrrrrrrrr...r......rrgrrgggggg...brrrgggggggrggg.g....gggg..................................ffffffff..rrrrrrr.....wwwwwwww.......rrggrrrrgrrrrrrrrgggggggrgggggg.rrrr.rrrgrrgggrrffffff........",
+        "rrrrrrrrbrrbrrrrrrrrr..r......rggrrgggrrr.bbbbrrggggggrrrgg......ggg................................ffffffffffffrrrrrr.......wwwwwww.......rrgggrrrrgrrgggggrrrggggrrggggrrrr.rr..rrrrrggggrfffffff.......",
+        "rrrrrrbrrbrrrrrrrrrrrr.rr....rrgggrrrrrrrrbbbrrrgggggrrrrgg.......................................rfffffffffffff...rr.......wwwwwwww.....grrgggggrrrrrggggggggrrrrrrrggggrrr.rr...grrrgggggrrffffff.......",
+        "rrrrbrrrrrrrrrrrrrrrrrrrrr...rgggrrrrrrrrrrrrrrrrgggrrrrrr........bb.....rrr..................rrrrrfffffffffffff..rr........wwwwwwww....ggrrggggggrrrggggggggggggrrrrrgggrrgrrgg..grrgggggggrrffffff......",
+        "rrrrrbrrrrrrrrrrrrrrggrrrrr..rgrrrrbrrbrr.rr.bbrrgggrrrrrrr....bbbrr.rrrrrrr............rrrrrrrr...ffffffffffffff.rr.......wwwwwwww....ggrrgggggggrrrgggggggggggggrrrrrggggrrgggggrrgggggggggrrffffff.....",
+        "rrrbrrbrrrrrbrrrrrrbg.grr.rrrrrrrrrbbrrbr..bbrrrrrgrrfffrrrr..rrrrrrrrrrrbbrr.....rrrrrrrr.........ffffffffffffffrrr.......wwwwwwww...gggrrgggggggrrggggggggggggggrrggrrgggrrgggggrrgggggggggrrffffff.....",
+        "rbrrbrrrrrrrrbrrrrrbg.ggrr.rrgrrrrrrbrrrrr.bbrrbrrrrrfffffrrrrrrr..rrbbrrbbrrrrrrrrrr............rrrffffffffffffffrrr......wwwwwwww.gggggrrgggggggrrggggggggggggggrrgggrrrrrgggggrrgggggggggggrrffffff....",
+        "rrbrrbrrrrrrrrrrr.rrg.gwwrrrrgrrrrrrbrrrbr..bbbrrrrrfffffffrrrr....rrbbrrrrrrrr................rrrr.ffffffffffffff.rr.....wwwwwwww.ggggggrrggggggrrgggggggggggggggrgggggrrrgggggrrgggggggggggggr.fffff....",
+        "brrbrrrrrrrrrrrr...rg.gwwrrrrg..rrrrrrrrbrrrrrrrrrrfffffffffrrrr....rrrrrr..................rrrr.....fffffffffffffrr.....wwwwwwwww.gggggggrgggggrrggggggggggggggggrgggggggrrggggrrgggggggggggggrr.fffff...",
+        "rbrrbrrbrrrrrrrr..gg..gwwrrrrr..rrgrrbrrrrrrr...rrffffffffffffrrrrrrrrr..................rrrrr.......ffffffffffffffr.....wwwwwwww.ggggggggrrggggrrgggggggggggggggrrggggggggrrrgrrgggggggggggggggrrffffff..",
+        "rrbrrrrrrrrrrrr...gg..gww.bbrrr.g.g.rrrrrrbb...rrrfffffffffffffrrrrrrrrr...............rrrr..........ffffffffffffffr....wwwwwwwww.gggggggggrrggrrggggggggggggggggrrgggggggggrrrrggggggggggggggggrr.fffff..",
+        "brrrrrbrrrrrrr.ggg....ggw...grrggggrrrrrbbbb...rrfffffffffffffffrrr...rfrr..........rrrr.rrrrrrrrrrrrrffffffffffffff...wwwwwwwww.gggggggggggrrrrggggggggggggggggrrggggggggggggrrgggggggggggggggggrr.fffff.",
+        "rbrrrrrrrrrrr.ggggggg.ggw...ggrrrrrr.grrrbrr..rrffffffffffffffffff....fffrrrr.rrrrrrr.rrrrrrrrrgrr..rrffffffffffffff...wwwwwwww..gggggggggggrrrrrrrrrrrrrrggggggrrgggggggggggggrrrggggggggggggggggrrffffff",
+        "rrrrrrrrrrrrggggggggg.ggw...ggrrrrrrbbbrrbrr.rrrfffffffffffffffffff...ffff.rrrrrrrr.rrrrrrrrrggggrrrrrfffffffffff.....wwwwwwwww.gggggggggggrrrrrrrggrrgrrrrrggrrr.gggggggggggggggrrrggggggggggggggrr.fffff",
+        "grrbrrrrrrrgggggggggg.ggw..ggggrrrrrbbbrrbbrrrrr.fffffffffffffffffff.ffffff.......rrrr....grrrrgggrrrrbffffffff......wwwwwwwww..gggggggggrrrrgrrrrgrrrggggrrrrrrr..ggggggggggggggggrrrgggggggggggggrrfffff",
+        "ggrrrrrrrrggggggggggggggwggggggrrrrbbbbbrrrrgrrr..fffffffffffffffffffffffffff.....rr......ggggrrrrgggggfffffff.......wwwwwwww..ggggggggrrrrrgggrrrrrrrgggggrrrr.rr.gggggggggggggggggrrrgggggggggggggr.ffff",
+        "gggrrrrrrgggggggggggggggwwggggggrrrrbbrrrrggrrrggg.fffffffffffffffffffffffffff.....r......ggggggrrrrgggffffff.......wwwwwwwww.ggggggggrrrgrrggggrrrrrgggggggrr..wwwwwggggwwwwgggggggggrrrgggggggggggrrffff",
+        "ggggrrrrggggggggggggggggwwggggggrrrrrrrrrrrrrrgggg.gfffffffffffffffffffffffffff....r......ggggggggrrrrrrfff........wwwwwwwww..gggggggrrgggrrggrrrrrrggggggggr..www.wwwwwwwwwwwggggggggggrrrggggggggggrrfff",
+        "gggggrrgggggggggggggggggwwggggggrrrrrrrrrrrrrggg.gggggfffffffffffffffffffffffffff..r......ggggggggggggrr...........wwwwwwww..gggggggrrggggrrggrrrrrrgggggggrr..wwrr.gwwwggggwwggggggggggggrrrggggggggrrfff",
+        "wrrrrrggggggggggggggggggwwgggggggrrrrrrrrrrr......ggggffffffffffffffffffffffffffff.r......gggggggggggg............wwwwwwwww..ggggggrrgggggrrggrgggrrgggggggrr.ww.rr..gggggggwwggggggggggggggrrrrggggggrrff",
+        "wwwrrrrrrrrggggggggggggwwggggggggrrrrrrrrrr.b.....gggffffffffffffffffffffffffffffffrr...gggggggggggggg...........wwwwwwwww..ggggggrrggggggrrrrgggggrrrrrrrrrgwww..r..ggggggggwwwgggggggggggggggrrrgggggrff",
+        "wwww.rrrrrrrrrggggggggwwwgggggggrrrrrrrrrrr.brr...gggffffffffffffffffffffffffffffffffr..gggggggggggggg...........wwwwwwww...gggggrrgggggggrrrrrrrrrrrrggggggwww...r...gggggggwwwwwgggggggggggggggrrggggrr.",
+        "wwwwwgggggrrrrrrrrrgggwwgggrrrrrrrrrrrg..rrrrr....ggffffffffffffffffffffffffffffffffffrggggggggggggggg..........wwwwwwwww...ggggrrggggbggrrbbrrrrrrrrggggggwww....rr..ggggggggggwwggggggggggggggggggggggrr",
+        "ggggwwwggggggrrrrrrrrwwrrrrrrrrrrrrrggg.rrrr.bb.b.gffffffffffffffffffffffffffffffffffffrgggggggggggggg..........wwwwwwww........rrggggbbrrrbb.rrrgrrrggggggwwgg...rr...gggggggggwwggggggggggggggggggggggg.",
+        "gggggwwwwgggggggg.rrrwwrrrrrrgggrrggggrrrrrr.bbbbgfffffffffffffffffffffffffffffffffffffrgggggggggggg...........wwwwwwww.........rggggggbrrrbbrrggggrrgggggwwggg....r...gggggggggwwgggggggggggggggggggggggg",
+        "gggggggwwwgggggggggggw.ggggggggrrggggrrrbbrrrrbggfffffffffffffff.gfffffffffffffffffffffgggggggggggggg...gg.....wwwwwwww........rrggggggrrrrbbrrggggrrgggggwwgggg...r....gggggggwwwwggggggggggggggggggggggg",
+        "ggggggggwwwwgggggggggwggggggggrrgggggbrrrbrrrrrggfffffffffffffr...gfffffffffffffffffffrgggggggggggggg.gggg.....wwwwwwww........rgggggggrrrrbrrgggggrrggggwwggggg...r....gggggggwwwwwwwwwgggggggggggggggggg",
+        "ggggggggggwwwwgggggggwwgggggggrgggggggrrrrr..grrrrfffffffffffrr.....rffffffffffffffffrggggggggggggggggggggg...wwwwwwww........rrggggggrrrrbrrggggggrrgggwwwggggg...r....gggggggwgggwwwwwwwwwwwwwwwwggggggg",
+        "gwwwwwwwwwwwwwwggggggwwggggggrrggggggggbb...gggrrrggffffffffrr......grfffffffffffffffgggggggggggggggg.gggg....wwwwwwww........rggbbgggrbrrbrrggggggrrgggwwggggggg..r.....ggggggwgggggggggggwwwwggwwwgggggg",
+        "wwwggggggggggwwwwggggwwgggggrrggggggggggg..gggggrrrg.fffffffr.......ggrfffffffffffff.gggggggggggggggg.gggg...wwwwwwww........rrgbbgggrrbbbrrgggggggrrggwwwggggggg..r.....ggggggwggggggggggggggggggwwwggggg",
+        "wwgggggggggggggwwwgggwwgggggrgggggggggggg.ggggggggrr..fffffr........gg..fffffffffff..ggggggggggggggg.gggg....wwwwwwww.......rrggggggrrrrbbrr.......rrggwwggggggggg.r......gggggwwgggggggggggggggggggwwgggg",
+        "ggggggggggggggggwwwgwwwggggrrggggggggggggggggggggg.rr...ffrr........gg...rfffffffff.gggggggggggggggg.gggg...wwwwwwww........rrggg..grrrrbrr........rrwwwgggggggggg.r......gggggwwggggggggggggggggggggwwggg",
+        "gggggggggggggggggwwwwwggggrrgggggggggggg.ggggggggg..rr..rrr.........gg....rfffffff..ggggggggggggggg..ggg....wwwwwwww.......rrffgbbbrrbb.brr........wwwwwgggggggggg.rr.....ggggggwwggggggggggggggggggggwwgg",
+        "gggggggggggggggggggwwwggggrgggggggggggg.ggggggggg...grrrrr..........gg......fffffr.ggggggggggggggggg.gg.....wwwwwww........rgffbbbbrr...rr........wwwggwwgggggggggg.r......gggggwwgggggggggggggggggggggwww",
+        "ggggggggggggggggggggwwwggrrggggggggggg.ggggggggg....gggggg.......ww.gg.......ffff..gggggggggggggggggggg....wwwwwwww........rrffbbbrrbb.rr........wwwrggwwwggggggggg.r......ggggggwwgggggggggggggggggggggww",
+        "gggggggggggggggggggggwwwwrggggggggggg..gggggggg....gggggggg......wwwggg.......rf...gggggggggggggggggggg....wwwwwwww.........rrrggbrbbbrrr.......wwwrrgggwwwgggggggg.r.......ggggggwwgggggggggggggggggggggg",
+        "gggggggggggggggggggggggwwwggggggggg...gggggggg....gggggggggg......wwwwg...........ggggggggggggggggggggg...wwwwwwww............rrrrrbbbrr......wwww.rrggggwwgggggggggrr......ggggggwwwggggggggggggggggggggg",
+        "gggggggggggggggggggggggrwwwgg.........gggg........gggggggggg........wwwg..........gggggggggggggggggggg....wwwwwwww.............rrrr...rr......ww...rrggggwwgggggggggrr......gggggggwwwgggggggggggggggggggg",
+        "ggggggggggggggggggggggg...ww...........gggggggg..gggggggggggg.......gwwwg........ggggggggggggggggggggg....wwwwwww...............rrrr.rr.......ww...rrggggwwggggggggggr.......gggggggwwwggggggggggggggggggg",
+        "gggggggggggggggg..........wwww..gggggggggggggg..ggggggggggggg.......ggwwwg.......ggggggggggggggggggggg...wwwwwwww..............rr..rrrr.......ww...rrgggggwwgggggggggr.......gggggggggwwwggggrrrrrrrrrrrrr",
+        "gggggggggg................wwwgggggggggggggggg...ggggggggggggg.......g..www......gggggggggggggggggggggg...wwwwwwww..............rr...rrr.......w....rrgggggwwwwwwwwwwgr........gggggggggwwggrrrrggggggggggg",
+        "gggg..................ggggwwwgggggggggggggggg..ggggggggggggg..g.....g...wwwg...gggggggggggggggggggggg...wwwwwwww..............rr....rr.......ww....rrrggggggwwwwggwwgr........ggggggggggggrrgggggggggggggg",
+        "................gggggggggggwwggggggggggggggg..gggggggggggggggggg....g....wwww..gggggggggggggggggggggg...wwwwwwww............bbr.....rr.......ww.....rrggggggggggggwwgr........ggggggggggrrrggggggggggggggg",
+        ".........ggggggggggggggggggwwgggggggggggggg..ggggggggggggggggggg....g....ggwwwgggggggggggggggggggggg....wwwwwww............bbrr.....rr......ww......rrggggggggggggwwgrr........ggggggggrrggggggggggggggggg",
+        "..gggggggggggggggggggggggggwwggggggggggggg...ggggggggggggggggggg....g....gggwwwgggggggggggggggggggg....wwwwwwww............bbrr.....rr......ww......rrrgggggggggggwwgrr........ggggggrrrgggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggggggggggggg..gggggggggggggggggggg............gwwwggggggggggggggggggg....wwwwwwww...........bbbrr.....r......ww.......rrrgggggggggggwwgrrr.......gggggrrgggggggggggggggggggg",
+        "ggggggggggggggggggggggggggggwgggggggggggg..ggggggggggggggggggggg............ggwwwwggggggggggggggg.....wwwwwwww............bbbrr.bb..r......ww........rrgggggggggggwggrgr........gggrrggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggggggggggg...ggggggggggggggggggggg.............gggwwwwggggggggggggg.....wwwwwwww............bbbbr.bb.rr......ww........rrrgggggggggwwggrgr........grrrgggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgggggggggg...gggggggggggggggggggggg..............gggwwwwwggggggggggg....wwwwwwww.............bbbbr.bbbrr......w..........rrgggggggggwwggrgrr......rrrgggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggggggggg...ggggggggggggggggggggggg..............gggggwwwwggggggggg.....wwwwwwww..............bbrr.bbrr.......w..........rrgggggggggwwggrggr.....rrrggggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggggggggg...gggggggggggggggggggggg...............gggggggwwwgggggggg.....wwwwwwww..............brrrrrrrr.......w..........rrrggggggggwwggrggrr...rr..ggggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgggggggg...gggggggggggggggggggggg................ggggggggwwwggggggg....wwwwwwww...............rrrrrrrr........w...........rrggggggggwgggrggrr.rrr....gggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggggggg...gggggggggggggggggggggg...g.............gggggggggwwgggggg.....wwwwwwww..............rrrrrrrr.........w...........rrrgggggggwwggrgggrrrr.....gggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgggggg...gggggggggggggggggggggg..ggg.............ggggggggggwwggggg....wwwwwwww...............rrrrrrrr........ww............rrgggggggwwggrggrrr........ggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgggggww..ggggggggggggggggggggg..ggggg.............gggggggggwwwggg.....wwwwwwww..............rrrr..rr.........ww............rrgggggggwwggrgrrrr........ggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwwwwwwww.ggggggggggggggggggggg..gggggg.............ggggggggggwwwgg.....wwwwwwww...........rrrrrr...r.brr.....ww.............rrrgggggggwggrrrggrr.......ggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwwwwwww.ggggggggggggggggggggg..ggggggg.............gggggggggggwwww.....wwwwwww..........rrrrr.rr...rbbrrb....ww.......w......rrgggggggwgrrggggrr........gggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggg....gggggggggggggggggggg..ggggggggg............ggggggggggggwwwww..wwwwwwww........rrrrrrr.rr...rbbbrb...www......ww......rrrgggggwwrrggggggr........gggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgg....gggggggggggggggggggg..ggggggg.gg............ggggggggggggg..wwwwwwwwwwww........rrrrrbbrrr...rrbbrb...ww.......ww......rrrgggggwwrrggggggrr........ggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgg...gggggggggggggggggggg..gggggggg.ggg...........ggggggggggggg....wwwwwwwww........rrgrrrbbrrr....rrrrr..ww......www........rrgggggwwrrgggggggr........ggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwg....ggggggggggggggggggg..ggggggggggggg...........ggggggggggggg......wwwwwww........rrgrrrrbrrr.....rrr...wwwwwwwwww.........rrgwwggwwrrgggggggrr.......ggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggww....ggggggggggggggggggg..gggggggggggggg...........ggggggggggggg.....wwwwwwww.........rrrrrrbbrr...........ww.................rrwwwwgwwwwwggggggrr........gggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwg..ggggggggggggggggggg..gggggggggggggggg..........ggggggggggggg.....wwwwwwwwww.......rrrrrrrbrr..........ww...................rwwgwwwwwwwwggggggr........gggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwggggggggggggggggggggg..ggggggggggggggggg..........ggggggggggggg.....wwwwwww.wwww.......rrrrrrrr..........ww...................rwwgwwwwwgwwggggggrr.......gggggggggggggggggggg",
+        "gggggggggggggggggggggggggggwwgggggggggggggggggggg..gggggggggggggggggg..........ggggggggggggg.....wwwwwww....ww.......rrrrrrr..........ww...................rrwwgwwwwwwwgggggggr........ggggggggggggggggggg",
+        "gggggggggggggggggggggggggg..wggggggggggggggggggg..gggggggggggggggggggg..........gggggggggggg.....wwwwwww.....ww.......rrrrrr.........ww....................rrwwgwwwwwwwgggggggrr.......ggggggggggggggggggg",
+        "ggggggggggggggggggggggggg...wwggggggggggggggggg..gggggggggggggggg.gggg..........gggggggggggg.....wwwwwww.....ww......rrrrrrr.........ww............rrrrr..rrrrwgwwwwgwrgggggggrr........gggggggggggggggggg",
+        "ggggggggggggggggggggggggg...wwgggggggggggggggg..ggggggggggggggggggggggg..........ggggggggggg....wwwwwwww.....ww......rrrrrr..........ww............rrrrrrrrrrrwgwwwwgwrggggggggr........gggggggggggggggggg",
+        "ggggggggggggggggggggggggg...wwggggggggggggggg..gggggggggggggggggggggggg...........gggggggggg....wwwwwww.......ww.....rrrr.r.........ww.............bbbbbbrgrrrwgwwwggwwggggggggrr.......gggggggggggggggggg",
+        "gggggggggggggggggggggggg...ggwgggggggggggggg..ggggggggggggggggggggggggg............gggggggg.....wwwwwww.......ww....rrrrr.r.........ww.............bbbbbrrrrrrwggggrrwwgggggggggr........ggggggggggggggggg",
+        "gggggggggggggggggggggggg...ggwwgggggggggggg..ggggggggggggggggggggggggggg............ggggggg.....wwwwwww.......ww....rr..r.r..........w...........rrrrrrrrrrrrrwgrrrwwwwrggggggggrr.......ggggggggggggggggg",
+        "gggggggggggggggggggggggg..gggwwggggggggggg..ggggggggggggggggggggggggggggg............gggggg....wwwwwwww........ww...rrrr..r.........ww..........brrrrrrrrrrrrrwwwwwwwwwwrgggggggrr........gggggggggggggggg",
+        "gggggggggggggggggggggggg..gggwwgggggggggg..ggggggggggggggggggggggggggggggg............ggggg....wwwwwwww........ww..rr.....r........www..........brbbbbbbrrrrrrwwwwwwwwwwwwgggggggr........gggggggggggggggg",
+        "ggggggggggggggggggggggg...ggggwggggggggwwwggggggggggggggggggggggggggggggggg............gggg....wwwwwww.........ww..rr.....rr.......ww...........brrrrrrrrrrrrrwwwwwwwwwwwwwwgggggrr.......gggggggggggggggg",
+        "ggggggggggggggggggggggg...ggggwwggggggwwwggggggggggggggggggggggggggggggggggg............gg....wwwwwwww..........w.rrr.....rr.......ww...........br...rbrrrrrrrwwwwwwwwwwwwwwwwrgggr........ggggggggggggggg",
+        "ggggggggggggggggggggggg..gggggwwggggggwwggggggggggggggggggggggggggggggggggggg...........gg....wwwwwwww........rrrrrrr......r.......ww...........brr..r.rrrrrrrwwwwwwwwwwwwwwwwwwggr........ggggggggggggggg",
+        "ggggggggggggggggggggggg..gggggwwgggggwwggggggggggggggggggggggggggggggggggggggg.........ggg...wwwwwwww........rrrrr.rr....bbr.......w............bbr..rrrrrrrrrwwwwwwwwwwwwwwwwwwrrrg........gggggggggggggg",
+        "gggggggggggggggggggggg...gggggwwggggwwggggggggggggggggggggggggggggggggggggggggg........gg....wwwwwwww.......rrrrrrrrrrrr.bbr.......w......www...bbr..rbbbbrrrrwwwwwwwwwwwwwwwwwwwwwwrr......gggggggggggggg",
+        "gggggggggggggggggggggg..gggggggwggwwwggggggggggggggggggggggggggggggggggggggggggg......ggg....wwwwwww.........r.brrrrrrrrrrrr.......wwwwwwwww....bbr..rrrrrrgrrwwwwwwwwwwwwwwwwwggwwwwwwwr...gggggggggggggg",
+        "gggggggggggggggggggggg..gggggggwwwwwgggggggggggggggggggggggggggggggggggggggggggggg....gg....wwwwwwww.........r.brrrrrrrbbb.r.......ww..ww.........r..rbbbbrgrrwwwwwwwwwwggggggggggggrwwwwww..ggggggggggggg",
+        "ggggggggggggggggggggg...gggggggwww.gggggggggggggggggggggggggggggggggggggggggggggggg...gg....wwwwwwww.........r.brrrbrbrrrbrr.......www...........rrrrrrrrrrgrrgwwwwwwwwgggggggggggggg...rwwwwrgggggggggggg",
+        "ggggggggggggggggggggg...gggggggw..gggggggggggggggggggggggggggggggggggggggggggggggggg.ggg...wwwwwwww..........r.bbrbbrbrrbbrr........ww...........rr..rrrbbbgrrgwwwwwwwggggggggggggggg....wwwwwwwgggggggggg",
+        "ggggggggggggggggggggg..ggggggggw.gggggggggggggggggggggggggggggggggggggggggggggggggggggg....wwwwwwww..........rbbrrrbrbrrrrr..........ww...........r..r....ggrrgwwwwwwwgggggggggggggggg.....wwwwwwwgggggggg",
+        "ggggggggggggggggggggg..ggggggg.wggggggggggggggggggggggggggggggggggggggggggggggggggggggg....wwwwwww...........rb.rrrrrbb.rr...........ww...........rrrr....ggrrgwwwwwwggggggggggggggggg.......wwwwwwrgggggg",
+        "gggggggggggggggggggg...gggggg.gwgggggggggggggggggggggggggggggggggggggggggggggggggggggg....wwwwwwww...........rrrrrbrbbbrrr...........ww...................grrrgwwwwwwggggggggggggggggg.........wwwwwwrgggg",
+        "gggggggggggggggggggg...ggggg.ggwwggggggggggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww...........rrrrrbrbbrrr...........www....................rrrgwwwwwggggggggggggggggggg........gwwwwwwwggg",
+        "gggggggggggggggggggg..ggggg.gggwwwwwwwggggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww............rrrrrrrrrr.............ww.............rr......rrrgwwwwwggggggggggggggggggg........gggwwwwwwrg",
+        "ggggggggggggggggggg...gggg.ggggwwgwwwwggggggggggggggggggggggggggggggggggggggggggg........wwwwwwww............rrrrrrrrww.............ww.............rrr.....rrrgwwwwggggggggggggggggggggg........gggwwwwwwr",
+        "ggggggggggggggggggg...ggg.gggggwwgggggggggggggggggggggggggggggggggggggggggggggggg.......wwwwwwww.............r......rwww...........ww................r....rrrggggggggggggggggggggggggggg........ggggwwwrww",
+        "ggggggggggggggggggg..ggg.ggggggwwggggggggggggggggggggggggggggggggggggggggggggggg........wwwwwwww.............r......r..wwwwww.....www................rr...rrrggggggggggggggggggggggggggg.........gggggwwrr",
+        "ggggggggggggggggggg..gg.gggggggwwggggggggggggggggggggggggggggggggggggggggggggggg........wwwwwww..............rr.....r....wwwww....ww.................rrr..rrrgggggggggggggggggggggggggggg........ggggggwwg",
+        "wwggggwwwwgggggggg.....gggggggwwwggggggggggggggggggggggggggggggggggggggggggggggg.......wwwwwwww..............rrrrrrrr........ww...w............bbb....rrrrrrrgggggggggggggggggggggggggggg........gggggggww",
+        "wwwwwwwwwwgggggggg....ggggggggwwggggggggggggggggggggggggggggggggggggggggggggggg........wwwwwwww.................rr...........ww..ww............bbb.....rrrrrgggggggggggggggggggggggggggggg........gggggggg",
+        "ggggg...rwwgggggwwwwwwwwwggggwwgggggggggggggggggggggggggggggggggggggggggggggggg.......wwwwwwww...................r............w.www.............bbbb.bbbrrrrgggggggggggggggggggggggggggggg........gggggggg",
+        "ggggg..rrwwwwwwwwwwwwwgwwwwwwwwgggggggggggggggggggggggggggggggggggggggggggggggg.......wwwwwwww...gg..............r............w.ww...............bbbbbbbrrrrgggggggggggggggggggggggggggggg.........ggggggg",
+        "gggg..rr..rw........gggggwwwwwwgggggggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww....ggg.............r.........rrwwrww................bbbbbrrrrrggggggggggggggggggggggggggggggg........ggggggg",
+        "gg...rrrr.rr.......gggggggggwwwgggggggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww...ggggg............rr........rrwwww..............bbb.....rrrrgggggggggggggggggggggggggggggggg........ggggggg",
+        "g.....rrrrr........ggggggggggwwwgggggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww....gggggg...........rr.......rr.wwwrr.............bbb..bbrrrrrggggggggggggggggggggggggggggggggg........gggggg",
+        "g.....rrrr.........gggggggggggwwwggggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww...ggggggggg.........r.......rr..wwwrr.............bbb..bbrrrrrrgggggggggggggggggggggggggggggggg........gggggg",
+        "g......rr......g...ggggggggggggwwwggggggggggggggggggggggggggggggggggggggggggg......wwwwwwww...ggggggggggg........r......rrr..www.r..................bbrrrgrrgggggggggggggggggggggggggggggggg........gggggg",
+        "gg......rr....gg..ggggggggggggggwwwggggggggggggggggggggggggggggggggggggggggg.......wwwwwwww...gggggggggggg......rr.....rr....wwwrr...................rrrrggrrgggggggggggggggggggggggggggggggg........ggggg",
+        "gg......rr...ggg..gggggggggggggggwwgggggggggggggggggggggggggggggggggggggggg.......wwwwwwww...gggggggggggggg....rr.....rrr...www.rr...................rrrrgggrrggggggggggggggggggggggggggggggg....rrrrrrrrr",
+        "gg......rr..gggg..ggggggggggggggggwwgggggggggggggggggggggggggggggggggggggg.......wwwwwwwww...ggggggggggggggg...rr....rrr....ww..r....................rrrgggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "gggrr..rr..gggg...ggggggggggggggggwwggggggggggggggggggggggggggggggggggggg........wwwwwwww...ggggggggggggggggg..rr....rr....ww...r...................rrrrggggrrgggggggggggggggrrggggggggggggggg........gggg",
+        "gggrr.rr..ggggg..gggggggggggggggggwwgggggggggggggggggggggggggggggggggggg........wwwwwwwww...gggggggggggggggggg.rr...rr.....ww...r...................rrrrgggrrggggggggggggggggrrggggggggggggggg........gggg",
+        "gggrrrr..gggggg..ggggggggggggggggggwggggggggggggggggggggggggggggggggggg........wwwwwwwww....ggggggggggggggggggggrrrrr....www....r...................rrrrggrrggggggggggggggggggrgggggggggggggggg........ggg",
+        "ggggrr..ggggggg..ggggggggggggggggggwgggggggggggggggggggggggggggggggggg........wwwwwwwww.....ggggggggggggggggggggg.r....wwww....rr..................rrrrgggrgggggggggggggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        ".grrrg.ggggggg..gggggggggggggggggggwggggggggggggggggggggggggggggggggg.........wwwwwwwww.....gggggggggggggggggggggg....www......rr..................rrrrgggrggggggggggggggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        ".rrrgggggggggg..gggggggggggggggggggwggggggggggggggggggggggggggggggggg........wwwwwwwww......ggggggggggggggggggggggg...ww.......r...................rrrrgggrggggggggggggggggggggrbrrbrbrrbrbrbrrgr.r..r.r..",
+        "rrgggggggggggg..ggggggggggggggggggwwgggggggggggggggggggggggggggggggg........wwwwwwwww......ggggggggggggggggggggggggg.ww........r...................rrrrgggrggggggggggggggggggggrbrrbrbrrbrbrbrrbr.r..r.r..",
+        "rgggggggggggg...ggggggggggggggggggwwggggggggggggggggggggggggggggggg........wwwwwwwwww......ggggggggggggggggggggggggggww........r..................rrrrggggrggggggggggggggggggggrbrrbrbrrbrbrbrrbr.r..r.r..",
+        "ggggggggggggg..gggggggggggggggggggwwgggggggggggggggggggggggggggg..........wwwwwwwwww.......ggggggggggggggggggggggggggww........r..................rrrrggggrggggggggggggggggggggrbrrbrbrrbrbrbrrbr.r..r.r..",
+        "g.ggggggggggg..gggggggggggggggggggwwggggggggggggggggggggggg..............wwwwwwwwwww.......ggggggggggggggggggggggggggwwg.......r.................rr.rrrrrgrggggggggggggggggggggrbbrbrbrrrrrrrrrbr.r..r.r..",
+        "ggggggggggggg..gggggggggggggggggggwwgggggggggggggggggggggg..............wwwwwwwwww.www.....ggggggggggggggggggggggggggwwgg......r..............rrrr..rrr.rrrggggggggggggggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "gggggggggggg..ggggggggggggggggggggwwggggggggggggggggggggg..............wwwwwwwwwww..www....ggggggggggggggggggggggggggwwggg...r.rr............rrr....rrr...gggggggggggggggggggggrbbrbrbrrbrbrbrrbrbr..r....",
+        "gggggggggggg..ggggggggggggggggggggwwgggggggggggggggggggg.............wwwwwwwwwwww....wwww..ggggggggggggggggggggggggggwwgggg.rr.rrr...........rr.....rrr....ggggggggggggggggggggrrbrbrbrrbrbrbrrbrbrr.r....",
+        "gggggggggggg..gggggggggggggggggggwwgggggggggggggggggggg.............wwwwwwwwwwww.......wwwgggggggggggggggggggggggggggwwgggggr..rrrrr.........r......rrr....gggggggggggggwwgggggrrbrbrbrrbrbrbrrbrbrr.r....",
+        "gggggggggggg..gggggggggggggggggggwwggggggggggggggggggg.............wwwwwwwwwwww.........wwwgggggggggggggggggggggggggwwggggggrg.rr.rrr.....r.rr..rr..rrrrrrrrggggggggggggwwgggggrrbrbrbrrbrbrbrrbrbrr.r....",
+        "ggggggggggg..ggggggggggggggggggggwwgggggggggggggggggg............wwwwwwwwwwwww......gggggwwggggggggggggggggggggggggwwwggggggrrrrr..rrr...rrrrr.rr...rrrrrrrrgggggggggggwwggggggrrbrbrbrrbrbrbbrbrbrr.r....",
+        "ggggggggggg..ggggggggggggggggggggwggggggggggggggggggg...........wwwwwwwwwwww.....gggggggwwwgggggggggggggggggggggggwwwgggggggggggrr..rrr..r.rr.rr.....rrrrrrrgggggggggggwwggggggrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rgggg.ggggg..ggggggggggggggggggggwgggggggggggggggggg...........wwwwwwwwwwww.....gggggggwwgggggggggggggggggggggggggwwggggggggggggrr....rr.r..rrr.....rrrrrrrrggggggggggwwgggg.grrbrbrrrrbrrrrrrbrrrrbrrrrrr",
+        "rgggggggggg.gggggggggggggggggggggwwgggggggggggggggg..........wwwwwwwwwwwww.....ggggggggwwgggggggggggggggggggggggggwwgggggggggggggrr....rrr.rr.......rrrrrrrrggggggggggwwggg...rbrrrrbrrrrbrbrrrrbrrrrrr.rr",
+        "rrgggggggg..gggggggggggggggggggggwwwgggggggggggggg..........wwwwwwwwwwww.....gggrrrrgggwwgggggggggggggggggggggggggwwgggggggggggggrrr....rr.rr.......rrrrr.rrrggggggggwwgggg..rrrrbrrrrbrbrrrrbrrrrbrbrrrr.",
+        "rrrggggggg..ggggggggggggggggggggggwwwggggggggggggg.........wwwwwwwwwwww.....gggggggrrggwwggggggggggggggggggggggggwwwggggggggggggggrrr...rrrr......r.rrrrrrrrggggggggwwwggg..rrbrrrrbrbrrrrbrrrrbrbrrrr.rr.",
+        "rrrggggggg..gggggggggggggggggggggggwwgggggggggggg..........wwwwwwwwwww....ggggggggggrggwwggggggggggggggggggggggggwwgggggggggggggggggrr..r.rrr....rr.rrrrrrrgggggggwwwwgggg..rrrrbrrrrrrbrrrrbrbrrrrbrrrr..",
+        "grrgggggg...ggggggggggggggggggggggggwggggggggggg...........wwwwwwwww......ggggggggggrrggwwgggggggggggggggggggggggwgggggggggggggggggggrrrr..rr....r..rrrrgggggggggwwwggggg...rbrrbrbrbrrbrbrrrrbrbrrbrbrrrr"
+      ]
+    },
+    "services": {
+      "classification": "EXPERIMENTAL_GAME_UNITS",
+      "roles": {
+        "house": {
+          "label": "Casa",
+          "housing": 4,
+          "generation": 0,
+          "demand": 2,
+          "distributionCapacity": 0,
+          "distributionCells": 0,
+          "connectionCells": 0
+        },
+        "solar": {
+          "label": "Geração solar",
+          "housing": 0,
+          "generation": 8,
+          "demand": 0,
+          "distributionCapacity": 8,
+          "distributionCells": 6,
+          "connectionCells": 80
+        },
+        "substation": {
+          "label": "Subestação local",
+          "housing": 0,
+          "generation": 0,
+          "demand": 0,
+          "distributionCapacity": 24,
+          "distributionCells": 12,
+          "connectionCells": 80
+        },
+        "hydro-existing": {
+          "label": "Itaipu · geração existente",
+          "housing": 0,
+          "generation": 120,
+          "demand": 0,
+          "distributionCapacity": 0,
+          "distributionCells": 0,
+          "connectionCells": 0
+        },
+        "substation-existing": {
+          "label": "Subestação existente",
+          "housing": 0,
+          "generation": 0,
+          "demand": 0,
+          "distributionCapacity": 24,
+          "distributionCells": 12,
+          "connectionCells": 80
+        },
+        "solar-existing": {
+          "label": "Solar existente",
+          "housing": 0,
+          "generation": 8,
+          "demand": 0,
+          "distributionCapacity": 8,
+          "distributionCells": 6,
+          "connectionCells": 80
+        }
+      },
+      "existingLinks": [
+        {
+          "from": "osm:way/32236291",
+          "to": "osm:way/32302779"
+        },
+        {
+          "from": "osm:way/32236291",
+          "to": "osm:way/510234533"
+        }
+      ]
+    },
+    "mission": {
+      "id": "itaipu-first-powered-home",
+      "resource": "planks",
+      "delivered": 1,
+      "poweredHouses": 1,
+      "maxTicks": 5000
+    }
+  },
+  "stores": [
+    {
+      "id": "osm:way/32236291",
+      "pos": {
+        "x": 4275.0,
+        "y": 1335.0
+      },
+      "kind": "infrastructure",
+      "inventory": {},
+      "capacity": 200,
+      "incorporated": {},
+      "buildTicks": 0,
+      "status": "operational",
+      "serviceRole": "hydro-existing",
+      "sourceFeatureId": "way/32236291"
+    },
+    {
+      "id": "osm:way/32302779",
+      "pos": {
+        "x": 1875.0,
+        "y": 2565.0
+      },
+      "kind": "infrastructure",
+      "inventory": {},
+      "capacity": 200,
+      "incorporated": {},
+      "buildTicks": 0,
+      "status": "operational",
+      "serviceRole": "substation-existing",
+      "sourceFeatureId": "way/32302779"
+    },
+    {
+      "id": "osm:way/510234533",
+      "pos": {
+        "x": 3735.0,
+        "y": 2745.0
+      },
+      "kind": "infrastructure",
+      "inventory": {},
+      "capacity": 200,
+      "incorporated": {},
+      "buildTicks": 0,
+      "status": "operational",
+      "serviceRole": "substation-existing",
+      "sourceFeatureId": "way/510234533"
+    },
+    {
+      "id": "osm:way/1497605063",
+      "pos": {
+        "x": 1635.0,
+        "y": 1725.0
+      },
+      "kind": "infrastructure",
+      "inventory": {},
+      "capacity": 200,
+      "incorporated": {},
+      "buildTicks": 0,
+      "status": "operational",
+      "serviceRole": "solar-existing",
+      "sourceFeatureId": "way/1497605063"
+    },
+    {
+      "id": "itaipu:depot",
+      "pos": {
+        "x": 1905.0,
+        "y": 2565.0
+      },
+      "kind": "depot",
+      "inventory": {
+        "planks": 60,
+        "stone": 40,
+        "metal": 24
+      },
+      "capacity": 200,
+      "incorporated": {},
+      "buildTicks": 0,
+      "status": "operational"
+    }
+  ],
+  "carriers": [
+    {
+      "id": "itaipu:carrier-1",
+      "pos": {
+        "x": 1905.0,
+        "y": 2565.0
+      },
+      "cargo": {},
+      "target": null,
+      "source": null,
+      "route": [],
+      "waypoint": 0,
+      "roadVersion": 0,
+      "phase": "idle",
+      "harvest": 0
+    },
+    {
+      "id": "itaipu:carrier-2",
+      "pos": {
+        "x": 1905.0,
+        "y": 2565.0
+      },
+      "cargo": {},
+      "target": null,
+      "source": null,
+      "route": [],
+      "waypoint": 0,
+      "roadVersion": 0,
+      "phase": "idle",
+      "harvest": 0
+    },
+    {
+      "id": "itaipu:carrier-3",
+      "pos": {
+        "x": 1905.0,
+        "y": 2565.0
+      },
+      "cargo": {},
+      "target": null,
+      "source": null,
+      "route": [],
+      "waypoint": 0,
+      "roadVersion": 0,
+      "phase": "idle",
+      "harvest": 0
+    },
+    {
+      "id": "itaipu:carrier-4",
+      "pos": {
+        "x": 1905.0,
+        "y": 2565.0
+      },
+      "cargo": {},
+      "target": null,
+      "source": null,
+      "route": [],
+      "waypoint": 0,
+      "roadVersion": 0,
+      "phase": "idle",
+      "harvest": 0
+    }
+  ],
+  "suggestions": [
+    {
+      "x": 1905.0,
+      "y": 2595.0
+    },
+    {
+      "x": 1875.0,
+      "y": 2625.0
+    },
+    {
+      "x": 1845.0,
+      "y": 2655.0
+    },
+    {
+      "x": 1815.0,
+      "y": 2685.0
+    },
+    {
+      "x": 1815.0,
+      "y": 2715.0
+    },
+    {
+      "x": 1785.0,
+      "y": 2745.0
+    },
+    {
+      "x": 1755.0,
+      "y": 2775.0
+    },
+    {
+      "x": 1665.0,
+      "y": 2745.0
+    },
+    {
+      "x": 1635.0,
+      "y": 2745.0
+    },
+    {
+      "x": 1605.0,
+      "y": 2715.0
+    },
+    {
+      "x": 1575.0,
+      "y": 2685.0
+    },
+    {
+      "x": 1545.0,
+      "y": 2745.0
+    }
+  ]
+}

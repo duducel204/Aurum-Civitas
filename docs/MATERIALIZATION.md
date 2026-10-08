@@ -1,5 +1,7 @@
 # Aurum Civitas — implementação da projeção
 
+A integração local do mapa real de Itaipu, ruas existentes, casas e energia está documentada em [ITAIPU.md](ITAIPU.md). A extensão AC-IS1 preserva o Seed anterior e acrescenta RME/RMF ao mesmo tick canônico.
+
 O repositório contém uma economia executável, um visualizador minimalista e módulos configuráveis para o mundo coletivo. A fonte de verdade é `projection/repository_seed.json` (AC-RS2); o mapa de expansão é `projection/repository_manifest.json` (AC-M2). Os arquivos originais da projeção não foram redefinidos.
 
 ## Executar
@@ -83,3 +85,4 @@ Evolução prevista: validar os parâmetros → ligar os módulos regionais ao e
 ## Verificação da interface
 
 Build e tipos são verificados com `npm run build`; lint com `npm run lint`; a resposta HTTP do app compilado com `npm run smoke:http`. O teste HTTP verifica HTML, canvas e rótulo da configuração. Interação visual/hidratação no navegador não foi executada: o ambiente não tinha o binário e a tentativa de download retornou um arquivo truncado. Isso permanece como limitação de QA, sem afetar a execução dos testes do núcleo.
+
