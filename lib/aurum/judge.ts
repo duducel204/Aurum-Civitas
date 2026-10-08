@@ -2,6 +2,7 @@
 import type { Trace } from "./replay.ts";
 import { replay, hash } from "./replay.ts";
 import { amount, checkConservation } from "./economy.ts";
+import { missionSatisfied } from "./rules.ts";
 export const semanticId = "RM5";
 export type Verdict = {
   semantic_id: string;
@@ -13,6 +14,8 @@ export type Verdict = {
   delivered: number;
   acceptedCommands: number;
   reason?: string;
+  poweredHouses?: number;
+  residents?: number;
 };
 export async function judge(trace: Trace): Promise<Verdict> {
   const state = await replay(trace);
@@ -21,7 +24,7 @@ export async function judge(trace: Trace): Promise<Verdict> {
     .reduce((n, s) => n + amount(s.inventory, trace.rules.mission.resource), 0);
   const valid =
     checkConservation(state) &&
-    delivered >= trace.rules.mission.delivered &&
+    missionSatisfied(state, trace.rules) &&
     state.tick <= trace.rules.mission.maxTicks;
   return {
     semantic_id: semanticId,
@@ -31,6 +34,7 @@ export async function judge(trace: Trace): Promise<Verdict> {
     rulesHash: await hash(trace.rules),
     ticks: state.tick,
     delivered,
+    ...(state.services ? { poweredHouses: state.services.poweredHouses, residents: state.services.residents } : {}),
     acceptedCommands: state.events.filter((e) => e.kind === "command-accepted")
       .length,
     ...(!valid ? { reason: "mission-evidence-insufficient" } : {}),
@@ -44,3 +48,4 @@ export async function compare(a: Trace, b: Trace) {
     throw Error("RM5: unmatched inputs");
   return { a: await judge(a), b: await judge(b) };
 }
+

@@ -1,0 +1,41 @@
+{
+  "id": "AC-IS1",
+  "kind": "SystemSeedIR",
+  "extends": "AC-RS2",
+  "status": "PROVISIONAL_EXPERIMENTAL_PARAMETERS",
+  "initial_facts": ["I0", "I1", "I2", "I3"],
+  "target_facts": ["IH", "IE", "IU", "IV"],
+  "facts": ["I0", "I1", "I2", "I3", "IG", "IR", "IC", "IH", "IE", "IU", "IV"],
+  "labels": {
+    "I0": "Immutable OSM snapshot and compiled Itaipu map supplied by the user",
+    "I1": "RM1/RM2/RM3: deterministic construction, conservation and physical transport",
+    "I2": "RM4/RM5: independent replay and judge",
+    "I3": "RMD: existing React/Canvas observer",
+    "IG": "RME: versioned terrain, mapped facilities and legal placement",
+    "IR": "Existing roads loaded without purchase; bounded last mile, no offroad shortcut",
+    "IC": "Explicit house/solar/substation costs and experimental service capacities",
+    "IH": "Delivered construction creates housing; powered accessible homes receive residents",
+    "IE": "RMF: existing generation, substations, distribution, capacity and deficits",
+    "IU": "Playable Itaipu observer issues canonical commands",
+    "IV": "Same initial map, commands and ticks reproduce housing and energy with conservation"
+  },
+  "constraints": [
+    {"id":"IK0","rule":"Use the existing RM1 transition; no duplicate simulation or UI economic mutations."},
+    {"id":"IK1","rule":"Mapped roads and facilities exist at initialization, cost zero and cannot be rebuilt."},
+    {"id":"IK2","rule":"Build only on unoccupied virtual cells with a physical delivery route; mapped water, green, buildings and facilities are immutable."},
+    {"id":"IK3","rule":"Construction waits for finite transported materials; operational structures consume them only once."},
+    {"id":"IK4","rule":"Supply requires an energized distribution network and enough generation and relay capacity; geography alone does not create energy."},
+    {"id":"IK5","rule":"OSM shapes and IDs are evidence of mapped features; power links/capacities, residents and costs are labeled game assumptions, not real MW or land rights."},
+    {"id":"IK6","rule":"Keep source timestamp and hashes; a map/rules version change does not silently migrate a saved run."}
+  ],
+  "operators": [
+    {"id":"IO0","requires":["I0"],"adds":["IG"],"module":"RME"},
+    {"id":"IO1","requires":["IG","I1"],"adds":["IR"],"module":"RM1/RM3"},
+    {"id":"IO2","requires":["IG","I1"],"adds":["IC"],"module":"RM0"},
+    {"id":"IO3","requires":["IR","IC"],"adds":["IE"],"module":"RMF"},
+    {"id":"IO4","requires":["IE","IC","I1"],"adds":["IH"],"module":"RM1/RM2/RMF"},
+    {"id":"IO5","requires":["IH","IE","I3"],"adds":["IU"],"module":"RMD"},
+    {"id":"IO6","requires":["IU","I2"],"adds":["IV"],"module":"RM4/RM5"}
+  ],
+  "gaps": ["Real generation/irradiance, ownership and electrical network data are not supplied.","Bootstrap materials, game power units and occupancy require playtesting.","This extends a local replayable game; shared persistence and authentication remain separate obligations."]
+}

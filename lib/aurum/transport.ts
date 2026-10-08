@@ -1,6 +1,7 @@
 /** RM3 / AC4: persistent road waypoints, bounded physical delivery. */
 import type { Point, State, Rules, Store, Carrier } from "./rules.ts";
 import { amount, add, count, deliver } from "./economy.ts";
+import { geographicRoute } from "./geography.ts";
 export const semanticId = "RM3";
 const distance = (a: Point, b: Point) => Math.hypot(a.x - b.x, a.y - b.y);
 export function route(
@@ -9,6 +10,7 @@ export function route(
   state: State,
   rules: Rules,
 ): Carrier["route"] {
+  if (rules.geography) return geographicRoute(origin, target, state, rules);
   const keys = Object.keys(state.roads)
     .filter((k) => state.roads[k])
     .sort();
@@ -118,7 +120,9 @@ function task(
         (t) =>
           t.kind === "site" &&
           t.status === "awaiting_materials" &&
-          amount(t.inventory, resource) <
+          amount(t.inventory, resource) + state.carriers.filter(
+            (c) => c.job?.destination === t.id && c.job.resource === resource,
+          ).length <
             amount(
               rules.construction[t.construction!]?.materials ?? {},
               resource,
@@ -225,3 +229,4 @@ export function advanceTransport(state: State, rules: Rules): void {
     }
   }
 }
+

@@ -170,6 +170,7 @@ export default function GameWorld() {
       <div className="mx-auto max-w-4xl space-y-4">
         <header>
           <h1 className="text-2xl">AURUM CIVITAS</h1>
+          <a href="/itaipu" className="inline-block py-2 text-sm text-emerald-300 underline">Jogar em Itaipu: casas e energia</a>
           <p className="text-sm text-slate-400">
             Materiais → transporte → produção → construção
           </p>
@@ -316,3 +317,4 @@ export default function GameWorld() {
     </main>
   );
 }
+

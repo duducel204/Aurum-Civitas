@@ -1,14 +1,15 @@
 /** RM1 / AC2: the sole canonical fixed-tick transition, shared by UI and replay. */
-import { validateRules } from "./rules.ts";
+import { validateRules, missionSatisfied } from "./rules.ts";
 import type { State, Rules, Command, Store, Carrier, Stock } from "./rules.ts";
 import {
   total,
   advanceEconomy,
-  amount,
   checkConservation,
   count,
 } from "./economy.ts";
 import { advanceTransport } from "./transport.ts";
+import { cellAt, cellCenter, existingRoads, mapVersion, placementReason } from "./geography.ts";
+import { advanceServices } from "./infrastructure.ts";
 export const semanticId = "RM1";
 export function createState(
   rules: Rules,
@@ -22,8 +23,8 @@ export function createState(
     rulesVersion: rules.version,
     stores: structuredClone(stores),
     carriers: structuredClone(carriers),
-    roads: {},
-    roadVersion: 0,
+    roads: rules.geography ? existingRoads(rules.geography) : {},
+    roadVersion: rules.geography ? 1 : 0,
     produced: {},
     incorporated: {},
     bootstrap: {},
@@ -31,6 +32,7 @@ export function createState(
     commandIds: [],
     initialTotal: {},
     completed: false,
+    ...(rules.geography ? { mapVersion: mapVersion(rules.geography) } : {}),
   };
   const ids = [...stores, ...carriers].map((s) => s.id);
   if (new Set(ids).size !== ids.length) throw Error("RM1: duplicate entity ID");
@@ -53,6 +55,10 @@ export function createState(
       throw Error("RM1: unknown recipe");
     if (s.kind === "site" && !rules.construction[s.construction!])
       throw Error("RM1: unknown construction");
+    if (rules.geography && !cellAt(s.pos, rules.geography))
+      throw Error("RME: store outside map");
+    if (s.serviceRole && !rules.services?.roles[s.serviceRole])
+      throw Error("RMF: unknown service role");
   }
   for (const c of carriers)
     if (
@@ -66,6 +72,9 @@ export function createState(
       throw Error("RM1: initial carrier must be empty and idle");
   state.initialTotal = total(state);
   state.bootstrap = { ...state.initialTotal };
+  if (rules.services?.existingLinks.some((l) => !ids.includes(l.from) || !ids.includes(l.to)))
+    throw Error("RMF: circuit endpoint missing");
+  advanceServices(state, rules);
   return state;
 }
 export function step(
@@ -75,6 +84,8 @@ export function step(
 ): State {
   if (previous.rulesVersion !== rules.version)
     throw Error("RM1: incompatible rules version");
+  if (previous.mapVersion !== (rules.geography ? mapVersion(rules.geography) : undefined))
+    throw Error("RME: incompatible map version");
   validateRules(rules);
   const state = structuredClone(previous);
   state.tick++;
@@ -88,7 +99,8 @@ export function step(
       reason = "invalid-position";
     else if (command.kind === "road") {
       const key = `${Math.floor(command.x / rules.gridSize)},${Math.floor(command.y / rules.gridSize)}`;
-      if (state.roads[key]) reason = "existing-road";
+      if (rules.geography) reason = "mapped-roads-fixed";
+      else if (state.roads[key]) reason = "existing-road";
       else {
         state.roads[key] = true;
         state.roadVersion++;
@@ -96,11 +108,15 @@ export function step(
     } else if (command.kind === "build") {
       if (!command.role || !rules.construction[command.role])
         reason = "unknown-construction";
+      else if (placementReason({ x: command.x, y: command.y }, state, rules))
+        reason = placementReason({ x: command.x, y: command.y }, state, rules);
       else {
         const id = "site:" + command.id;
         state.stores.push({
           id,
-          pos: { x: command.x, y: command.y },
+          pos: rules.geography
+            ? cellCenter(cellAt({ x: command.x, y: command.y }, rules.geography)!.key, rules.gridSize)
+            : { x: command.x, y: command.y },
           kind: "site",
           inventory: {},
           incorporated: {},
@@ -126,11 +142,8 @@ export function step(
   }
   advanceEconomy(state, rules);
   advanceTransport(state, rules);
-  state.completed =
-    state.stores
-      .filter((s) => s.kind === "depot")
-      .reduce((n, s) => n + amount(s.inventory, rules.mission.resource), 0) >=
-    rules.mission.delivered;
+  advanceServices(state, rules);
+  state.completed = missionSatisfied(state, rules);
   if (!checkConservation(state)) throw Error("RM2: conservation violation");
   return state;
 }
@@ -147,3 +160,4 @@ export function run(
     next = step(next, commands[next.tick + 1] ?? [], rules);
   return next;
 }
+
