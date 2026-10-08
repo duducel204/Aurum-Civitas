@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { fixture } from './fixture.ts';
+import { step } from '../../lib/aurum/simulation.ts';
+import { hash } from '../../lib/aurum/replay.ts';
+import { packSave,restoreSave,persistSave,slotKey } from '../../lib/aurum/local-save.ts';
+test('DEV-31/32/68: reload verifies rules and state; tampering and quota preserve prior save',async()=>{
+  const f=fixture(),commands=[[{id:'save-road',kind:'road' as const,x:20,y:20}],[]];
+  let final=f.state;for(const c of commands)final=step(final,c,f.rules);
+  const save=await packSave(f.state,f.rules,commands,final);
+  assert.equal(await hash((await restoreSave(save,f.rules)).state),await hash(final));
+  const altered=structuredClone(save);altered.commands[0][0].x+=100;
+  await assert.rejects(()=>restoreSave(altered,f.rules),/divergente/);
+  await assert.rejects(()=>restoreSave({...save,format:'future'},f.rules),/incompatível/);
+  await assert.rejects(()=>restoreSave(save,{...f.rules,version:'other'}),/incompatível/);
+  const store=new Map([[slotKey,'original']]);
+  const port={getItem:(k:string)=>store.get(k)??null,setItem:(k:string,v:string)=>{if(k===slotKey)throw Error('QuotaExceeded');store.set(k,v);}};
+  assert.throws(()=>persistSave(port,save),/QuotaExceeded/);
+  assert.equal(store.get(slotKey),'original');assert.equal(store.get(slotKey+':previous'),'original');
+});

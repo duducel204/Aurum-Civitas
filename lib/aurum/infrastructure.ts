@@ -54,7 +54,7 @@ export function validateServices(s: ServicesRules): void {
     throw Error("RMF: invalid circuit");
 }
 const storeRole = (s: Store) => s.serviceRole ?? s.construction;
-export function advanceServices(state: State, rules: Rules): void {
+export function advanceServices(state: State, rules: Rules, observeTransfer?: (from:string,to:string,quantity:number)=>void): void {
   const config = rules.services;
   if (!config) return;
   const before = state.services;
@@ -111,6 +111,7 @@ export function advanceServices(state: State, rules: Rules): void {
       const delivered = Math.min(demand - supplied, available.get(root(hub.id)) ?? 0, capacity.get(hub.id) ?? 0);
       if (delivered <= 0) continue;
       supplied += delivered; provider ??= hub.id;
+      observeTransfer?.(hub.id,s.id,delivered);
       available.set(root(hub.id), available.get(root(hub.id))! - delivered);
       capacity.set(hub.id, capacity.get(hub.id)! - delivered);
       if (supplied === demand) break;

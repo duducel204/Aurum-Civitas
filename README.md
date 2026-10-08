@@ -88,7 +88,7 @@ A construção do próprio projeto segue **Projection IR → System Seed IR → 
 
 Já existem economia local, transporte, construção, casas com energia e replay verificável. Itaipu usa um snapshot cartográfico real como base, com regras virtuais de ocupação e energia.
 
-Ainda faltam multiplayer de produção, balanceamento com jogadores, reposição de recursos neste cenário e efeitos regionais como temperatura, chuva, agricultura e irradiância. A partida local não representa propriedade de terrenos nem uma simulação elétrica de engenharia.
+A cadeia finita de madeira e tábuas está integrada e verificada. Ainda faltam multiplayer de produção, balanceamento com jogadores e efeitos regionais como temperatura, chuva, agricultura e irradiância. A partida local não representa propriedade de terrenos nem uma simulação elétrica de engenharia.
 
 ## Melhorar o jogo: tarefas para participantes
 
@@ -142,3 +142,7 @@ Para executar a versão compilada, use `npm run build` e depois `npm start`.
 - [Evidência de execução de Itaipu](evidence/itaipu.json)
 
 Cartografia: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright). Dados cartográficos e base derivada sob ODbL 1.0.
+
+## Resolução calculada das tarefas
+
+Veja [estado atual e limites](docs/TASK_RESOLUTION.md), [arquitetura](docs/ARCHITECTURE.md), [guia visual](docs/VISUAL.md) e `projection/task_seed.json`. A UI de Itaipu inclui minimapa, camadas, lista acessível, diagnóstico, tutorial e autosave local reexecutável. Espaço pausa; setas movem a câmera; 1/2/3 escolhem casa/solar/subestação; Esc cancela seleção. Atalhos não atuam em campos ou botões.

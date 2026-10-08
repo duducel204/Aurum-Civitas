@@ -1,0 +1,20 @@
+{
+  "format": "AC-RELEASE-1",
+  "rulesVersion": "itaipu-game-002",
+  "mapVersion": "itaipu-map-001",
+  "rulesHash": "10690ebe195a15621d4c617dbb1f74516de31f63df109f460ae5854c723c11a2",
+  "mapHash": "24e47604de0d76033faefa6b95c89775d3ea09cb68219bddf930f3a2efc03453",
+  "sourceHash": "f8137a3aa99c61910e767ae57b5e8dc5e33e027f38d1419428fc343883cb293c",
+  "nodeMajor": 24,
+  "start": "HOSTNAME=127.0.0.1 PORT=3000 node server.js",
+  "route": "/itaipu",
+  "limits": [
+    "Local experimental game; no production multiplayer",
+    "Save compatibility requires exact map and rules",
+    "OSM attribution and virtual resource assumptions preserved"
+  ],
+  "rollback": "Keep previous archive; stop the new process and restart the previous package. Export saves before changing rule versions.",
+  "archive": ".release/aurum-itaipu.tgz",
+  "bytes": 25331556,
+  "sha256": "613858242314179dead19ee2981d9412d2900d2b46e6082819214bf48e64188f"
+}

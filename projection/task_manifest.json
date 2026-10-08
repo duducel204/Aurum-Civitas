@@ -1,0 +1,635 @@
+{
+  "id": "AC-TASK-MANIFEST-1",
+  "seedHash": "8895b1cb7e810712f01612c2f0b2b8a891e14b6e0b75cf3b028eeadb1621235f",
+  "bindings": [
+    {
+      "id": "DEV-01",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-02",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/presentation.ts",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/presentation.ts": "7f8a19f5cbeace0af522c6af6716e70d93c2c4113cd1105ae12e874d8db9d199",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-03",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/simulation.ts",
+      "test": "tests/aurum/itaipu-economy.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/simulation.ts": "45012ca8b22813c87b4380e0cb496a1611e3ac3d3a00009660366fb4796f6edf",
+        "tests/aurum/itaipu-economy.test.ts": "14cf2b05bbde3040764debb14454d98003a72d00268b402b2a802c86a761aebe",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-09",
+      "issue": 16,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "docs/VISUAL.md",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "docs/VISUAL.md": "cdbbadc528a8ed9e923de485c0eedd9b6211e0e33e0d210f9a8512744c734795",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-10",
+      "issue": 17,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-11",
+      "issue": 18,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-12",
+      "issue": 19,
+      "requires": [
+        "DEV-10"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-13",
+      "issue": 20,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-14",
+      "issue": 21,
+      "requires": [
+        "DEV-13"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-15",
+      "issue": 22,
+      "requires": [
+        "DEV-10"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-16",
+      "issue": 23,
+      "requires": [
+        "DEV-12"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-17",
+      "issue": 24,
+      "requires": [
+        "DEV-02"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-18",
+      "issue": 25,
+      "requires": [
+        "DEV-02"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/presentation.ts",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/presentation.ts": "7f8a19f5cbeace0af522c6af6716e70d93c2c4113cd1105ae12e874d8db9d199",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-19",
+      "issue": 26,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/camera.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/camera.ts": "59d9b8362ba09242726e5c7f8e49e489e9d70af76da839770ac22fd9fe6e7cd8",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-20",
+      "issue": 27,
+      "requires": [
+        "DEV-18"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-21",
+      "issue": 28,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "app/globals.css",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "app/globals.css": "acda96294b00ecc98caa31e0fe30683b2402134257fa2dd6992499c2bd37a577",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-22",
+      "issue": 29,
+      "requires": [
+        "DEV-17",
+        "DEV-21"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-23",
+      "issue": 30,
+      "requires": [
+        "DEV-16"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-24",
+      "issue": 31,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-25",
+      "issue": 32,
+      "requires": [
+        "DEV-01",
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/tutorial.ts",
+      "test": "tests/aurum/tutorial.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/tutorial.ts": "3c3a1cd535001c4598e6db1e0170d8b5f89e0b15768d6d4abc64f6e7814ff2be",
+        "tests/aurum/tutorial.test.ts": "204f622fa95f0bf2895f62d7ee08e16644cf62d2e4889c23f94d8531107c0c8e",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-26",
+      "issue": 33,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-27",
+      "issue": 34,
+      "requires": [
+        "DEV-03",
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-28",
+      "issue": 35,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-31",
+      "issue": 38,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/local-save.ts",
+      "test": "tests/aurum/local-save.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/local-save.ts": "9b544e83150aa6666513127dac13e68dc00557f9358eb551d5844e3a1df87400",
+        "tests/aurum/local-save.test.ts": "c171c0a6b191c0df50cacf940dc2f2ba05b0b91dea2fb3c848bd9e6f0b8c199c",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-32",
+      "issue": 39,
+      "requires": [
+        "DEV-31"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/local-save.ts",
+      "test": "tests/aurum/local-save.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/local-save.ts": "9b544e83150aa6666513127dac13e68dc00557f9358eb551d5844e3a1df87400",
+        "tests/aurum/local-save.test.ts": "c171c0a6b191c0df50cacf940dc2f2ba05b0b91dea2fb3c848bd9e6f0b8c199c",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-37",
+      "issue": 44,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-38",
+      "issue": 45,
+      "requires": [
+        "DEV-18",
+        "DEV-37"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-41",
+      "issue": 48,
+      "requires": [
+        "DEV-03"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "fixtures/itaipu-scenario.json",
+      "test": "tests/aurum/itaipu-economy.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "fixtures/itaipu-scenario.json": "b1dec1fce3e65575c5820b7b9700e6e251e06843f0a9b38e78443171ffd31e22",
+        "tests/aurum/itaipu-economy.test.ts": "14cf2b05bbde3040764debb14454d98003a72d00268b402b2a802c86a761aebe",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-42",
+      "issue": 49,
+      "requires": [
+        "DEV-41"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "fixtures/itaipu-scenario.json",
+      "test": "tests/aurum/itaipu-economy.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "fixtures/itaipu-scenario.json": "b1dec1fce3e65575c5820b7b9700e6e251e06843f0a9b38e78443171ffd31e22",
+        "tests/aurum/itaipu-economy.test.ts": "14cf2b05bbde3040764debb14454d98003a72d00268b402b2a802c86a761aebe",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-46",
+      "issue": 53,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-47",
+      "issue": 54,
+      "requires": [
+        "DEV-46"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-48",
+      "issue": 55,
+      "requires": [
+        "DEV-47"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/geography.ts",
+      "test": "tests/aurum/route-cache.test.ts",
+      "evidence": "evidence/task-benchmark.json",
+      "hashes": {
+        "lib/aurum/geography.ts": "8b8940cdb1847e6d4ab372ea2e0057a3454591b9d3fe5ae7bbbeec22a903aca6",
+        "tests/aurum/route-cache.test.ts": "5f3b4618ba9f1bfea9f9563456f1f8d2c66ad673b9001d2fd527f49d726ad8c4",
+        "evidence/task-benchmark.json": "6586e21ce1a38f8f3ee6b8fbf2613a5ebeb8e3c2cad3f0f8ecb659822b0a1eca"
+      }
+    },
+    {
+      "id": "DEV-65",
+      "issue": null,
+      "requires": [
+        "DEV-15"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "tests/aurum/rendering.test.ts",
+      "evidence": "evidence/task-benchmark.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "tests/aurum/rendering.test.ts": "98b459377f5246fe862600ae63a7435807f9209af888a2ede374777752b0baad",
+        "evidence/task-benchmark.json": "6586e21ce1a38f8f3ee6b8fbf2613a5ebeb8e3c2cad3f0f8ecb659822b0a1eca"
+      }
+    },
+    {
+      "id": "DEV-66",
+      "issue": null,
+      "requires": [
+        "DEV-48",
+        "DEV-65"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/benchmark-tasks.ts",
+      "evidence": "evidence/task-benchmark.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/benchmark-tasks.ts": "fb81c7c9e9ae3499f3aa6627ad4ec1c55878ed11c0d7785a4fb269501abe7dd5",
+        "evidence/task-benchmark.json": "6586e21ce1a38f8f3ee6b8fbf2613a5ebeb8e3c2cad3f0f8ecb659822b0a1eca"
+      }
+    },
+    {
+      "id": "DEV-67",
+      "issue": null,
+      "requires": [
+        "DEV-20",
+        "DEV-32"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-68",
+      "issue": null,
+      "requires": [
+        "DEV-32"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/local-save.ts",
+      "test": "tests/aurum/local-save.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/local-save.ts": "9b544e83150aa6666513127dac13e68dc00557f9358eb551d5844e3a1df87400",
+        "tests/aurum/local-save.test.ts": "c171c0a6b191c0df50cacf940dc2f2ba05b0b91dea2fb3c848bd9e6f0b8c199c",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-71",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": ".github/workflows/quality.yml",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        ".github/workflows/quality.yml": "162ff81c175c53eea75377a27b22eb102febe52ad4fdfde012e1a8f41a475155",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      },
+      "remoteCI": "PENDING_GITHUB_RUN"
+    },
+    {
+      "id": "DEV-72",
+      "issue": null,
+      "requires": [
+        "DEV-67",
+        "DEV-71"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "scripts/package-release.mjs",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/release-browser-qa.json",
+      "hashes": {
+        "scripts/package-release.mjs": "52f153211ec591b026eb01029650831808d1e1d01c0b7a6abfb587ea72f7edd3",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/release-browser-qa.json": "ad68e4dd10080fb809b76e37acf8d7dd071f2d7d0d4b4686b3c4ea2523b67456"
+      }
+    },
+    {
+      "id": "DEV-81",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/contributions.ts",
+      "test": "tests/aurum/contributions.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/contributions.ts": "17c0e564347527b0e97c281e4cc8898b59d36ba8b60fe1efefe3d2861eea885d",
+        "tests/aurum/contributions.test.ts": "ec82a3c35525ea86305c7553bb4bcdd5dcca1790577e347d30d669a5a344ab44",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-87",
+      "issue": null,
+      "requires": [
+        "DEV-71"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "scripts/drift-report.mjs",
+      "test": "scripts/drift-report.mjs",
+      "evidence": "evidence/drift-report.json",
+      "hashes": {
+        "scripts/drift-report.mjs": "63aa77307a83691bf11d82aea23db3ae6348dc7f77362e92ef039b5e53745d65",
+        "evidence/drift-report.json": "09f41f8377154366c6dd56462403f508d3efe4a4cf44186da9a0b20a8bfe8b09"
+      }
+    }
+  ]
+}

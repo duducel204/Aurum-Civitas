@@ -33,6 +33,8 @@ test("RTA RMA: independently reviewed replay evidence required for upgrades", as
   assert.equal(accepted.status, "accepted");
   assert.equal(accepted.reviewerId, "bob");
   assert.equal(accepted.tick, 100);
+  for(const id of ['RME','RMF'])assert.equal((await qualify({...submission,semanticIds:[id]},trace,review)).status,'accepted');
+  for(const id of ['RMG','RMZ','not-an-id'])await assert.rejects(()=>qualify({...submission,semanticIds:[id]},trace,review));
   await assert.rejects(() =>
     qualify({ ...submission, sourceRef: "unverified" }, trace, review),
   );

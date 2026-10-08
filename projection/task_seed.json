@@ -1,0 +1,1242 @@
+{
+  "id": "AC-TASK-SEED-1",
+  "kind": "SystemSeedIR",
+  "status": "CONDITIONAL_PROJECTION",
+  "parent_seeds": [
+    "AC-RS2",
+    "AC-IS1"
+  ],
+  "tasks": [
+    {
+      "id": "DEV-01",
+      "delivery": "**Testar a primeira partida.** Registrar dificuldades para instalar, escolher um lote, construir e salvar.",
+      "acceptance": "Relato com versão/commit, passos, resultado esperado e observado; replay quando disponível. Outra pessoa consegue reproduzir o problema ou seguir o guia corrigido.",
+      "requires": [],
+      "source": "README.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-02",
+      "delivery": "**Explicar bloqueios na interface.** Mostrar por que uma obra ou casa não funciona: acesso, materiais, cobertura ou capacidade elétrica.",
+      "acceptance": "Cada bloqueio exibe sua causa calculada pelo núcleo e uma orientação útil; conferir os casos no mapa.",
+      "requires": [],
+      "source": "README.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-03",
+      "delivery": "**Repor materiais em Itaipu.** Conectar fontes e cadeias de produção à logística do cenário, aproveitando a economia existente.",
+      "acceptance": "Uma partida produz e entrega novos materiais após consumir o estoque inicial; fontes finitas não ficam negativas; replay conserva os recursos.",
+      "requires": [],
+      "source": "README.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-04",
+      "delivery": "**Balancear construção e energia.** Ajustar custos, tempos, estoques e alcance com base em partidas registradas.",
+      "acceptance": "Comparar cenários antes/depois com métricas de tempo de construção, consumo e casas atendidas; versionar regras e justificar mudanças.",
+      "requires": [
+        "DEV-01",
+        "DEV-03"
+      ],
+      "source": "README.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-05",
+      "delivery": "**Dar função aos moradores.** Definir uma primeira necessidade, como alimentação, e sua cadeia de atendimento.",
+      "acceptance": "Necessidade, consumo e efeito da falta ficam explícitos; uma missão demonstra abastecimento e escassez, sem criar recursos do nada.",
+      "requires": [
+        "DEV-03"
+      ],
+      "source": "README.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-06",
+      "delivery": "**Adicionar características regionais.** Implementar primeiro um fator, como irradiância afetando geração solar, com dados e premissas declarados.",
+      "acceptance": "Duas condições regionais produzem efeitos diferentes e reproduzíveis; fonte, unidade, versão e regra de dados ausentes estão documentadas.",
+      "requires": [
+        "DEV-04"
+      ],
+      "source": "README.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-07",
+      "delivery": "**Adicionar outra região jogável — adiada.** Todo o desenvolvimento inicial usa o mapa de Itaipu.",
+      "acceptance": "Retomar apenas após definir uma fase de expansão; preservar fontes, regras e compatibilidade.",
+      "requires": [],
+      "source": "README.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-08",
+      "delivery": "**Criar uma sessão compartilhada mínima.** Fazer dois participantes agir no mesmo mundo sob validação de um servidor.",
+      "acceptance": "Ambos observam o mesmo estado; comandos inválidos e duplicados são tratados; reconexão recupera a sessão e o histórico pode ser verificado.",
+      "requires": [],
+      "source": "README.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-09",
+      "delivery": "**Identidade visual minimalista.** Definir paleta, tipografia, espaçamento e estados de componentes reutilizáveis.",
+      "acceptance": "Tela de Itaipu e laboratório usam o mesmo guia; textos e seleção permanecem legíveis.",
+      "requires": [],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-10",
+      "delivery": "**Sprites de estruturas.** Criar desenhos distintos para casa, depósito, usina, solar e subestação.",
+      "acceptance": "Cada tipo é reconhecível no zoom de jogo, com legenda e origem/licença dos assets.",
+      "requires": [
+        "DEV-09"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-11",
+      "delivery": "**Animação de trabalhadores.** Mostrar direção, deslocamento e carga a partir do estado observado.",
+      "acceptance": "Pausar congela a simulação; animações não alteram rotas, materiais ou replay.",
+      "requires": [
+        "DEV-09"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-12",
+      "delivery": "**Progresso visual da obra.** Mostrar fases e materiais recebidos sem depender só de mensagens.",
+      "acceptance": "Obra vazia, abastecida e operacional são distinguíveis e correspondem ao núcleo.",
+      "requires": [
+        "DEV-10"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-13",
+      "delivery": "**Camadas do mapa.** Alternar terreno, recursos, edifícios e serviço elétrico com legendas.",
+      "acceptance": "Alternar camadas preserva seleção e estado; cada símbolo tem significado explícito.",
+      "requires": [
+        "DEV-09"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-14",
+      "delivery": "**Minimapa navegável.** Adicionar visão geral com retângulo da câmera e clique para navegar.",
+      "acceptance": "Clique leva à posição indicada; limites da câmera e mapa são respeitados.",
+      "requires": [
+        "DEV-13"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-15",
+      "delivery": "**Leitura em diferentes zooms.** Ajustar rótulos e detalhes por escala, evitando sobreposição.",
+      "acceptance": "Visão regional e próxima preservam distinção entre rua, lote e estrutura.",
+      "requires": [
+        "DEV-10"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-16",
+      "delivery": "**Feedback visual e sonoro.** Criar sinais discretos de seleção, rejeição, obra pronta e falta de serviço.",
+      "acceptance": "Eventos não se repetem por renderização; som pode ser desligado e não é o único aviso.",
+      "requires": [
+        "DEV-12"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-17",
+      "delivery": "**Painel da estrutura selecionada.** Exibir estoque, obra, demanda, atendimento e motivo do bloqueio.",
+      "acceptance": "Selecionar estruturas diferentes mostra os valores do estado atual, sem dados simulados na UI.",
+      "requires": [
+        "DEV-02"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-18",
+      "delivery": "**Prévia de construção.** Mostrar lote válido/inválido, custo e acesso antes de confirmar.",
+      "acceptance": "A prévia usa a mesma validação que o comando; uma rejeição posterior é explicada.",
+      "requires": [
+        "DEV-02"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-19",
+      "delivery": "**Atalhos de teclado.** Permitir pausar, mover câmera, selecionar ferramenta e cancelar seleção.",
+      "acceptance": "Atalhos estão documentados, não disparam em campos de texto e têm alternativa por botão.",
+      "requires": [],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-20",
+      "delivery": "**Interface para toque.** Ajustar controles, arraste e seleção para celular e tablet.",
+      "acceptance": "Construir e salvar funcionam em viewport móvel; arrastar não constrói acidentalmente.",
+      "requires": [
+        "DEV-18"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-21",
+      "delivery": "**Acessibilidade sem depender de cor.** Adicionar contraste, foco visível e símbolos para estados.",
+      "acceptance": "Bloqueios e energia são distinguíveis sem cor; controles podem ser percorridos por teclado.",
+      "requires": [
+        "DEV-09"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-22",
+      "delivery": "**Alternativa acessível ao canvas.** Criar lista navegável de estruturas e lotes sugeridos com ações equivalentes.",
+      "acceptance": "Leitor de tela anuncia seleção e resultado; a lista envia os mesmos comandos do mapa.",
+      "requires": [
+        "DEV-17",
+        "DEV-21"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-23",
+      "delivery": "**Preferências do jogador.** Salvar volume, zoom de interface e redução de movimento localmente.",
+      "acceptance": "Preferências sobrevivem ao reload e não alteram regras nem hashes da partida.",
+      "requires": [
+        "DEV-16"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-24",
+      "delivery": "**Menu de pausa e ajuda.** Reunir continuar, ajuda, salvar, carregar e reiniciar.",
+      "acceptance": "Reiniciar exige confirmação; sair da ajuda não avança ticks durante a pausa.",
+      "requires": [],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-25",
+      "delivery": "**Tutorial da primeira casa.** Guiar seleção, materiais, transporte, obra e energia por etapas observadas.",
+      "acceptance": "Etapas só concluem quando o estado correspondente ocorre; jogador pode pular o tutorial.",
+      "requires": [
+        "DEV-01",
+        "DEV-17"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-26",
+      "delivery": "**Enciclopédia do jogo.** Explicar recursos, estruturas, unidades, custos e limites do cenário.",
+      "acceptance": "Valores vêm da configuração atual; unidades de jogo não são apresentadas como medições reais.",
+      "requires": [
+        "DEV-17"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-27",
+      "delivery": "**Explicação da cadeia produtiva.** Mostrar origem, transformações, transporte e destino de cada material.",
+      "acceptance": "Jogador identifica onde uma cadeia parou usando estoques e eventos reais.",
+      "requires": [
+        "DEV-03",
+        "DEV-17"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-28",
+      "delivery": "**Linha do tempo de eventos.** Filtrar construções, entregas, rejeições e mudanças de serviço.",
+      "acceptance": "Cada evento mostra tick e entidade; selecionar o evento localiza a estrutura quando existente.",
+      "requires": [
+        "DEV-17"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-29",
+      "delivery": "**Missões locais progressivas.** Adicionar objetivos de construção, logística e abastecimento ao juiz.",
+      "acceptance": "Objetivos são versionados e derivados de replay, sem vitória declarada só pelo cliente.",
+      "requires": [
+        "DEV-25"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-30",
+      "delivery": "**Cenários de dificuldade declarada.** Oferecer configurações iniciais com desafios diferentes, sem bônus ocultos.",
+      "acceptance": "Cada cenário declara estoques e regras; uma mesma configuração reproduz o mesmo resultado.",
+      "requires": [
+        "DEV-04"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-31",
+      "delivery": "**Salvar automaticamente no navegador.** Criar slots locais e recuperação após fechar a aba.",
+      "acceptance": "Partida recuperada mantém regras, mapa e hash; quota cheia e save inválido geram orientação.",
+      "requires": [],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-32",
+      "delivery": "**Diagnóstico e recuperação de saves.** Exibir versão, compatibilidade e opções seguras de exportação.",
+      "acceptance": "Arquivo incompatível não substitui a sessão atual; original é preservado; erro explica a causa.",
+      "requires": [
+        "DEV-31"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-33",
+      "delivery": "**Fila e prioridade de obras [S].** Definir ordens de atendimento sem permitir retirar o mesmo material duas vezes.",
+      "acceptance": "Duas obras disputando pouco estoque respeitam a prioridade e conservam materiais.",
+      "requires": [
+        "DEV-03"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-34",
+      "delivery": "**Cancelar uma obra [S].** Definir destino de reservas, cargas em trânsito e materiais incorporados.",
+      "acceptance": "Cancelamento em cada fase não duplica nem perde recursos fora da política declarada.",
+      "requires": [
+        "DEV-33"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-35",
+      "delivery": "**Desmontar estruturas [S].** Definir custo, reaproveitamento e perda para estruturas construídas pelo jogador.",
+      "acceptance": "Saldo antes/depois fecha; instalações iniciais e vias mapeadas seguem política explícita.",
+      "requires": [
+        "DEV-34"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-36",
+      "delivery": "**Melhorar estruturas [S].** Adicionar um upgrade funcional com materiais e custo definidos.",
+      "acceptance": "Upgrade exige entrega, altera capacidade só na etapa prevista e é reproduzível.",
+      "requires": [
+        "DEV-04"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-37",
+      "delivery": "**Painel de cobertura elétrica.** Mostrar alcance efetivo, demanda e gargalo de cada distribuidor.",
+      "acceptance": "Um lote fora da cobertura não aparece atendido só porque há geração regional.",
+      "requires": [
+        "DEV-17"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-38",
+      "delivery": "**Impacto previsto de uma nova casa.** Calcular demanda adicional e atendimento provável no estado atual.",
+      "acceptance": "Estimativa é rotulada e comparada com o resultado; mudanças concorrentes podem invalidá-la.",
+      "requires": [
+        "DEV-18",
+        "DEV-37"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-39",
+      "delivery": "**Planejar vários lotes [S].** Permitir plano de expansão antes de confirmar ordens individuais.",
+      "acceptance": "Plano não cria obras nem reserva materiais até confirmação; conflitos ficam visíveis.",
+      "requires": [
+        "DEV-18",
+        "DEV-33"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-40",
+      "delivery": "**Manutenção de estruturas [S].** Introduzir manutenção gradual com materiais, aviso e consequência definida.",
+      "acceptance": "Ausência de manutenção segue regra versionada; recuperação não recria materiais.",
+      "requires": [
+        "DEV-03",
+        "DEV-36"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-41",
+      "delivery": "**Fontes de madeira em Itaipu.** Mapear fontes virtuais exploráveis e conectar coleta ao cenário.",
+      "acceptance": "Coleta diminui fonte finita, respeita áreas protegidas e entrega carga fisicamente.",
+      "requires": [
+        "DEV-03"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-42",
+      "delivery": "**Produção de tábuas em Itaipu.** Conectar serraria e receita existente à malha mapeada.",
+      "acceptance": "Madeira vira tábuas com tempo e contabilidade; serraria sem insumos fica parada.",
+      "requires": [
+        "DEV-41"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-43",
+      "delivery": "**Cadeia de pedra e metal [S].** Formalizar fontes e receitas do jogo, distinguindo dados reais de ficção.",
+      "acceptance": "Origem de ambos é declarada; produção exige insumos e não esconde estoque infinito.",
+      "requires": [
+        "DEV-03"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-44",
+      "delivery": "**Depósitos adicionais [S].** Permitir armazenamento construído e transferências físicas entre depósitos.",
+      "acceptance": "Capacidade cheia bloqueia entrada; transferência não altera o total de recursos.",
+      "requires": [
+        "DEV-03"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-45",
+      "delivery": "**Distribuição de trabalhadores [S].** Definir alocação por coleta, produção e entrega com limites explícitos.",
+      "acceptance": "Trocar função preserva carga e trabalho iniciado; trabalhador não aparece duplicado.",
+      "requires": [
+        "DEV-41",
+        "DEV-42"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-46",
+      "delivery": "**Reservas e diagnóstico logístico.** Exibir material disponível, reservado, em trânsito e incorporado.",
+      "acceptance": "Soma exibida corresponde à contabilidade; jogador distingue falta de estoque de falta de rota.",
+      "requires": [
+        "DEV-17"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-47",
+      "delivery": "**Indicadores de gargalo.** Mostrar fila, tempo de viagem e espera por material ou espaço.",
+      "acceptance": "Relatório identifica um gargalo criado em cenário controlado e a melhora após intervenção.",
+      "requires": [
+        "DEV-46"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-48",
+      "delivery": "**Otimização medida de rotas.** Reduzir custo de cálculo por cache e invalidação explícita.",
+      "acceptance": "Benchmark antes/depois registra custo; cargas, destinos e replay continuam equivalentes.",
+      "requires": [
+        "DEV-47"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-49",
+      "delivery": "**Alimentação integrada.** Conectar consumo e fome existentes à população do cenário.",
+      "acceptance": "Estoques baixam por regra explícita; zero alimento causa o efeito declarado sem população duplicada.",
+      "requires": [
+        "DEV-05"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-50",
+      "delivery": "**Produção agrícola [S].** Definir cultivo, insumos, ciclos e colheitas em lotes virtuais do mapa de Itaipu.",
+      "acceptance": "Comida é produzida por fluxo contabilizado; diferenças de solo são pressupostos declarados quando faltarem dados locais.",
+      "requires": [
+        "DEV-49",
+        "DEV-06"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-51",
+      "delivery": "**Regeneração florestal integrada.** Usar regeneração existente com limites e registro por tick.",
+      "acceptance": "Regeneração tem origem registrada, respeita capacidade e não converte área protegida em fonte livre.",
+      "requires": [
+        "DEV-41"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-52",
+      "delivery": "**Indicadores de preservação.** Exibir extração, regeneração e saldo ao longo da partida.",
+      "acceptance": "Valores são derivados de eventos; duas estratégias de coleta mostram saldos distintos.",
+      "requires": [
+        "DEV-51"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-53",
+      "delivery": "**Irradiância e geração solar.** Integrar primeiro fator regional à geração com configuração congelada.",
+      "acceptance": "Condições diferentes mudam geração de forma determinística; lacunas de dados são declaradas.",
+      "requires": [
+        "DEV-06"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-54",
+      "delivery": "**Temperatura e demanda [S].** Definir efeito regional mínimo sobre uma demanda, sem modelo climático excessivo.",
+      "acceptance": "Mudança de faixa altera demanda segundo tabela explícita e permanece reexecutável.",
+      "requires": [
+        "DEV-49",
+        "DEV-53"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-55",
+      "delivery": "**Sazonalidade reproduzível [S].** Introduzir calendário por ticks e ciclos regionais configurados.",
+      "acceptance": "Pausa não muda a estação; carregar save recupera a mesma fase e efeitos.",
+      "requires": [
+        "DEV-50",
+        "DEV-53"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-56",
+      "delivery": "**Comparação entre áreas de Itaipu.** Comparar áreas do mesmo mapa por acesso, recursos e cobertura, usando perfis locais explícitos.",
+      "acceptance": "Duas áreas de Itaipu mostram vantagens e limites com origem e unidade claras; não há novo mapa nem valor real presumido.",
+      "requires": [
+        "DEV-52",
+        "DEV-53"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-57",
+      "delivery": "**Objetivos de médio prazo.** Definir metas de abastecimento e preservação além da primeira casa.",
+      "acceptance": "Cada objetivo tem resultado verificável, indicador visível e caminho possível no cenário.",
+      "requires": [
+        "DEV-29",
+        "DEV-52"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-58",
+      "delivery": "**Desbloqueios por capacidades [S].** Liberar funções após cumprir requisitos úteis de desenvolvimento.",
+      "acceptance": "Requisito é explícito e validado; carregar ou repetir comandos não libera duas vezes.",
+      "requires": [
+        "DEV-57"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-59",
+      "delivery": "**Comparador de balanceamento.** Rodar cenários fixos para comparar custos, duração e atendimento.",
+      "acceptance": "Relatório usa mesmos estados iniciais e mostra ganhos e perdas por métrica, sem score inventado.",
+      "requires": [
+        "DEV-04"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-60",
+      "delivery": "**Playtests de partidas longas.** Medir bloqueios, repetição e recuperação após escassez com jogadores.",
+      "acceptance": "Relatos consentidos incluem duração e decisões; conclusões distinguem dados de hipóteses.",
+      "requires": [
+        "DEV-03",
+        "DEV-59"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-61",
+      "delivery": "**Ferramenta de configuração de cenário.** Validar e pré-visualizar regras antes de iniciar partida.",
+      "acceptance": "Campos ausentes e combinações inválidas são recusados; exportação gera configuração versionada.",
+      "requires": [
+        "DEV-30"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-62",
+      "delivery": "**Medidas de serviço e eficiência.** Mostrar proporção de casas atendidas, consumo e custos logísticos.",
+      "acceptance": "Métricas têm denominador e período definidos; não premiam desperdício de forma escondida.",
+      "requires": [
+        "DEV-47",
+        "DEV-52"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-63",
+      "delivery": "**Reconhecimento cívico transparente.** Definir títulos ligados a contribuição aceita e critérios de era.",
+      "acceptance": "Critério fica visível; repetição não duplica título; nenhum bônus econômico é presumido.",
+      "requires": [
+        "DEV-81",
+        "DEV-82"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-64",
+      "delivery": "**Missões comunitárias de preservação [S].** Definir objetivo coletivo de serviço e sustentabilidade com responsabilidades.",
+      "acceptance": "Resultado depende do estado compartilhado e não de votos ou autodeclaração de sucesso.",
+      "requires": [
+        "DEV-52",
+        "DEV-73"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-65",
+      "delivery": "**Renderizar só o necessário.** Medir e reduzir redesenho e cálculo visual fora da câmera.",
+      "acceptance": "Antes/depois usa mapa e dispositivo declarados; seleção e leitura não ficam desatualizadas.",
+      "requires": [
+        "DEV-15"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-66",
+      "delivery": "**Controle do orçamento por tick.** Separar medição de simulação, renderização e cálculo de rotas.",
+      "acceptance": "Relatório mostra custo e atraso; máquina lenta não pula efeitos da simulação silenciosamente.",
+      "requires": [
+        "DEV-48",
+        "DEV-65"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-67",
+      "delivery": "**QA de navegador e toque.** Cobrir fluxo real de construir, pausar, salvar e carregar.",
+      "acceptance": "Resultados em navegadores-alvo e viewport móvel incluem falhas e capturas; núcleo permanece igual.",
+      "requires": [
+        "DEV-20",
+        "DEV-32"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-68",
+      "delivery": "**Diagnóstico de erros recuperável.** Adicionar mensagens úteis e exportação de diagnóstico sem segredos.",
+      "acceptance": "Erro de arquivo ou render não perde a última partida válida; exportação permite reproduzir.",
+      "requires": [
+        "DEV-32"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-69",
+      "delivery": "**Testes de invariantes ampliados.** Explorar comandos, estoques e interrupções adversas além das fixtures atuais.",
+      "acceptance": "Sequências geradas preservam contabilidade e determinismo ou produzem caso mínimo reproduzível.",
+      "requires": [
+        "DEV-34",
+        "DEV-44"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-70",
+      "delivery": "**Migração versionada de saves [S].** Definir transformações explícitas apenas para versões suportadas.",
+      "acceptance": "Original é preservado; versão sem migração é recusada; destino tem evidência de equivalência declarada.",
+      "requires": [
+        "DEV-32"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-71",
+      "delivery": "**Verificação contínua de PRs.** Executar checks apropriados e publicar resultado por commit.",
+      "acceptance": "Falha de teste/build impede status aprovado; job não considera fixture como prova de multiplayer.",
+      "requires": [],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-72",
+      "delivery": "**Pacote de release reproduzível.** Documentar e automatizar build, versão, notas e execução de release.",
+      "acceptance": "Instalação limpa abre Itaipu; release referencia regras, fontes, limites e instrução de retorno.",
+      "requires": [
+        "DEV-67",
+        "DEV-71"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-73",
+      "delivery": "**Servidor de comandos autoritativo.** Conectar a ordem de comandos existente a dois clientes no mesmo mapa de Itaipu.",
+      "acceptance": "Clientes chegam ao mesmo checkpoint; comandos repetidos e obsoletos seguem o contrato.",
+      "requires": [
+        "DEV-08"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-74",
+      "delivery": "**Identidade e permissões reais.** Conectar principal verificável a membros e direitos por comunidade.",
+      "acceptance": "Ação sem permissão é negada no servidor; trocar apelido não troca identidade histórica.",
+      "requires": [
+        "DEV-08"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-75",
+      "delivery": "**Persistência durável do mundo.** Conectar checkpoints e histórico a um armazenamento definido.",
+      "acceptance": "Reiniciar servidor recupera estado e comandos; checkpoint corrompido não é aceito silenciosamente.",
+      "requires": [
+        "DEV-73",
+        "DEV-74"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-76",
+      "delivery": "**Reconexão e confirmação de comandos.** Exibir pendência, rejeição e recuperação sem reaplicar ações confirmadas.",
+      "acceptance": "Desconectar após envio não duplica obra, recurso ou efeito ao reconectar.",
+      "requires": [
+        "DEV-75"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-77",
+      "delivery": "**Entrada em comunidade de Itaipu.** Oferecer escolha de comunidade no mapa base, convite e papéis com escopo explícito.",
+      "acceptance": "Participante autorizado entra; remoção revoga futuras ações e preserva histórico.",
+      "requires": [
+        "DEV-74"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-78",
+      "delivery": "**Trocas entre comunidades de Itaipu.** Conectar trânsito e interface de troca entre assentamentos virtuais no mesmo mapa, com ligações declaradas.",
+      "acceptance": "Estoque sai uma vez, viaja e espera capacidade; trechos desconectados sem ligação autorizada recusam troca, sem teleporte.",
+      "requires": [
+        "DEV-75",
+        "DEV-77"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-79",
+      "delivery": "**Proteção operacional da sessão.** Definir limites por ator, validação de payload e auditoria de rejeições.",
+      "acceptance": "Spam de comandos não duplica efeitos nem impede indefinidamente atores válidos.",
+      "requires": [
+        "DEV-73",
+        "DEV-74"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-80",
+      "delivery": "**Dados regionais com origem verificável.** Conectar verificador externo de evidência ao módulo de proveniência.",
+      "acceptance": "Correções preservam origem; dado de jogo não vira dado real por mudar seu rótulo.",
+      "requires": [
+        "DEV-56",
+        "DEV-74"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-81",
+      "delivery": "**Compatibilizar IDs de Itaipu na contribuição.** Atualizar contrato e testes de IDs aceitos, hoje limitados a RM0–RMD.",
+      "acceptance": "RME/RMF válidos são aceitos com revisão e replay; ID inexistente continua rejeitado.",
+      "requires": [],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-82",
+      "delivery": "**Verificar origem de código e revisão.** Conectar evidência de commit/diff e revisor independente aos adaptadores existentes.",
+      "acceptance": "Diff forjado, autorrevisão e referência ausente são recusados com prova reproduzível.",
+      "requires": [
+        "DEV-74",
+        "DEV-81"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-83",
+      "delivery": "**Catálogo jogável de tarefas [S].** Apresentar tarefas de melhoria com escopo, evidência e estado verificável.",
+      "acceptance": "Catálogo distingue proposta, assumida, revisada e entregue; conclusão não é checkbox do autor.",
+      "requires": [
+        "DEV-82"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-84",
+      "delivery": "**Provas adequadas por tipo de contribuição [S].** Definir contratos para arte, UX, docs e dados além da prova de gameplay atual.",
+      "acceptance": "Aceite exige evidência e revisão específica; documento não precisa forjar replay de uma mudança econômica.",
+      "requires": [
+        "DEV-82"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-85",
+      "delivery": "**Histórico público de melhorias.** Exibir contribuição aceita, versão, autor e referências de evidência.",
+      "acceptance": "Lista reflete registro validado; correção aparece sem apagar o evento original.",
+      "requires": [
+        "DEV-83",
+        "DEV-84"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-86",
+      "delivery": "**Reconhecimento e monumentos na interface.** Conectar atribuição existente a títulos e marcos visíveis no mundo.",
+      "acceptance": "Só contribuições aceitas geram reconhecimento; prêmio repetido é idempotente e critério está acessível.",
+      "requires": [
+        "DEV-63",
+        "DEV-85"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-87",
+      "delivery": "**Drift entre Seed e materialização.** Comparar IDs/contratos com arquivos, testes, missões e evidências atuais.",
+      "acceptance": "Relatório distingue planejado, implementado, testado e integrado; aponta manifestos históricos sem reescrevê-los.",
+      "requires": [
+        "DEV-71"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": true,
+      "extension": false
+    },
+    {
+      "id": "DEV-88",
+      "delivery": "**Provar utilidade de dados de Itaipu.** Executar um caso de uso de dados do território-base com consumidor e critério de aceitação definidos.",
+      "acceptance": "Uso e custo observados são registrados; ACE/GF permanecem abertos se não houver prova de demanda/novidade.",
+      "requires": [
+        "DEV-80",
+        "DEV-85"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": false
+    },
+    {
+      "id": "DEV-89",
+      "delivery": "**Formalizar economia digital no Seed [S].** Separar armazenamento, compute batch, edge, banda e valor informacional; definir estados, unidades, ações e constraints sem atribuir novos IDs RM antes da projeção.",
+      "acceptance": "Seed versionado e trajetória calculada distinguem capacidade instalada, disponível e serviço entregue; dados/compute/valor não se confundem.",
+      "requires": [
+        "DEV-43",
+        "DEV-87"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-90",
+      "delivery": "**Perfil digital das áreas de Itaipu [S].** Declarar energia acessível, água, temperatura, conectividade, terreno e riscos por área do mapa-base.",
+      "acceptance": "Cada valor possui fonte, unidade, versão ou classificação de hipótese; abundância regional não concede acesso ilimitado nem licença fictícia.",
+      "requires": [
+        "DEV-89",
+        "DEV-56"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-91",
+      "delivery": "**Hardware e data center modular [S].** Criar cadeia simplificada de equipamentos, construção e manutenção com logística física e lead time.",
+      "acceptance": "Obra exige entrega de materiais e equipamentos; capacidade só entra após conclusão; silício/cobre ausentes no mapa exigem origem virtual ou importação declarada.",
+      "requires": [
+        "DEV-89",
+        "DEV-43",
+        "DEV-40"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-92",
+      "delivery": "**Energia concorrente para serviços digitais [S].** Integrar carga digital ao balanço elétrico de casas e produção, com prioridade explícita.",
+      "acceptance": "Demanda total e distribuição são conservadas; déficit limita serviço de acordo com regra conhecida, sem geração dedicada gratuita.",
+      "requires": [
+        "DEV-89",
+        "DEV-37"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-93",
+      "delivery": "**Refrigeração e balanço hídrico [S].** Definir remoção de calor, consumo elétrico e água retirada, recirculada e perdida por sistema.",
+      "acceptance": "Serviço respeita capacidade de cooling; recirculação não elimina perdas automaticamente; déficit térmico/hídrico limita operação com efeito declarado.",
+      "requires": [
+        "DEV-90",
+        "DEV-91",
+        "DEV-92"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-94",
+      "delivery": "**Fibra, banda e latência [S].** Criar ligações digitais construídas no mapa com equipamentos, capacidade, acesso e atraso de serviço.",
+      "acceptance": "Sem conexão não há atendimento remoto; gargalos respeitam banda; fibra não é automaticamente concedida por haver uma rua e não exige comprar ruas.",
+      "requires": [
+        "DEV-89",
+        "DEV-91"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-95",
+      "delivery": "**Serviços e contratos de demanda [S].** Criar consumidores locais ou externos simulados, com prazo, volume e requisitos distintos para storage, batch e edge.",
+      "acceptance": "Atendimento exige hardware, energia, cooling e rede; serviço fora do requisito não conta como entrega; consumidores externos não exigem novo mapa.",
+      "requires": [
+        "DEV-91",
+        "DEV-92",
+        "DEV-93",
+        "DEV-94"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-96",
+      "delivery": "**Demanda futura e choques reproduzíveis [S].** Definir séries por tick e cenários de crescimento/queda com sinais conhecidos, incerteza e eventos versionados.",
+      "acceptance": "Replay preserva choques; o jogador vê apenas informações autorizadas; percentuais e horizontes são parâmetros de cenário, não previsões reais garantidas.",
+      "requires": [
+        "DEV-95"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-97",
+      "delivery": "**Projeção de expansão e lead time [S].** Calcular planos de geração, distribuição, cooling, fibra e compute para atender demanda ao longo do horizonte.",
+      "acceptance": "Planos respeitam recursos e tempo de obra; futuro não é revelado indevidamente; caso inviável retorna restrições/gaps e não um plano narrativo.",
+      "requires": [
+        "DEV-96",
+        "DEV-39"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-98",
+      "delivery": "**Custos e impacto da capacidade [S].** Definir custos comparáveis de obra, operação, déficit, ociosidade, manutenção e pressão ambiental.",
+      "acceptance": "Unidades são normalizadas ou custos convertidos com pesos explícitos; J de custo é minimizado; utilidade é separada; pesos e objetivos são versionados.",
+      "requires": [
+        "DEV-95",
+        "DEV-52",
+        "DEV-59"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-99",
+      "delivery": "**Painel digital e missões de atendimento [S].** Mostrar capacidade instalada/disponível, serviço entregue, gargalos, horizonte e impactos no mapa de Itaipu.",
+      "acceptance": "Indicadores vêm do núcleo; missão exige entrega dentro dos requisitos e limites; construir muitos data centers não equivale a concluir a missão.",
+      "requires": [
+        "DEV-17",
+        "DEV-95",
+        "DEV-97",
+        "DEV-98"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    },
+    {
+      "id": "DEV-100",
+      "delivery": "**Comparar políticas reativas e antecipatórias [S].** Definir experiência controlada com mesmos estoques, demanda realizada e horizonte para estratégias de expansão.",
+      "acceptance": "Relatório compara déficit, ociosidade, custo e impacto por horizonte; não presume vitória projetiva; erro de previsão pode inverter o resultado.",
+      "requires": [
+        "DEV-96",
+        "DEV-97",
+        "DEV-98",
+        "DEV-99"
+      ],
+      "source": "docs/TAREFAS_ITAIPU.md",
+      "selected": false,
+      "extension": true
+    }
+  ],
+  "constraints": [
+    "No change to OSM cartography or canonical gameplay rules",
+    "UI observes RM1; preview and saved session use the same transition",
+    "No issue is complete without task-specific evidence and verified prerequisites",
+    "External playtests, production providers, independent reviews cannot be fabricated"
+  ],
+  "selected": [
+    "DEV-01",
+    "DEV-02",
+    "DEV-03",
+    "DEV-09",
+    "DEV-10",
+    "DEV-11",
+    "DEV-12",
+    "DEV-13",
+    "DEV-14",
+    "DEV-15",
+    "DEV-16",
+    "DEV-17",
+    "DEV-18",
+    "DEV-19",
+    "DEV-20",
+    "DEV-21",
+    "DEV-22",
+    "DEV-23",
+    "DEV-24",
+    "DEV-25",
+    "DEV-26",
+    "DEV-27",
+    "DEV-28",
+    "DEV-31",
+    "DEV-32",
+    "DEV-37",
+    "DEV-38",
+    "DEV-41",
+    "DEV-42",
+    "DEV-46",
+    "DEV-47",
+    "DEV-48",
+    "DEV-65",
+    "DEV-66",
+    "DEV-67",
+    "DEV-68",
+    "DEV-71",
+    "DEV-72",
+    "DEV-81",
+    "DEV-87"
+  ],
+  "waves": [
+    [
+      "DEV-01",
+      "DEV-02",
+      "DEV-03",
+      "DEV-09",
+      "DEV-19",
+      "DEV-24",
+      "DEV-31",
+      "DEV-71",
+      "DEV-81"
+    ],
+    [
+      "DEV-10",
+      "DEV-11",
+      "DEV-13",
+      "DEV-17",
+      "DEV-18",
+      "DEV-21",
+      "DEV-32",
+      "DEV-41",
+      "DEV-87"
+    ],
+    [
+      "DEV-12",
+      "DEV-14",
+      "DEV-15",
+      "DEV-20",
+      "DEV-22",
+      "DEV-25",
+      "DEV-26",
+      "DEV-27",
+      "DEV-28",
+      "DEV-37",
+      "DEV-42",
+      "DEV-46",
+      "DEV-68"
+    ],
+    [
+      "DEV-16",
+      "DEV-38",
+      "DEV-47",
+      "DEV-65",
+      "DEV-67"
+    ],
+    [
+      "DEV-23",
+      "DEV-48",
+      "DEV-72"
+    ],
+    [
+      "DEV-66"
+    ]
+  ],
+  "unselected_policy": "Explicit follow-up prerequisites; not declared impossible or completed",
+  "materialization": "Refinements of RMD/RME/RMF/RM4/RMA; no new canonical gameplay fields"
+}
