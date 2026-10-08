@@ -1,0 +1,14 @@
+{
+  "id": "RJ5",
+  "module_id": "RM5",
+  "capability": "AC6",
+  "requires": [
+    "RM4"
+  ],
+  "acceptance": "False completion claim rejected; road/direct trials share exact starting world and rule version.",
+  "test_id": "RT5",
+  "test_path": "tests/aurum/judge.test.ts",
+  "evidence_path": "evidence/RT5/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

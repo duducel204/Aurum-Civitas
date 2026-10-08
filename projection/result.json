@@ -1,0 +1,361 @@
+{
+  "id": "AC-PI1",
+  "input_digest": "da299c8c053ad1ea5d04b3ca446c126e1840912b48d79468280116a19a515d9b",
+  "status": "UNRESOLVED_FULL_TARGET; PROVISIONAL_NEXT_PROOF",
+  "searches": {
+    "full": {
+      "plans": [
+        {
+          "operators": [
+            "AO1",
+            "AO2",
+            "AO3",
+            "AO4",
+            "AO5",
+            "AO6",
+            "AO7",
+            "AO8",
+            "AO9",
+            "AOA",
+            "AOB",
+            "AOC",
+            "AOD",
+            "AOE"
+          ],
+          "facts": [
+            "AC0",
+            "AC1",
+            "AC2",
+            "AC3",
+            "AC4",
+            "AC5",
+            "AC6",
+            "AC7",
+            "AC8",
+            "AC9",
+            "ACA",
+            "ACB",
+            "ACC",
+            "ACD",
+            "ACE",
+            "ACF",
+            "GF"
+          ],
+          "waves": [
+            [
+              "AO1"
+            ],
+            [
+              "AO2",
+              "AO9"
+            ],
+            [
+              "AO3",
+              "AO4"
+            ],
+            [
+              "AO5",
+              "AOA"
+            ],
+            [
+              "AO6",
+              "AO7"
+            ],
+            [
+              "AO8",
+              "AOB"
+            ],
+            [
+              "AOC",
+              "AOD"
+            ],
+            [
+              "AOE"
+            ]
+          ],
+          "unresolved_facts": [
+            "ACE",
+            "GF"
+          ],
+          "structural_steps": 14,
+          "status": "UNRESOLVED"
+        }
+      ],
+      "expanded": 15,
+      "budget": 20000,
+      "conditional_assumptions": [
+        "ACE",
+        "GF"
+      ]
+    },
+    "next_proof": {
+      "plans": [
+        {
+          "operators": [
+            "AO1",
+            "AO2",
+            "AO3",
+            "AO4",
+            "AO5",
+            "AO6"
+          ],
+          "facts": [
+            "AC0",
+            "AC1",
+            "AC2",
+            "AC3",
+            "AC4",
+            "AC5",
+            "AC6"
+          ],
+          "waves": [
+            [
+              "AO1"
+            ],
+            [
+              "AO2"
+            ],
+            [
+              "AO3",
+              "AO4"
+            ],
+            [
+              "AO5"
+            ],
+            [
+              "AO6"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 6,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 7,
+      "budget": 20000
+    },
+    "collective": {
+      "plans": [
+        {
+          "operators": [
+            "AO1",
+            "AO2",
+            "AO3",
+            "AO4",
+            "AO5",
+            "AO7",
+            "AO8",
+            "AO9"
+          ],
+          "facts": [
+            "AC0",
+            "AC1",
+            "AC2",
+            "AC3",
+            "AC4",
+            "AC5",
+            "AC7",
+            "AC8",
+            "AC9"
+          ],
+          "waves": [
+            [
+              "AO1"
+            ],
+            [
+              "AO2",
+              "AO9"
+            ],
+            [
+              "AO3",
+              "AO4"
+            ],
+            [
+              "AO5"
+            ],
+            [
+              "AO7"
+            ],
+            [
+              "AO8"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 8,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 9,
+      "budget": 20000
+    },
+    "builder_loop": {
+      "plans": [
+        {
+          "operators": [
+            "AO1",
+            "AO2",
+            "AO3",
+            "AO4",
+            "AO5",
+            "AO6",
+            "AOB"
+          ],
+          "facts": [
+            "AC0",
+            "AC1",
+            "AC2",
+            "AC3",
+            "AC4",
+            "AC5",
+            "AC6",
+            "ACB"
+          ],
+          "waves": [
+            [
+              "AO1"
+            ],
+            [
+              "AO2"
+            ],
+            [
+              "AO3",
+              "AO4"
+            ],
+            [
+              "AO5"
+            ],
+            [
+              "AO6"
+            ],
+            [
+              "AOB"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 7,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 8,
+      "budget": 20000
+    }
+  },
+  "forward": {
+    "facts": [
+      "AC0",
+      "AC1",
+      "AC2",
+      "AC3",
+      "AC4",
+      "AC5",
+      "AC6",
+      "AC7",
+      "AC8",
+      "AC9",
+      "ACA",
+      "ACB",
+      "ACC",
+      "ACD"
+    ],
+    "waves": [
+      [
+        "AO1"
+      ],
+      [
+        "AO2",
+        "AO9"
+      ],
+      [
+        "AO3",
+        "AO4"
+      ],
+      [
+        "AO5",
+        "AOA"
+      ],
+      [
+        "AO6",
+        "AO7"
+      ],
+      [
+        "AO8",
+        "AOB"
+      ],
+      [
+        "AOC",
+        "AOD"
+      ]
+    ],
+    "blocked_operators": [
+      "AOE"
+    ]
+  },
+  "useful_operators": [
+    "AO1",
+    "AO2",
+    "AO3",
+    "AO4",
+    "AO5",
+    "AO6",
+    "AO7",
+    "AO8",
+    "AO9",
+    "AOA",
+    "AOB",
+    "AOC",
+    "AOD"
+  ],
+  "dependency_impact": {
+    "AC2": [
+      "AO3",
+      "AO4",
+      "AO5",
+      "AO6",
+      "AO7",
+      "AO8",
+      "AOA",
+      "AOB",
+      "AOC",
+      "AOD",
+      "AOE"
+    ],
+    "AC5": [
+      "AO6",
+      "AO7",
+      "AO8",
+      "AOB",
+      "AOC",
+      "AOD",
+      "AOE"
+    ],
+    "AC6": [
+      "AOB",
+      "AOC",
+      "AOE"
+    ]
+  },
+  "challenge": {
+    "independent_exhaustive_oracle": [
+      [
+        "AO1",
+        "AO2",
+        "AO3",
+        "AO4",
+        "AO5",
+        "AO6"
+      ]
+    ],
+    "replay_removed_blocks_shared_world": true,
+    "replay_removed_blocks_builder_loop": true,
+    "replay_gate_is_declared_design_premise_not_universal_necessity": true,
+    "parallel_region_specification_allowed": true,
+    "first_proof_is_checkpoint_not_full_product": true
+  },
+  "measurements": {
+    "development_hours": null,
+    "operating_cost": null,
+    "player_engagement": null
+  },
+  "game_runs": 0,
+  "verified_game_capabilities": []
+}

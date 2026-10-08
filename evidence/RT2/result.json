@@ -1,0 +1,20 @@
+{
+  "id": "RT2",
+  "semantic_id": "RM2",
+  "capability": "AC3",
+  "mission_id": "RJ2",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/economy.ts",
+  "code_sha256": "fedd074d524529861a4f99ca1a88cacadb6ca287d74663518e24494a5ece8b07",
+  "test_path": "tests/aurum/economy.test.ts",
+  "test_sha256": "1d9d9802903a58a4ce002f74da6a6feee1e2f8fa14c05936e767bd97b376438f",
+  "mission_path": "missions/RJ2.json",
+  "mission_sha256": "7b63a1a14d289733e5d7843215cfebd5f4eeb8a733e2c917bea2b81d08496d7c",
+  "passed_tests": [
+    "ok 2 - RT2 RM2: last finite unit, recipe balance and delivered construction"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

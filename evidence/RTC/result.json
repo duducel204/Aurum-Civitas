@@ -1,0 +1,20 @@
+{
+  "id": "RTC",
+  "semantic_id": "RMC",
+  "capability": "ACD",
+  "mission_id": "RJC",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/provenance.ts",
+  "code_sha256": "2fbcd0e0355b65199bb6602e2e1142a3a9a4b8494493efe3b21705873beb03ef",
+  "test_path": "tests/aurum/provenance.test.ts",
+  "test_sha256": "5a82a4200faeda67c928bee818d3f49ffbc79e4cd3ac77eb72f538b28482aaf1",
+  "mission_path": "missions/RJC.json",
+  "mission_sha256": "d7993dd1180b02a84d3bd8edcdf3e03d6b467d871d9deeba89fc2cf821ee501a",
+  "passed_tests": [
+    "ok 6 - RTC RMC: provenance required, append corrections and never relabel fiction as reality"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

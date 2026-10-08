@@ -1,0 +1,14 @@
+{
+  "id": "RJ8",
+  "module_id": "RM8",
+  "capability": "AC7",
+  "requires": [
+    "RM4"
+  ],
+  "acceptance": "Cross-territory writes denied; restart restores same checkpoint; shared-city permissions checked.",
+  "test_id": "RT8",
+  "test_path": "tests/aurum/membership.test.ts",
+  "evidence_path": "evidence/RT8/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

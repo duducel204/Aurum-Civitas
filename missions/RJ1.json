@@ -1,0 +1,14 @@
+{
+  "id": "RJ1",
+  "module_id": "RM1",
+  "capability": "AC2",
+  "requires": [
+    "RM0"
+  ],
+  "acceptance": "Same state and commands give identical state; render frequency cannot alter outcome.",
+  "test_id": "RT1",
+  "test_path": "tests/aurum/simulation.test.ts",
+  "evidence_path": "evidence/RT1/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

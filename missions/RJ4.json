@@ -1,0 +1,16 @@
+{
+  "id": "RJ4",
+  "module_id": "RM4",
+  "capability": "AC5",
+  "requires": [
+    "RM1",
+    "RM2",
+    "RM3"
+  ],
+  "acceptance": "Truncation, tampering and incompatible rules rejected; replay final state equals execution.",
+  "test_id": "RT4",
+  "test_path": "tests/aurum/replay.test.ts",
+  "evidence_path": "evidence/RT4/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "RTB",
+  "semantic_id": "RMB",
+  "capability": "ACC",
+  "mission_id": "RJB",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/recognition.ts",
+  "code_sha256": "f0ad494d22e28aed76553b044b11a649349be435533f8af9f8f6acdc8d8bcba8",
+  "test_path": "tests/aurum/recognition.test.ts",
+  "test_sha256": "1da3bab64374ef4e09fe58d7381a07201621e74598120e233122fa27141da5a2",
+  "mission_path": "missions/RJB.json",
+  "mission_sha256": "fab464d5a523106270ef50ea97f1a3beb6b7a316a9aec4a75e152d94ffb2763c",
+  "passed_tests": [
+    "ok 7 - RTB RMB: permanent idempotent monuments, explicit era bounds and forged awards rejected"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

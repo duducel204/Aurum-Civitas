@@ -1,0 +1,12 @@
+{
+  "id": "RJ0",
+  "module_id": "RM0",
+  "capability": "AC1",
+  "requires": [],
+  "acceptance": "Reject incomplete recipes and unversioned rule changes.",
+  "test_id": "RT0",
+  "test_path": "tests/aurum/rules.test.ts",
+  "evidence_path": "evidence/RT0/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

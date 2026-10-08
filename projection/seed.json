@@ -1,0 +1,348 @@
+{
+  "id": "AC-P1",
+  "kind": "ProjectionIR-input",
+  "parent": {
+    "repo": "duducel204/Trajecta",
+    "commit": "94aa09e3770e9fe77aa2fd4dcbf04f88d45116f3",
+    "seed": "P0",
+    "note": "Namespaced extension and actual-state audit; no redefinition of prior IDs"
+  },
+  "source": {
+    "repo": "duducel204/Aurum-Civitas",
+    "commit": "7ce60f8a18ae458a5c9ba44567cab3d852cdb766",
+    "design_document": "gdd_aurum_civitas_mundo_coletivo_e_mec_nicas_sociais.txt; supplied 2026-10-07"
+  },
+  "facts": [
+    "AC0",
+    "AC1",
+    "AC2",
+    "AC3",
+    "AC4",
+    "AC5",
+    "AC6",
+    "AC7",
+    "AC8",
+    "AC9",
+    "ACA",
+    "ACB",
+    "ACC",
+    "ACD",
+    "ACE",
+    "ACF",
+    "GF"
+  ],
+  "semantics": {
+    "AC0": "Pinned source audit (source inspection only)",
+    "AC1": "Frozen mission, map, time and admissible action contract (R0)",
+    "AC2": "One deterministic simulation transition outside renderer (R1/G3)",
+    "AC3": "Resource conservation, bounded inventories and delivered construction inputs (G0/G1)",
+    "AC4": "Persistent route progress and physical delivery with bounded buffers (G2)",
+    "AC5": "Versioned complete action trace, checkpoint and exact replay (R3/R7/G8)",
+    "AC6": "Matched mission runs and independently checked outcome (G5)",
+    "AC7": "Player/community membership, multi-player cities, territory ownership and session persistence (RA/GA extension)",
+    "AC8": "Shared authoritative ordering, finite cross-city trade and transport consistency (RB/GC)",
+    "AC9": "Seven geographic archetypes with explicit production advantages and export/import dependencies; minimal pixel world map",
+    "ACA": "Food, population and regeneration/preservation constraints (G6 extension)",
+    "ACB": "Contribution missions, independent judge and reviewed game upgrades (R5/GD/J2)",
+    "ACC": "Permanent verified founder/route monuments, civic titles and era seals tied to contribution events",
+    "ACD": "Verified microregion data with provenance and correction",
+    "ACE": "Evidence that microregion data answers an external future demand",
+    "ACF": "Collective sustainable game plus evolving repository",
+    "GF": "Useful structural novelty (existing Trajecta GF; unresolved)"
+  },
+  "initial_facts": [
+    "AC0"
+  ],
+  "target_facts": [
+    "ACF"
+  ],
+  "operators": [
+    {
+      "id": "AO1",
+      "requires": [
+        "AC0"
+      ],
+      "adds": [
+        "AC1"
+      ],
+      "meaning": "Freeze current candidate constants and action schema",
+      "evidence": "AE1",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO2",
+      "requires": [
+        "AC1"
+      ],
+      "adds": [
+        "AC2"
+      ],
+      "meaning": "Extract authoritative transition and fixed ticks",
+      "evidence": "AE2",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO3",
+      "requires": [
+        "AC2"
+      ],
+      "adds": [
+        "AC3"
+      ],
+      "meaning": "Close conservation and material construction",
+      "evidence": "AE3",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO4",
+      "requires": [
+        "AC2"
+      ],
+      "adds": [
+        "AC4"
+      ],
+      "meaning": "Close routes and delivery contracts",
+      "evidence": "AE4",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO5",
+      "requires": [
+        "AC2",
+        "AC3",
+        "AC4"
+      ],
+      "adds": [
+        "AC5"
+      ],
+      "meaning": "Record/replay complete actions",
+      "evidence": "AE5",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO6",
+      "requires": [
+        "AC5"
+      ],
+      "adds": [
+        "AC6"
+      ],
+      "meaning": "Compare matched runs with independent judge",
+      "evidence": "AE6",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO7",
+      "requires": [
+        "AC5"
+      ],
+      "adds": [
+        "AC7"
+      ],
+      "meaning": "Bind identities to territories and checkpoints",
+      "evidence": "AE7",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO8",
+      "requires": [
+        "AC5",
+        "AC7",
+        "AC4",
+        "AC9"
+      ],
+      "adds": [
+        "AC8"
+      ],
+      "meaning": "Order shared-world mutations",
+      "evidence": "AE8",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AO9",
+      "requires": [
+        "AC1"
+      ],
+      "adds": [
+        "AC9"
+      ],
+      "meaning": "Specify region resource profiles",
+      "evidence": "AE9",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AOA",
+      "requires": [
+        "AC3",
+        "AC9"
+      ],
+      "adds": [
+        "ACA"
+      ],
+      "meaning": "Model food and regenerative resource balance",
+      "evidence": "AEA",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AOB",
+      "requires": [
+        "AC6"
+      ],
+      "adds": [
+        "ACB"
+      ],
+      "meaning": "Qualify contributor missions and upgrades",
+      "evidence": "AEB",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AOC",
+      "requires": [
+        "AC7",
+        "ACB"
+      ],
+      "adds": [
+        "ACC"
+      ],
+      "meaning": "Attribute independently accepted contributions",
+      "evidence": "AEC",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AOD",
+      "requires": [
+        "AC8",
+        "AC9"
+      ],
+      "adds": [
+        "ACD"
+      ],
+      "meaning": "Validate provenance and correction of data",
+      "evidence": "AED",
+      "actual_evidence": "UNVERIFIED"
+    },
+    {
+      "id": "AOE",
+      "requires": [
+        "AC8",
+        "ACA",
+        "ACB",
+        "ACC",
+        "ACD",
+        "ACE",
+        "GF"
+      ],
+      "adds": [
+        "ACF"
+      ],
+      "meaning": "Admit full coupled outcome",
+      "evidence": "AEE",
+      "actual_evidence": "UNVERIFIED"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "AK1",
+      "rule": "Source presence is not gameplay verification; partial old capabilities are not admitted as complete."
+    },
+    {
+      "id": "AK2",
+      "rule": "Finite stocks conserve units across trees, carriers, inventories, work in process and outputs."
+    },
+    {
+      "id": "AK3",
+      "rule": "All participants observe the same ordered state; client input cannot mint resources or self-award recognition."
+    },
+    {
+      "id": "AK4",
+      "rule": "Minimal pixel visual; region resources reflect frozen region profiles."
+    },
+    {
+      "id": "AK5",
+      "rule": "Player-earned materials must fund construction beyond a documented finite bootstrap."
+    },
+    {
+      "id": "AK6",
+      "rule": "Historical recognition is permanent and grounded in contribution evidence; title criteria, era admission and community rights require explicit contracts."
+    }
+  ],
+  "selection": {
+    "objective": "Inclusion-minimal prerequisite closure; counts only, no empirical effort ranking",
+    "status": "PROVISIONAL",
+    "provider_bindings": [],
+    "materialization_scope": "Projection artifacts only; no gameplay implementation selected"
+  },
+  "audit": [
+    {
+      "claim": "Finite trees and timed harvest/production exist",
+      "status": "SOURCE_OBSERVED",
+      "path": "lib/game-engine.ts"
+    },
+    {
+      "claim": "Construction currently costs money, not delivered planks",
+      "status": "SOURCE_OBSERVED",
+      "path": "components/game/game-world.tsx"
+    },
+    {
+      "claim": "Road route is recomputed each update and lacks persisted waypoint progress; possible oscillation requires experiment",
+      "status": "HYPOTHESIS",
+      "path": "lib/game-engine.ts"
+    },
+    {
+      "claim": "Wood sent to base has no base-to-sawmill transfer in inspected code",
+      "status": "SOURCE_OBSERVED",
+      "path": "lib/game-engine.ts"
+    },
+    {
+      "claim": "Simulation orchestration uses requestAnimationFrame and caps dt; mission metrics use Date.now",
+      "status": "SOURCE_OBSERVED",
+      "path": "components/game/game-world.tsx"
+    },
+    {
+      "claim": "Event log keeps only 12 messages and is not a complete replay trace",
+      "status": "SOURCE_OBSERVED",
+      "path": "components/game/game-world.tsx"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "ACE",
+      "status": "UNRESOLVED",
+      "reason": "Data customer/use case and external utility test absent; fictional game events are not real regional observations."
+    },
+    {
+      "id": "GF",
+      "status": "UNRESOLVED",
+      "reason": "Existing Trajecta novelty definition and judge remain unvalidated."
+    },
+    {
+      "id": "AU1",
+      "status": "UNRESOLVED",
+      "reason": "Player engagement and recognition incentives unmeasured."
+    },
+    {
+      "id": "AU2",
+      "status": "UNRESOLVED",
+      "reason": "Effort, runtime costs and provider alternatives not calibrated."
+    },
+    {
+      "id": "AU3",
+      "status": "HYPOTHESIS",
+      "reason": "Identity + utility + recognition increases retention; test with players. The design's 40% delivery gain is illustrative, not measured."
+    },
+    {
+      "id": "AU4",
+      "status": "UNRESOLVED",
+      "reason": "Freeze recipes, region yields, trade rules, monument/title criteria and era boundaries."
+    }
+  ],
+  "region_archetypes": [
+    "forest/wood",
+    "mountain/stone+iron",
+    "gold/minting",
+    "junction/logistics",
+    "fertile/agriculture",
+    "coast/ports",
+    "technology/architecture"
+  ]
+}

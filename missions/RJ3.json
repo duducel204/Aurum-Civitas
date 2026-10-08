@@ -1,0 +1,14 @@
+{
+  "id": "RJ3",
+  "module_id": "RM3",
+  "capability": "AC4",
+  "requires": [
+    "RM1"
+  ],
+  "acceptance": "Connected path advances without oscillation; blocked routes conserve cargo; base supplies sawmill.",
+  "test_id": "RT3",
+  "test_path": "tests/aurum/transport.test.ts",
+  "evidence_path": "evidence/RT3/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

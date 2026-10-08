@@ -1,0 +1,116 @@
+{
+  "id": "AC-MV2",
+  "seed_id": "AC-RS2",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "manifest_sha256": "15e1b2cddc921b187f00ff6ec5cef6987f80b5c530377037fa6c19d46977d07c",
+  "node": "v24.19.0",
+  "test_exit_code": 0,
+  "module_count": 14,
+  "test_count": 18,
+  "id_roundtrip": true,
+  "deterministic_rerun": true,
+  "predicted_vs_observed": {
+    "conservation": true,
+    "connected_road_faster": true,
+    "direct_ticks": 266,
+    "road_ticks": 28,
+    "replay_exact": true,
+    "final_hash": "468abce3d2dde7af745292a22f3ced4779baa539075321bd822afea0978e388f"
+  },
+  "coverage": [
+    {
+      "module_id": "RM0",
+      "test": "RT0",
+      "mission": "RJ0",
+      "evidence": "evidence/RT0/result.json"
+    },
+    {
+      "module_id": "RM1",
+      "test": "RT1",
+      "mission": "RJ1",
+      "evidence": "evidence/RT1/result.json"
+    },
+    {
+      "module_id": "RM2",
+      "test": "RT2",
+      "mission": "RJ2",
+      "evidence": "evidence/RT2/result.json"
+    },
+    {
+      "module_id": "RM3",
+      "test": "RT3",
+      "mission": "RJ3",
+      "evidence": "evidence/RT3/result.json"
+    },
+    {
+      "module_id": "RM4",
+      "test": "RT4",
+      "mission": "RJ4",
+      "evidence": "evidence/RT4/result.json"
+    },
+    {
+      "module_id": "RM5",
+      "test": "RT5",
+      "mission": "RJ5",
+      "evidence": "evidence/RT5/result.json"
+    },
+    {
+      "module_id": "RM6",
+      "test": "RT6",
+      "mission": "RJ6",
+      "evidence": "evidence/RT6/result.json"
+    },
+    {
+      "module_id": "RM7",
+      "test": "RT7",
+      "mission": "RJ7",
+      "evidence": "evidence/RT7/result.json"
+    },
+    {
+      "module_id": "RM8",
+      "test": "RT8",
+      "mission": "RJ8",
+      "evidence": "evidence/RT8/result.json"
+    },
+    {
+      "module_id": "RM9",
+      "test": "RT9",
+      "mission": "RJ9",
+      "evidence": "evidence/RT9/result.json"
+    },
+    {
+      "module_id": "RMA",
+      "test": "RTA",
+      "mission": "RJA",
+      "evidence": "evidence/RTA/result.json"
+    },
+    {
+      "module_id": "RMB",
+      "test": "RTB",
+      "mission": "RJB",
+      "evidence": "evidence/RTB/result.json"
+    },
+    {
+      "module_id": "RMC",
+      "test": "RTC",
+      "mission": "RJC",
+      "evidence": "evidence/RTC/result.json"
+    },
+    {
+      "module_id": "RMD",
+      "test": "RTD",
+      "mission": "RJD",
+      "evidence": "evidence/RTD/result.json"
+    }
+  ],
+  "pending": [
+    "Canonical numeric balance/recipes/bootstrap/era/title rules",
+    "Real authentication and independent review authorization provider",
+    "Durable production persistence and network transport",
+    "Full integration of region/ecology/world/contribution services into shared gameplay UI",
+    "Long-horizon live-player sustainability and engagement",
+    "External regional data demand ACE",
+    "Useful structural novelty GF",
+    "Tests use trusted fixture identity/evidence callbacks, not real service authentication"
+  ]
+}

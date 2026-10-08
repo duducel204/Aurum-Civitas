@@ -1,0 +1,643 @@
+{
+  "id": "AC-RS2",
+  "kind": "SystemSeedIR",
+  "parent_digest": "da299c8c053ad1ea5d04b3ca446c126e1840912b48d79468280116a19a515d9b",
+  "status": "PROVISIONAL",
+  "modules": [
+    {
+      "id": "RM0",
+      "capability": "AC1",
+      "requires": [],
+      "label": "rules",
+      "contract": "Frozen RuleSet: version, map seed, fixed tick, recipes, capacities, bootstrap, legal actions and mission; reject missing mandatory numeric values.",
+      "interface": "RuleSet -> validated contract or unresolved fields",
+      "failure": "Changing rules invalidates incompatible traces; no implicit defaults.",
+      "test": {
+        "id": "RT0",
+        "obligation": "Reject incomplete recipes and unversioned rule changes.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ0",
+        "acceptance": "Reject incomplete recipes and unversioned rule changes.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM1",
+      "capability": "AC2",
+      "requires": [
+        "RM0"
+      ],
+      "label": "simulation",
+      "contract": "Only owner of canonical GameState; step takes ordered commands and advances one fixed tick, returning state and events without DOM, network or wall clock.",
+      "interface": "step(state, commands, rules) -> state, events, rejections",
+      "failure": "Rejected command cannot mutate state; tie breaks use frozen IDs/order.",
+      "test": {
+        "id": "RT1",
+        "obligation": "Same state and commands give identical state; render frequency cannot alter outcome.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ1",
+        "acceptance": "Same state and commands give identical state; render frequency cannot alter outcome.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM2",
+      "capability": "AC3",
+      "requires": [
+        "RM1"
+      ],
+      "label": "economy",
+      "contract": "Finite stock, cargo, storage, work in process, outputs and incorporated construction materials; explicit recipe accounting and bounded inventories.",
+      "interface": "applyEconomicEffects(state, effects, rules) -> state or rejection",
+      "failure": "Reserve then deliver then consume once; overflow waits; depletion stops harvest.",
+      "test": {
+        "id": "RT2",
+        "obligation": "Competing workers cannot take the last unit twice; construction fails without delivered inputs.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ2",
+        "acceptance": "Competing workers cannot take the last unit twice; construction fails without delivered inputs.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM3",
+      "capability": "AC4",
+      "requires": [
+        "RM1"
+      ],
+      "label": "transport",
+      "contract": "Road graph, bounded queues, carrier cargo, route ID and persisted waypoint; explicit last-mile policy and base-to-sawmill deliveries.",
+      "interface": "advanceTransport(state, rules) -> transfer effects and progress",
+      "failure": "Disconnected/changed route emits blocked state or explicit reroute; never teleports cargo.",
+      "test": {
+        "id": "RT3",
+        "obligation": "Connected path advances without oscillation; blocked routes conserve cargo; base supplies sawmill.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ3",
+        "acceptance": "Connected path advances without oscillation; blocked routes conserve cargo; base supplies sawmill.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM4",
+      "capability": "AC5",
+      "requires": [
+        "RM1",
+        "RM2",
+        "RM3"
+      ],
+      "label": "replay",
+      "contract": "Full command stream, accepted/rejected results, initial state, versions, checkpoints and canonical hashes; UI messages are only a projection.",
+      "interface": "record(run); replay(initial, commands, rules) -> canonical state hash",
+      "failure": "Version/hash mismatch stops verification; correction is an appended event.",
+      "test": {
+        "id": "RT4",
+        "obligation": "Truncation, tampering and incompatible rules rejected; replay final state equals execution.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ4",
+        "acceptance": "Truncation, tampering and incompatible rules rejected; replay final state equals execution.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM5",
+      "capability": "AC6",
+      "requires": [
+        "RM4"
+      ],
+      "label": "judge",
+      "contract": "Independently derive mission outcome and metric vector from replayed state; compare matched inputs without self-reported success.",
+      "interface": "judge(trace, mission) -> evidence verdict and metrics",
+      "failure": "Missing evidence is UNVERIFIED; invalid replay cannot award completion.",
+      "test": {
+        "id": "RT5",
+        "obligation": "False completion claim rejected; road/direct trials share exact starting world and rule version.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ5",
+        "acceptance": "False completion claim rejected; road/direct trials share exact starting world and rule version.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM6",
+      "capability": "AC9",
+      "requires": [
+        "RM0"
+      ],
+      "label": "regions",
+      "contract": "Minimal pixel world topology and seven explicit production profiles; forests favor wood, fertile land food; exports/imports reference canonical resources.",
+      "interface": "RegionProfile and adjacency -> regional production modifiers",
+      "failure": "Profile numbers unresolved until frozen; fictional telemetry labeled fictional.",
+      "test": {
+        "id": "RT6",
+        "obligation": "Regional advantages match profiles; topology/resource IDs valid; render observes same map.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ6",
+        "acceptance": "Regional advantages match profiles; topology/resource IDs valid; render observes same map.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM7",
+      "capability": "ACA",
+      "requires": [
+        "RM2",
+        "RM6"
+      ],
+      "label": "sustainability",
+      "contract": "Food stocks, population demand and forest regeneration are tick-accounted flows; preservation limits explicit.",
+      "interface": "advanceEcology(state, rules, profiles) -> economic effects",
+      "failure": "Starvation/depletion/renewal have explicit states; regeneration is recorded source, not hidden minting.",
+      "test": {
+        "id": "RT7",
+        "obligation": "Food balance and harvesting limits; zero food and exhausted forest have declared consequences.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ7",
+        "acceptance": "Food balance and harvesting limits; zero food and exhausted forest have declared consequences.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM8",
+      "capability": "AC7",
+      "requires": [
+        "RM4"
+      ],
+      "label": "membership",
+      "contract": "Stable authenticated principal, city/community membership, region ownership, rights and checkpoint recovery; identity provider remains unbound.",
+      "interface": "authorize(principal, command, membership) -> allow/deny",
+      "failure": "Unauthorized mutation denied; historical actor IDs survive membership changes.",
+      "test": {
+        "id": "RT8",
+        "obligation": "Cross-territory writes denied; restart restores same checkpoint; shared-city permissions checked.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ8",
+        "acceptance": "Cross-territory writes denied; restart restores same checkpoint; shared-city permissions checked.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RM9",
+      "capability": "AC8",
+      "requires": [
+        "RM4",
+        "RM8",
+        "RM3",
+        "RM6"
+      ],
+      "label": "world",
+      "contract": "One authoritative command ordering across cities; finite stock reservation, physical trade transit and exactly-once delivery effects.",
+      "interface": "submit(commandId, expectedVersion, actor, payload) -> ordered result",
+      "failure": "Duplicate retries return prior result; stale commands revalidate/reject; disconnect does not duplicate cargo.",
+      "test": {
+        "id": "RT9",
+        "obligation": "Concurrent stock claims cannot overspend; retries cannot mint; cities agree on ordered checkpoint.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJ9",
+        "acceptance": "Concurrent stock claims cannot overspend; retries cannot mint; cities agree on ordered checkpoint.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RMA",
+      "capability": "ACB",
+      "requires": [
+        "RM5"
+      ],
+      "label": "contributions",
+      "contract": "Mission binds semantic IDs, exact source/config diff and independent evidence; upgrade only after review and compatible migration.",
+      "interface": "qualify(submission, judgeEvidence) -> accepted/rejected contribution event",
+      "failure": "Self-awards rejected; incompatible upgrades return to Seed diff and reprojection.",
+      "test": {
+        "id": "RTA",
+        "obligation": "Changing strategy changes controlled outcome; invalid proof cannot qualify upgrade.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJA",
+        "acceptance": "Changing strategy changes controlled outcome; invalid proof cannot qualify upgrade.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RMB",
+      "capability": "ACC",
+      "requires": [
+        "RM8",
+        "RMA"
+      ],
+      "label": "recognition",
+      "contract": "Append-only founder/route monuments, civic titles and era seals point to accepted contribution IDs; title criteria frozen.",
+      "interface": "attribute(contributionEvent, eraContract) -> recognition event",
+      "failure": "Event uniqueness prevents duplicate awards; corrections preserve historical record.",
+      "test": {
+        "id": "RTB",
+        "obligation": "Forged awards rejected; repeated attribution idempotent; old era seals cannot be newly fabricated.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJB",
+        "acceptance": "Forged awards rejected; repeated attribution idempotent; old era seals cannot be newly fabricated.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RMC",
+      "capability": "ACD",
+      "requires": [
+        "RM9",
+        "RM6"
+      ],
+      "label": "provenance",
+      "contract": "Regional records carry origin, game/real classification, correction chain and evidence; external utility remains ACE unresolved.",
+      "interface": "validateRecord(record) -> accepted record or rejection",
+      "failure": "Game events cannot become real-world observations by relabeling.",
+      "test": {
+        "id": "RTC",
+        "obligation": "Missing provenance rejected; corrections preserve prior record and link replacement.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJC",
+        "acceptance": "Missing provenance rejected; corrections preserve prior record and link replacement.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    },
+    {
+      "id": "RMD",
+      "capability": null,
+      "requires": [
+        "RM1"
+      ],
+      "label": "observer",
+      "contract": "Read-only snapshot consumed by existing Canvas/React shell; local input sends commands; animation may not mutate rules or state.",
+      "interface": "observe(state) -> readonly view; input -> command",
+      "failure": "Stale snapshot is display-only; rendering cannot mint resources or award success.",
+      "test": {
+        "id": "RTD",
+        "obligation": "Observer does not mutate canonical state; UI command replay equals headless command replay.",
+        "status": "NOT_EXECUTED"
+      },
+      "mission": {
+        "id": "RJD",
+        "acceptance": "Observer does not mutate canonical state; UI command replay equals headless command replay.",
+        "status": "PLANNED"
+      },
+      "evidence_status": "UNVERIFIED"
+    }
+  ],
+  "searches": {
+    "repository": {
+      "plans": [
+        {
+          "operators": [
+            "RX0",
+            "RX1",
+            "RX2",
+            "RX3",
+            "RX4",
+            "RX5",
+            "RX6",
+            "RX7",
+            "RX8",
+            "RX9",
+            "RXA",
+            "RXB",
+            "RXC",
+            "RXD"
+          ],
+          "facts": [
+            "RM0",
+            "RM1",
+            "RM2",
+            "RM3",
+            "RM4",
+            "RM5",
+            "RM6",
+            "RM7",
+            "RM8",
+            "RM9",
+            "RMA",
+            "RMB",
+            "RMC",
+            "RMD"
+          ],
+          "waves": [
+            [
+              "RX0"
+            ],
+            [
+              "RX1",
+              "RX6"
+            ],
+            [
+              "RX2",
+              "RX3",
+              "RXD"
+            ],
+            [
+              "RX4",
+              "RX7"
+            ],
+            [
+              "RX5",
+              "RX8"
+            ],
+            [
+              "RX9",
+              "RXA"
+            ],
+            [
+              "RXB",
+              "RXC"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 14,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 15,
+      "budget": 20000
+    },
+    "next_proof": {
+      "plans": [
+        {
+          "operators": [
+            "RX0",
+            "RX1",
+            "RX2",
+            "RX3",
+            "RX4",
+            "RX5",
+            "RXD"
+          ],
+          "facts": [
+            "RM0",
+            "RM1",
+            "RM2",
+            "RM3",
+            "RM4",
+            "RM5",
+            "RMD"
+          ],
+          "waves": [
+            [
+              "RX0"
+            ],
+            [
+              "RX1"
+            ],
+            [
+              "RX2",
+              "RX3",
+              "RXD"
+            ],
+            [
+              "RX4"
+            ],
+            [
+              "RX5"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 7,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 8,
+      "budget": 20000
+    },
+    "collective": {
+      "plans": [
+        {
+          "operators": [
+            "RX0",
+            "RX1",
+            "RX2",
+            "RX3",
+            "RX4",
+            "RX5",
+            "RX6",
+            "RX7",
+            "RX8",
+            "RX9",
+            "RXA",
+            "RXB",
+            "RXD"
+          ],
+          "facts": [
+            "RM0",
+            "RM1",
+            "RM2",
+            "RM3",
+            "RM4",
+            "RM5",
+            "RM6",
+            "RM7",
+            "RM8",
+            "RM9",
+            "RMA",
+            "RMB",
+            "RMD"
+          ],
+          "waves": [
+            [
+              "RX0"
+            ],
+            [
+              "RX1",
+              "RX6"
+            ],
+            [
+              "RX2",
+              "RX3",
+              "RXD"
+            ],
+            [
+              "RX4",
+              "RX7"
+            ],
+            [
+              "RX5",
+              "RX8"
+            ],
+            [
+              "RX9",
+              "RXA"
+            ],
+            [
+              "RXB"
+            ]
+          ],
+          "unresolved_facts": [],
+          "structural_steps": 13,
+          "status": "CONDITIONAL_PROJECTION"
+        }
+      ],
+      "expanded": 14,
+      "budget": 20000
+    }
+  },
+  "selection": {
+    "id": "RP2",
+    "status": "PROVISIONAL",
+    "basis": "Explicit maintainability preference for modular code; deterministic one-contract/one-path expansion. No measured effort/cost dominance over RP1.",
+    "challengers": [
+      {
+        "id": "RP0",
+        "kind": "retain_current_UI_orchestration",
+        "admissible": false,
+        "reason": "canonical transition remains tied to frame/wall clock"
+      },
+      {
+        "id": "RP1",
+        "kind": "single_headless_module_with_explicit_contract_sections",
+        "admissible": true
+      },
+      {
+        "id": "RP2",
+        "kind": "one_headless_file_per_contract_existing_UI_shell",
+        "admissible": true
+      }
+    ],
+    "unbound": [
+      "identity provider",
+      "database",
+      "hosting",
+      "multiplayer transport",
+      "test runner"
+    ],
+    "implementation_permission": "planned bindings only; gameplay not implemented by this projection"
+  },
+  "open_gaps": [
+    {
+      "id": "ACE",
+      "status": "UNRESOLVED",
+      "reason": "Data customer/use case and external utility test absent; fictional game events are not real regional observations."
+    },
+    {
+      "id": "GF",
+      "status": "UNRESOLVED",
+      "reason": "Existing Trajecta novelty definition and judge remain unvalidated."
+    },
+    {
+      "id": "AU1",
+      "status": "UNRESOLVED",
+      "reason": "Player engagement and recognition incentives unmeasured."
+    },
+    {
+      "id": "AU2",
+      "status": "UNRESOLVED",
+      "reason": "Effort, runtime costs and provider alternatives not calibrated."
+    },
+    {
+      "id": "AU3",
+      "status": "HYPOTHESIS",
+      "reason": "Identity + utility + recognition increases retention; test with players. The design's 40% delivery gain is illustrative, not measured."
+    },
+    {
+      "id": "AU4",
+      "status": "UNRESOLVED",
+      "reason": "Freeze recipes, region yields, trade rules, monument/title criteria and era boundaries."
+    }
+  ],
+  "states": {
+    "construction": [
+      "planned",
+      "awaiting_materials",
+      "building",
+      "operational"
+    ],
+    "transport": [
+      "idle",
+      "reserved",
+      "moving",
+      "blocked",
+      "delivered"
+    ],
+    "submission": [
+      "proposed",
+      "replayed",
+      "judged",
+      "accepted",
+      "rejected"
+    ],
+    "recognition": [
+      "pending",
+      "attributed",
+      "corrected"
+    ]
+  },
+  "trace_contract": [
+    "semantic_id",
+    "source_ref",
+    "rules_version",
+    "mission_id",
+    "actor_id",
+    "tick",
+    "command_id",
+    "previous_hash",
+    "next_hash",
+    "evidence_id"
+  ],
+  "global_invariants": [
+    {
+      "id": "AK1",
+      "rule": "Source presence is not gameplay verification; partial old capabilities are not admitted as complete."
+    },
+    {
+      "id": "AK2",
+      "rule": "Finite stocks conserve units across trees, carriers, inventories, work in process and outputs."
+    },
+    {
+      "id": "AK3",
+      "rule": "All participants observe the same ordered state; client input cannot mint resources or self-award recognition."
+    },
+    {
+      "id": "AK4",
+      "rule": "Minimal pixel visual; region resources reflect frozen region profiles."
+    },
+    {
+      "id": "AK5",
+      "rule": "Player-earned materials must fund construction beyond a documented finite bootstrap."
+    },
+    {
+      "id": "AK6",
+      "rule": "Historical recognition is permanent and grounded in contribution evidence; title criteria, era admission and community rights require explicit contracts."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "RT7",
+  "semantic_id": "RM7",
+  "capability": "ACA",
+  "mission_id": "RJ7",
+  "status": "CONFIGURED_CONTRACT_TESTED",
+  "seed_sha256": "596b76b4ce696a1a8586be1380aa73194bf4bb7e8b6792b14f2bdab1f5fb7189",
+  "code_path": "lib/aurum/sustainability.ts",
+  "code_sha256": "94f20f7234a7692bb2f84ede0723a214d265953b868c4b5d54b2d67b462cdeb9",
+  "test_path": "tests/aurum/sustainability.test.ts",
+  "test_sha256": "0f8a4dc70bb7cb030a31ea03058d87ba016c969597ab497b0e295e409aede7a2",
+  "mission_path": "missions/RJ7.json",
+  "mission_sha256": "b4e3b151df5bcaa1def7c466829b40e69d6c3eb0a218a22cad71b6c4fde63424",
+  "passed_tests": [
+    "ok 12 - RT7 RM7: explicit hunger, finite harvest and bounded regeneration"
+  ],
+  "test_output": "evidence/tests.tap",
+  "test_output_sha256": "fcf70419dceb79dce498a272ba91d4dd6e18a48962418c7ae384185fa98a7de1",
+  "evidence_guard": "Fixture/module-level behavior; does not certify absent production bindings, full game integration or empirical engagement."
+}

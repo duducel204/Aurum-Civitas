@@ -1,0 +1,14 @@
+{
+  "id": "RJD",
+  "module_id": "RMD",
+  "capability": null,
+  "requires": [
+    "RM1"
+  ],
+  "acceptance": "Observer does not mutate canonical state; UI command replay equals headless command replay.",
+  "test_id": "RTD",
+  "test_path": "tests/aurum/observer.test.ts",
+  "evidence_path": "evidence/RTD/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

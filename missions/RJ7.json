@@ -1,0 +1,15 @@
+{
+  "id": "RJ7",
+  "module_id": "RM7",
+  "capability": "ACA",
+  "requires": [
+    "RM2",
+    "RM6"
+  ],
+  "acceptance": "Food balance and harvesting limits; zero food and exhausted forest have declared consequences.",
+  "test_id": "RT7",
+  "test_path": "tests/aurum/sustainability.test.ts",
+  "evidence_path": "evidence/RT7/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

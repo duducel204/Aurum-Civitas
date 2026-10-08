@@ -1,0 +1,15 @@
+{
+  "id": "RJC",
+  "module_id": "RMC",
+  "capability": "ACD",
+  "requires": [
+    "RM9",
+    "RM6"
+  ],
+  "acceptance": "Missing provenance rejected; corrections preserve prior record and link replacement.",
+  "test_id": "RTC",
+  "test_path": "tests/aurum/provenance.test.ts",
+  "evidence_path": "evidence/RTC/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

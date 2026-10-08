@@ -1,0 +1,14 @@
+{
+  "id": "RJ2",
+  "module_id": "RM2",
+  "capability": "AC3",
+  "requires": [
+    "RM1"
+  ],
+  "acceptance": "Competing workers cannot take the last unit twice; construction fails without delivered inputs.",
+  "test_id": "RT2",
+  "test_path": "tests/aurum/economy.test.ts",
+  "evidence_path": "evidence/RT2/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

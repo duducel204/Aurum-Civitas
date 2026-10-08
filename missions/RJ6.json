@@ -1,0 +1,14 @@
+{
+  "id": "RJ6",
+  "module_id": "RM6",
+  "capability": "AC9",
+  "requires": [
+    "RM0"
+  ],
+  "acceptance": "Regional advantages match profiles; topology/resource IDs valid; render observes same map.",
+  "test_id": "RT6",
+  "test_path": "tests/aurum/regions.test.ts",
+  "evidence_path": "evidence/RT6/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

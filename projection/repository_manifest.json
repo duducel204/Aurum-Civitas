@@ -1,0 +1,181 @@
+{
+  "id": "AC-M2",
+  "seed_digest": "7a6d58d67ee53293fe92a7e9d6313bb7b9f8453e1d44d9fd06db28a8a0b619ea",
+  "bindings": [
+    {
+      "module_id": "RM0",
+      "implementation": "lib/aurum/rules.ts",
+      "test_id": "RT0",
+      "test_path": "tests/aurum/rules.test.ts",
+      "mission_id": "RJ0",
+      "mission_path": "missions/RJ0.json",
+      "evidence_path": "evidence/RT0/",
+      "runtime_owner": "RM0",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM1",
+      "implementation": "lib/aurum/simulation.ts",
+      "test_id": "RT1",
+      "test_path": "tests/aurum/simulation.test.ts",
+      "mission_id": "RJ1",
+      "mission_path": "missions/RJ1.json",
+      "evidence_path": "evidence/RT1/",
+      "runtime_owner": "RM1",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM2",
+      "implementation": "lib/aurum/economy.ts",
+      "test_id": "RT2",
+      "test_path": "tests/aurum/economy.test.ts",
+      "mission_id": "RJ2",
+      "mission_path": "missions/RJ2.json",
+      "evidence_path": "evidence/RT2/",
+      "runtime_owner": "RM2",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM3",
+      "implementation": "lib/aurum/transport.ts",
+      "test_id": "RT3",
+      "test_path": "tests/aurum/transport.test.ts",
+      "mission_id": "RJ3",
+      "mission_path": "missions/RJ3.json",
+      "evidence_path": "evidence/RT3/",
+      "runtime_owner": "RM3",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM4",
+      "implementation": "lib/aurum/replay.ts",
+      "test_id": "RT4",
+      "test_path": "tests/aurum/replay.test.ts",
+      "mission_id": "RJ4",
+      "mission_path": "missions/RJ4.json",
+      "evidence_path": "evidence/RT4/",
+      "runtime_owner": "RM4",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM5",
+      "implementation": "lib/aurum/judge.ts",
+      "test_id": "RT5",
+      "test_path": "tests/aurum/judge.test.ts",
+      "mission_id": "RJ5",
+      "mission_path": "missions/RJ5.json",
+      "evidence_path": "evidence/RT5/",
+      "runtime_owner": "RM5",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM6",
+      "implementation": "lib/aurum/regions.ts",
+      "test_id": "RT6",
+      "test_path": "tests/aurum/regions.test.ts",
+      "mission_id": "RJ6",
+      "mission_path": "missions/RJ6.json",
+      "evidence_path": "evidence/RT6/",
+      "runtime_owner": "RM6",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM7",
+      "implementation": "lib/aurum/sustainability.ts",
+      "test_id": "RT7",
+      "test_path": "tests/aurum/sustainability.test.ts",
+      "mission_id": "RJ7",
+      "mission_path": "missions/RJ7.json",
+      "evidence_path": "evidence/RT7/",
+      "runtime_owner": "RM7",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM8",
+      "implementation": "lib/aurum/membership.ts",
+      "test_id": "RT8",
+      "test_path": "tests/aurum/membership.test.ts",
+      "mission_id": "RJ8",
+      "mission_path": "missions/RJ8.json",
+      "evidence_path": "evidence/RT8/",
+      "runtime_owner": "RM8",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RM9",
+      "implementation": "lib/aurum/world.ts",
+      "test_id": "RT9",
+      "test_path": "tests/aurum/world.test.ts",
+      "mission_id": "RJ9",
+      "mission_path": "missions/RJ9.json",
+      "evidence_path": "evidence/RT9/",
+      "runtime_owner": "RM9",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RMA",
+      "implementation": "lib/aurum/contributions.ts",
+      "test_id": "RTA",
+      "test_path": "tests/aurum/contributions.test.ts",
+      "mission_id": "RJA",
+      "mission_path": "missions/RJA.json",
+      "evidence_path": "evidence/RTA/",
+      "runtime_owner": "RMA",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RMB",
+      "implementation": "lib/aurum/recognition.ts",
+      "test_id": "RTB",
+      "test_path": "tests/aurum/recognition.test.ts",
+      "mission_id": "RJB",
+      "mission_path": "missions/RJB.json",
+      "evidence_path": "evidence/RTB/",
+      "runtime_owner": "RMB",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RMC",
+      "implementation": "lib/aurum/provenance.ts",
+      "test_id": "RTC",
+      "test_path": "tests/aurum/provenance.test.ts",
+      "mission_id": "RJC",
+      "mission_path": "missions/RJC.json",
+      "evidence_path": "evidence/RTC/",
+      "runtime_owner": "RMC",
+      "status": "PROJECTED_NOT_CREATED"
+    },
+    {
+      "module_id": "RMD",
+      "implementation": "lib/aurum/observer.ts",
+      "test_id": "RTD",
+      "test_path": "tests/aurum/observer.test.ts",
+      "mission_id": "RJD",
+      "mission_path": "missions/RJD.json",
+      "evidence_path": "evidence/RTD/",
+      "runtime_owner": "RMD",
+      "status": "PROJECTED_NOT_CREATED"
+    }
+  ],
+  "migration": [
+    {
+      "source": "lib/game-engine.ts",
+      "to": [
+        "RM0",
+        "RM1",
+        "RM2",
+        "RM3"
+      ],
+      "policy": "Extract existing types/helpers then close semantic gaps; compatibility facade until callers migrated."
+    },
+    {
+      "source": "components/game/game-world.tsx",
+      "to": [
+        "RM1",
+        "RMD"
+      ],
+      "policy": "Move state transitions/build commands out; keep Canvas and React shell observing canonical state."
+    }
+  ],
+  "provider_bindings": []
+}

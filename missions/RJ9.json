@@ -1,0 +1,17 @@
+{
+  "id": "RJ9",
+  "module_id": "RM9",
+  "capability": "AC8",
+  "requires": [
+    "RM4",
+    "RM8",
+    "RM3",
+    "RM6"
+  ],
+  "acceptance": "Concurrent stock claims cannot overspend; retries cannot mint; cities agree on ordered checkpoint.",
+  "test_id": "RT9",
+  "test_path": "tests/aurum/world.test.ts",
+  "evidence_path": "evidence/RT9/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

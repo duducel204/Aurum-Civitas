@@ -1,0 +1,14 @@
+{
+  "id": "RJA",
+  "module_id": "RMA",
+  "capability": "ACB",
+  "requires": [
+    "RM5"
+  ],
+  "acceptance": "Changing strategy changes controlled outcome; invalid proof cannot qualify upgrade.",
+  "test_id": "RTA",
+  "test_path": "tests/aurum/contributions.test.ts",
+  "evidence_path": "evidence/RTA/",
+  "rules_policy": "Explicit configuration required; fixtures are not canonical game balance.",
+  "seed_status": "PROVISIONAL"
+}

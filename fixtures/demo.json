@@ -1,0 +1,22 @@
+{
+  "classification": "EXPERIMENTAL_FIXTURE_NOT_CANONICAL_BALANCE",
+  "semantic_ids": ["RM0", "RM1", "RM2", "RM3", "RM4", "RM5", "RMD"],
+  "note": "Sample values exercise configured contracts. Tick/capacity/recipes/bootstrap/mission horizon have NOT been selected by projection. Replace with a validated scenario to use other rules. Legacy timing/speeds and the ten-plank goal were retained where available.",
+  "rules": {
+    "version": "fixture-001", "mapSeed": "fixture-map-001", "tickMs": 100,
+    "capacity": 30, "harvestTicks": 20, "gridSize": 40,
+    "roadSpeed": 100, "offroadSpeed": 20, "allowOffroad": true,
+    "recipes": { "sawmill": { "inputs": {"wood": 1}, "outputs": {"planks": 1}, "ticks": 30 } },
+    "construction": { "storehouse": { "materials": {"planks": 2}, "ticks": 30 } },
+    "mission": { "id": "fixture-ten-planks", "resource": "planks", "delivered": 10, "maxTicks": 20000 }
+  },
+  "stores": [
+    {"id":"forest","pos":{"x":100,"y":140},"kind":"source","inventory":{"wood":25},"capacity":30,"incorporated":{},"buildTicks":0,"status":"operational"},
+    {"id":"sawmill","pos":{"x":380,"y":140},"kind":"producer","recipe":"sawmill","inventory":{},"capacity":30,"incorporated":{},"buildTicks":0,"status":"operational"},
+    {"id":"depot","pos":{"x":540,"y":140},"kind":"depot","inventory":{},"capacity":30,"incorporated":{},"buildTicks":0,"status":"operational"}
+  ],
+  "carriers": [
+    {"id":"worker-1","pos":{"x":100,"y":140},"cargo":{},"target":null,"source":null,"route":[],"waypoint":0,"roadVersion":0,"phase":"idle","harvest":0},
+    {"id":"worker-2","pos":{"x":380,"y":140},"cargo":{},"target":null,"source":null,"route":[],"waypoint":0,"roadVersion":0,"phase":"idle","harvest":0}
+  ]
+}
