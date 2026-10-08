@@ -90,6 +90,36 @@ Já existem economia local, transporte, construção, casas com energia e replay
 
 Ainda faltam multiplayer de produção, balanceamento com jogadores, reposição de recursos neste cenário e efeitos regionais como temperatura, chuva, agricultura e irradiância. A partida local não representa propriedade de terrenos nem uma simulação elétrica de engenharia.
 
+## Melhorar o jogo: tarefas para participantes
+
+O jogo precisa evoluir com quem joga. Participantes podem contribuir com testes, relatos de bugs, documentação, dados regionais, arte ou código. A tabela abaixo transforma as necessidades atuais em tarefas escolhíveis. **É um plano de contribuição; essas tarefas ainda não são missões disponíveis dentro do jogo.**
+
+Os IDs DEV identificam propostas de trabalho. Ao implementar uma delas, vincule-a aos IDs do Seed, aos arquivos alterados e à evidência de conclusão. A ordem prioriza tornar a experiência local sustentável antes de ampliar o mundo compartilhado.
+
+| ID | Tarefa e resultado esperado | Como comprovar a conclusão | Depende de |
+| --- | --- | --- | --- |
+| DEV-01 | **Testar a primeira partida.** Registrar dificuldades para instalar, escolher um lote, construir e salvar. | Relato com versão/commit, passos, resultado esperado e observado; replay quando disponível. Outra pessoa consegue reproduzir o problema ou seguir o guia corrigido. | — |
+| DEV-02 | **Explicar bloqueios na interface.** Mostrar por que uma obra ou casa não funciona: acesso, materiais, cobertura ou capacidade elétrica. | Cada bloqueio exibe sua causa calculada pelo núcleo e uma orientação útil; conferir os casos no mapa. | — |
+| DEV-03 | **Repor materiais em Itaipu.** Conectar fontes e cadeias de produção à logística do cenário, aproveitando a economia existente. | Uma partida produz e entrega novos materiais após consumir o estoque inicial; fontes finitas não ficam negativas; replay conserva os recursos. | — |
+| DEV-04 | **Balancear construção e energia.** Ajustar custos, tempos, estoques e alcance com base em partidas registradas. | Comparar cenários antes/depois com métricas de tempo de construção, consumo e casas atendidas; versionar regras e justificar mudanças. | DEV-01, DEV-03 |
+| DEV-05 | **Dar função aos moradores.** Definir uma primeira necessidade, como alimentação, e sua cadeia de atendimento. | Necessidade, consumo e efeito da falta ficam explícitos; uma missão demonstra abastecimento e escassez, sem criar recursos do nada. | DEV-03 |
+| DEV-06 | **Adicionar características regionais.** Implementar primeiro um fator, como irradiância afetando geração solar, com dados e premissas declarados. | Duas condições regionais produzem efeitos diferentes e reproduzíveis; fonte, unidade, versão e regra de dados ausentes estão documentadas. | DEV-04 |
+| DEV-07 | **Adicionar outra região jogável.** Criar um cenário versionado com mapa, recursos e infraestrutura próprios. | A região inicia sem alterar Itaipu; atribuição e hashes das fontes são preservados; construção, transporte e replay passam nas verificações. | DEV-03 |
+| DEV-08 | **Criar uma sessão compartilhada mínima.** Fazer dois participantes agir no mesmo mundo sob validação de um servidor. | Ambos observam o mesmo estado; comandos inválidos e duplicados são tratados; reconexão recupera a sessão e o histórico pode ser verificado. | Contrato de sessão, identidade, persistência e ordem de comandos definidos antes da implementação |
+
+### Escolher e entregar uma tarefa
+
+1. Escolha um ID e consulte as [issues](https://github.com/duducel204/Aurum-Civitas/issues) e os PRs para evitar trabalho duplicado. Abra uma issue descrevendo o recorte que pretende resolver.
+2. Para código, crie uma branch a partir da versão de trabalho acordada. Se não tiver permissão de escrita, use um fork e envie um PR.
+3. Faça uma melhoria pequena e revisável. Descreva o comportamento esperado antes de alterar as regras; preserve ruas existentes, estoques e reprodução determinística.
+4. Inclua evidência apropriada: passos e imagens para interface; teste de regra ou replay para simulação; fonte e versão para dados regionais. Para mudanças de código, execute os comandos de verificação abaixo que se aplicarem.
+5. No PR, informe o ID da tarefa, o que mudou, como testar e os limites conhecidos. A revisão confirma a contribuição antes de integrá-la.
+
+**Bom primeiro passo:** DEV-01 para quem quer jogar e relatar; DEV-02 para quem quer começar pela interface. A cadeia de reposição DEV-03 é o próximo avanço que permite continuar construindo quando o depósito inicial acaba.
+
+Contribuições ficam rastreáveis por issues, commits, PRs e evidências. Reconhecimento dentro do jogo, títulos e benefícios para contribuidores ainda precisam de regras e implementação; esta lista não concede recompensas automaticamente.
+
+
 ## Comandos para desenvolvimento
 
 ```sh
