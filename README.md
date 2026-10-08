@@ -92,7 +92,7 @@ Ainda faltam multiplayer de produção, balanceamento com jogadores, reposição
 
 ## Melhorar o jogo: tarefas para participantes
 
-**Itaipu é o mapa base de todo o desenvolvimento inicial.** A [listagem de 80 novas tarefas para issues](docs/TAREFAS_ITAIPU.md) cobre visual, jogabilidade, construção, economia, população, cooperação e contribuição, comparando as necessidades com a projeção e a materialização existentes. IDs DEV-09 a DEV-88 complementam os oito abaixo; cada tarefa tem entrega, critério de conclusão e dependências.
+**Itaipu é o mapa base de todo o desenvolvimento inicial.** A [listagem de tarefas para issues](docs/TAREFAS_ITAIPU.md) cobre visual, jogabilidade, construção, economia, população, cooperação e contribuição, comparando as necessidades com a projeção e a materialização existentes. A matriz DEV-09 a DEV-88 e a extensão digital DEV-89 a DEV-100 complementam os oito abaixo; cada tarefa tem entrega, critério de conclusão e dependências. A extensão planeja data centers, hardware, energia, refrigeração, fibra e projeção de demanda futura no mesmo mapa; ainda não está implementada.
 
 O jogo precisa evoluir com quem joga. Participantes podem contribuir com testes, relatos de bugs, documentação, dados regionais, arte ou código. A tabela abaixo transforma as necessidades atuais em tarefas escolhíveis. **É um plano de contribuição; essas tarefas ainda não são missões disponíveis dentro do jogo.**
 
