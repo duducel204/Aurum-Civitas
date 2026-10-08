@@ -1,0 +1,1230 @@
+{
+  "id": "AC-TASK-VERIFY-1",
+  "tasksTotal": 100,
+  "localVerified": 40,
+  "pending": 60,
+  "taskSeedHash": "8895b1cb7e810712f01612c2f0b2b8a891e14b6e0b75cf3b028eeadb1621235f",
+  "testsPassed": 28,
+  "browserFlows": 9,
+  "releaseBrowserFlows": 9,
+  "remoteCI": "PENDING_GITHUB_RUN",
+  "additional": [
+    {
+      "id": "AC-001",
+      "issue": 5,
+      "implementation": "docs/ARCHITECTURE.md",
+      "status": "DOCUMENTED",
+      "evidence": "architecture references checked against manifests and implementation"
+    }
+  ],
+  "caveat": "Local evidence is not production multiplayer, independent review, external utility or official balance approval",
+  "tasks": [
+    {
+      "id": "DEV-01",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-02",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/presentation.ts",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/presentation.ts": "7f8a19f5cbeace0af522c6af6716e70d93c2c4113cd1105ae12e874d8db9d199",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-03",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/simulation.ts",
+      "test": "tests/aurum/itaipu-economy.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/simulation.ts": "45012ca8b22813c87b4380e0cb496a1611e3ac3d3a00009660366fb4796f6edf",
+        "tests/aurum/itaipu-economy.test.ts": "14cf2b05bbde3040764debb14454d98003a72d00268b402b2a802c86a761aebe",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-04",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-01",
+        "DEV-03"
+      ],
+      "cause": "Comparação/calibração de parâmetros de construção/energia ainda não executada; QA não decide balanceamento oficial."
+    },
+    {
+      "id": "DEV-05",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-03"
+      ],
+      "cause": "Contrato de necessidade dos moradores e efeito de escassez ainda aberto no Seed."
+    },
+    {
+      "id": "DEV-06",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-04"
+      ],
+      "cause": "Fator regional, origem, unidade e binding ao loop ainda pendentes."
+    },
+    {
+      "id": "DEV-07",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [],
+      "cause": "Expansão para outro mapa explicitamente adiada."
+    },
+    {
+      "id": "DEV-08",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [],
+      "cause": "Bindings de sessão autoritativa, identidade e persistência ainda abertos."
+    },
+    {
+      "id": "DEV-09",
+      "issue": 16,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "docs/VISUAL.md",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "docs/VISUAL.md": "cdbbadc528a8ed9e923de485c0eedd9b6211e0e33e0d210f9a8512744c734795",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-10",
+      "issue": 17,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-11",
+      "issue": 18,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-12",
+      "issue": 19,
+      "requires": [
+        "DEV-10"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-13",
+      "issue": 20,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-14",
+      "issue": 21,
+      "requires": [
+        "DEV-13"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-15",
+      "issue": 22,
+      "requires": [
+        "DEV-10"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-16",
+      "issue": 23,
+      "requires": [
+        "DEV-12"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-17",
+      "issue": 24,
+      "requires": [
+        "DEV-02"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-18",
+      "issue": 25,
+      "requires": [
+        "DEV-02"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/presentation.ts",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/presentation.ts": "7f8a19f5cbeace0af522c6af6716e70d93c2c4113cd1105ae12e874d8db9d199",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-19",
+      "issue": 26,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/camera.ts",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/camera.ts": "59d9b8362ba09242726e5c7f8e49e489e9d70af76da839770ac22fd9fe6e7cd8",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-20",
+      "issue": 27,
+      "requires": [
+        "DEV-18"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-21",
+      "issue": 28,
+      "requires": [
+        "DEV-09"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "app/globals.css",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "app/globals.css": "acda96294b00ecc98caa31e0fe30683b2402134257fa2dd6992499c2bd37a577",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-22",
+      "issue": 29,
+      "requires": [
+        "DEV-17",
+        "DEV-21"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-23",
+      "issue": 30,
+      "requires": [
+        "DEV-16"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-24",
+      "issue": 31,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-25",
+      "issue": 32,
+      "requires": [
+        "DEV-01",
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/tutorial.ts",
+      "test": "tests/aurum/tutorial.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/tutorial.ts": "3c3a1cd535001c4598e6db1e0170d8b5f89e0b15768d6d4abc64f6e7814ff2be",
+        "tests/aurum/tutorial.test.ts": "204f622fa95f0bf2895f62d7ee08e16644cf62d2e4889c23f94d8531107c0c8e",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-26",
+      "issue": 33,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-27",
+      "issue": 34,
+      "requires": [
+        "DEV-03",
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-28",
+      "issue": 35,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-29",
+      "issue": 36,
+      "status": "PENDING",
+      "requires": [
+        "DEV-25"
+      ],
+      "cause": "Metas adicionais versionadas ainda não formalizadas no juiz."
+    },
+    {
+      "id": "DEV-30",
+      "issue": 37,
+      "status": "PENDING",
+      "requires": [
+        "DEV-04"
+      ],
+      "cause": "Integração não materializada; depende de DEV-04."
+    },
+    {
+      "id": "DEV-31",
+      "issue": 38,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/local-save.ts",
+      "test": "tests/aurum/local-save.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/local-save.ts": "9b544e83150aa6666513127dac13e68dc00557f9358eb551d5844e3a1df87400",
+        "tests/aurum/local-save.test.ts": "c171c0a6b191c0df50cacf940dc2f2ba05b0b91dea2fb3c848bd9e6f0b8c199c",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-32",
+      "issue": 39,
+      "requires": [
+        "DEV-31"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/local-save.ts",
+      "test": "tests/aurum/local-save.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/local-save.ts": "9b544e83150aa6666513127dac13e68dc00557f9358eb551d5844e3a1df87400",
+        "tests/aurum/local-save.test.ts": "c171c0a6b191c0df50cacf940dc2f2ba05b0b91dea2fb3c848bd9e6f0b8c199c",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-33",
+      "issue": 40,
+      "status": "PENDING",
+      "requires": [
+        "DEV-03"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-34",
+      "issue": 41,
+      "status": "PENDING",
+      "requires": [
+        "DEV-33"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-35",
+      "issue": 42,
+      "status": "PENDING",
+      "requires": [
+        "DEV-34"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-36",
+      "issue": 43,
+      "status": "PENDING",
+      "requires": [
+        "DEV-04"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-37",
+      "issue": 44,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-38",
+      "issue": 45,
+      "requires": [
+        "DEV-18",
+        "DEV-37"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-39",
+      "issue": 46,
+      "status": "PENDING",
+      "requires": [
+        "DEV-18",
+        "DEV-33"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-40",
+      "issue": 47,
+      "status": "PENDING",
+      "requires": [
+        "DEV-03",
+        "DEV-36"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-41",
+      "issue": 48,
+      "requires": [
+        "DEV-03"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "fixtures/itaipu-scenario.json",
+      "test": "tests/aurum/itaipu-economy.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "fixtures/itaipu-scenario.json": "b1dec1fce3e65575c5820b7b9700e6e251e06843f0a9b38e78443171ffd31e22",
+        "tests/aurum/itaipu-economy.test.ts": "14cf2b05bbde3040764debb14454d98003a72d00268b402b2a802c86a761aebe",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-42",
+      "issue": 49,
+      "requires": [
+        "DEV-41"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "fixtures/itaipu-scenario.json",
+      "test": "tests/aurum/itaipu-economy.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "fixtures/itaipu-scenario.json": "b1dec1fce3e65575c5820b7b9700e6e251e06843f0a9b38e78443171ffd31e22",
+        "tests/aurum/itaipu-economy.test.ts": "14cf2b05bbde3040764debb14454d98003a72d00268b402b2a802c86a761aebe",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-43",
+      "issue": 50,
+      "status": "PENDING",
+      "requires": [
+        "DEV-03"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-44",
+      "issue": 51,
+      "status": "PENDING",
+      "requires": [
+        "DEV-03"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-45",
+      "issue": 52,
+      "status": "PENDING",
+      "requires": [
+        "DEV-41",
+        "DEV-42"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-46",
+      "issue": 53,
+      "requires": [
+        "DEV-17"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-47",
+      "issue": 54,
+      "requires": [
+        "DEV-46"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/regional-panels.tsx",
+      "test": "tests/aurum/presentation.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "components/game/regional-panels.tsx": "2dc349a44a65541c8260c5bda66dabe61d27e20bfa0e65243d0966bb7dfa65fa",
+        "tests/aurum/presentation.test.ts": "76aefffb7925b0346ad341e4a27e52665c6634f62999f24f48127fdad0216814",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-48",
+      "issue": 55,
+      "requires": [
+        "DEV-47"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/geography.ts",
+      "test": "tests/aurum/route-cache.test.ts",
+      "evidence": "evidence/task-benchmark.json",
+      "hashes": {
+        "lib/aurum/geography.ts": "8b8940cdb1847e6d4ab372ea2e0057a3454591b9d3fe5ae7bbbeec22a903aca6",
+        "tests/aurum/route-cache.test.ts": "5f3b4618ba9f1bfea9f9563456f1f8d2c66ad673b9001d2fd527f49d726ad8c4",
+        "evidence/task-benchmark.json": "6586e21ce1a38f8f3ee6b8fbf2613a5ebeb8e3c2cad3f0f8ecb659822b0a1eca"
+      }
+    },
+    {
+      "id": "DEV-49",
+      "issue": 56,
+      "status": "PENDING",
+      "requires": [
+        "DEV-05"
+      ],
+      "cause": "Integração não materializada; depende de DEV-05."
+    },
+    {
+      "id": "DEV-50",
+      "issue": 57,
+      "status": "PENDING",
+      "requires": [
+        "DEV-49",
+        "DEV-06"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-51",
+      "issue": 58,
+      "status": "PENDING",
+      "requires": [
+        "DEV-41"
+      ],
+      "cause": "Regeneração RM7 ainda não ligada ao estoque de fontes do loop; taxas e contabilidade precisam de binding versionado."
+    },
+    {
+      "id": "DEV-52",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-51"
+      ],
+      "cause": "Integração não materializada; depende de DEV-51."
+    },
+    {
+      "id": "DEV-53",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-06"
+      ],
+      "cause": "Integração não materializada; depende de DEV-06."
+    },
+    {
+      "id": "DEV-54",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-49",
+        "DEV-53"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-55",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-50",
+        "DEV-53"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-56",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-52",
+        "DEV-53"
+      ],
+      "cause": "Integração não materializada; depende de DEV-52, DEV-53."
+    },
+    {
+      "id": "DEV-57",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-29",
+        "DEV-52"
+      ],
+      "cause": "Integração não materializada; depende de DEV-29, DEV-52."
+    },
+    {
+      "id": "DEV-58",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-57"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-59",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-04"
+      ],
+      "cause": "Integração não materializada; depende de DEV-04."
+    },
+    {
+      "id": "DEV-60",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-03",
+        "DEV-59"
+      ],
+      "cause": "Requer sessões longas consentidas com jogadores reais; não pode ser certificado por bots."
+    },
+    {
+      "id": "DEV-61",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-30"
+      ],
+      "cause": "Integração não materializada; depende de DEV-30."
+    },
+    {
+      "id": "DEV-62",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-47",
+        "DEV-52"
+      ],
+      "cause": "Integração não materializada; depende de DEV-47, DEV-52."
+    },
+    {
+      "id": "DEV-63",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-81",
+        "DEV-82"
+      ],
+      "cause": "Integração não materializada; depende de DEV-81, DEV-82."
+    },
+    {
+      "id": "DEV-64",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-52",
+        "DEV-73"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-65",
+      "issue": null,
+      "requires": [
+        "DEV-15"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/map-renderer.ts",
+      "test": "tests/aurum/rendering.test.ts",
+      "evidence": "evidence/task-benchmark.json",
+      "hashes": {
+        "lib/aurum/map-renderer.ts": "74c318c0b2c8112fcaf566078ba84e9f451a9ce9d321211b0a767fd182d30282",
+        "tests/aurum/rendering.test.ts": "98b459377f5246fe862600ae63a7435807f9209af888a2ede374777752b0baad",
+        "evidence/task-benchmark.json": "6586e21ce1a38f8f3ee6b8fbf2613a5ebeb8e3c2cad3f0f8ecb659822b0a1eca"
+      }
+    },
+    {
+      "id": "DEV-66",
+      "issue": null,
+      "requires": [
+        "DEV-48",
+        "DEV-65"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/benchmark-tasks.ts",
+      "evidence": "evidence/task-benchmark.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/benchmark-tasks.ts": "fb81c7c9e9ae3499f3aa6627ad4ec1c55878ed11c0d7785a4fb269501abe7dd5",
+        "evidence/task-benchmark.json": "6586e21ce1a38f8f3ee6b8fbf2613a5ebeb8e3c2cad3f0f8ecb659822b0a1eca"
+      }
+    },
+    {
+      "id": "DEV-67",
+      "issue": null,
+      "requires": [
+        "DEV-20",
+        "DEV-32"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "components/game/itaipu-world.tsx",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "components/game/itaipu-world.tsx": "0064b846b807def4ea8592a5279cd4e56b144763c7b4e461e1673298f271b959",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-68",
+      "issue": null,
+      "requires": [
+        "DEV-32"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/local-save.ts",
+      "test": "tests/aurum/local-save.test.ts",
+      "evidence": "evidence/browser-qa.json",
+      "hashes": {
+        "lib/aurum/local-save.ts": "9b544e83150aa6666513127dac13e68dc00557f9358eb551d5844e3a1df87400",
+        "tests/aurum/local-save.test.ts": "c171c0a6b191c0df50cacf940dc2f2ba05b0b91dea2fb3c848bd9e6f0b8c199c",
+        "evidence/browser-qa.json": "da1f6f7e583e4bc20336af8fa6bcd80794c56e006827c6681aacf80b06b97cd9"
+      }
+    },
+    {
+      "id": "DEV-69",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-34",
+        "DEV-44"
+      ],
+      "cause": "Integração não materializada; depende de DEV-34, DEV-44."
+    },
+    {
+      "id": "DEV-70",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-32"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-71",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": ".github/workflows/quality.yml",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        ".github/workflows/quality.yml": "162ff81c175c53eea75377a27b22eb102febe52ad4fdfde012e1a8f41a475155",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      },
+      "remoteCI": "PENDING_GITHUB_RUN"
+    },
+    {
+      "id": "DEV-72",
+      "issue": null,
+      "requires": [
+        "DEV-67",
+        "DEV-71"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "scripts/package-release.mjs",
+      "test": "scripts/browser-qa.mjs",
+      "evidence": "evidence/release-browser-qa.json",
+      "hashes": {
+        "scripts/package-release.mjs": "52f153211ec591b026eb01029650831808d1e1d01c0b7a6abfb587ea72f7edd3",
+        "scripts/browser-qa.mjs": "09da079cba9c3c7579c7013a7ad38a70d2ab1c14c367923516f5f894c971a8f2",
+        "evidence/release-browser-qa.json": "ad68e4dd10080fb809b76e37acf8d7dd071f2d7d0d4b4686b3c4ea2523b67456"
+      }
+    },
+    {
+      "id": "DEV-73",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-08"
+      ],
+      "cause": "Backend/contrato de servidor ainda sem binding de produção."
+    },
+    {
+      "id": "DEV-74",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-08"
+      ],
+      "cause": "Provedor de identidade verificável ainda não selecionado/integrado."
+    },
+    {
+      "id": "DEV-75",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-73",
+        "DEV-74"
+      ],
+      "cause": "Armazenamento durável ainda sem binding e prova de reinício."
+    },
+    {
+      "id": "DEV-76",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-75"
+      ],
+      "cause": "Integração não materializada; depende de DEV-75."
+    },
+    {
+      "id": "DEV-77",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-74"
+      ],
+      "cause": "Integração não materializada; depende de DEV-74."
+    },
+    {
+      "id": "DEV-78",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-75",
+        "DEV-77"
+      ],
+      "cause": "Integração não materializada; depende de DEV-75, DEV-77."
+    },
+    {
+      "id": "DEV-79",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-73",
+        "DEV-74"
+      ],
+      "cause": "Integração não materializada; depende de DEV-73, DEV-74."
+    },
+    {
+      "id": "DEV-80",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-56",
+        "DEV-74"
+      ],
+      "cause": "Verificador externo de origem regional ainda sem integração."
+    },
+    {
+      "id": "DEV-81",
+      "issue": null,
+      "requires": [],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "lib/aurum/contributions.ts",
+      "test": "tests/aurum/contributions.test.ts",
+      "evidence": "evidence/task-tests.tap",
+      "hashes": {
+        "lib/aurum/contributions.ts": "17c0e564347527b0e97c281e4cc8898b59d36ba8b60fe1efefe3d2861eea885d",
+        "tests/aurum/contributions.test.ts": "ec82a3c35525ea86305c7553bb4bcdd5dcca1790577e347d30d669a5a344ab44",
+        "evidence/task-tests.tap": "fcc816c9d61329631ac570957793de8c7b727752768a87d4e11310a6465ef05d"
+      }
+    },
+    {
+      "id": "DEV-82",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-74",
+        "DEV-81"
+      ],
+      "cause": "Adaptador de commit/diff e revisão independente real ainda pendente."
+    },
+    {
+      "id": "DEV-83",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-82"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-84",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-82"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-85",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-83",
+        "DEV-84"
+      ],
+      "cause": "Integração não materializada; depende de DEV-83, DEV-84."
+    },
+    {
+      "id": "DEV-86",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-63",
+        "DEV-85"
+      ],
+      "cause": "Integração não materializada; depende de DEV-63, DEV-85."
+    },
+    {
+      "id": "DEV-87",
+      "issue": null,
+      "requires": [
+        "DEV-71"
+      ],
+      "status": "LOCAL_VERIFIED",
+      "implementation": "scripts/drift-report.mjs",
+      "test": "scripts/drift-report.mjs",
+      "evidence": "evidence/drift-report.json",
+      "hashes": {
+        "scripts/drift-report.mjs": "63aa77307a83691bf11d82aea23db3ae6348dc7f77362e92ef039b5e53745d65",
+        "evidence/drift-report.json": "09f41f8377154366c6dd56462403f508d3efe4a4cf44186da9a0b20a8bfe8b09"
+      }
+    },
+    {
+      "id": "DEV-88",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-80",
+        "DEV-85"
+      ],
+      "cause": "Consumidor externo e critério de utilidade observada ainda ausentes."
+    },
+    {
+      "id": "DEV-89",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-43",
+        "DEV-87"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-90",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-89",
+        "DEV-56"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-91",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-89",
+        "DEV-43",
+        "DEV-40"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-92",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-89",
+        "DEV-37"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-93",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-90",
+        "DEV-91",
+        "DEV-92"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-94",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-89",
+        "DEV-91"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-95",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-91",
+        "DEV-92",
+        "DEV-93",
+        "DEV-94"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-96",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-95"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-97",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-96",
+        "DEV-39"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-98",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-95",
+        "DEV-52",
+        "DEV-59"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-99",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-17",
+        "DEV-95",
+        "DEV-97",
+        "DEV-98"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    },
+    {
+      "id": "DEV-100",
+      "issue": null,
+      "status": "PENDING",
+      "requires": [
+        "DEV-96",
+        "DEV-97",
+        "DEV-98",
+        "DEV-99"
+      ],
+      "cause": "Nova regra [S]: Seed diff e políticas/parametrização ainda não selecionados; não foram inventados silenciosamente."
+    }
+  ]
+}

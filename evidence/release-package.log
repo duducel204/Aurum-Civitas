@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> ai-studio-applet@0.1.0 package:release
+> node scripts/package-release.mjs
+
+{"archive":".release/aurum-itaipu.tgz","bytes":25331556,"sha256":"613858242314179dead19ee2981d9412d2900d2b46e6082819214bf48e64188f"}

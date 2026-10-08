@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> ai-studio-applet@0.1.0 benchmark:tasks
+> node --experimental-strip-types scripts/benchmark-tasks.ts
+
+{"runtime":"v24.19.0","platform":"linux","architecture":"x64","fixture":"itaipu-scenario.json","cache":{"iterations":100,"trials":5,"statistic":"median wall time","uncachedMs":322.40420300000005,"cachedMs":151.34751199999982,"speedup":2.1302246646776752,"equivalent":true},"culling":{"before":3692,"after":43,"excluded":3649,"viewport":{"width":960,"height":660},"view":{"center":{"x":1905,"y":2565},"width":900}},"tickBudget":{"sampleTicks":20,"totalSimulationMs":183.6915439999998,"meanSimulationMs":9.184577199999989,"configuredTickMs":250,"skippedEffects":0,"routeTiming":"Separate cache section above","renderTiming":"Real browser last-frame profile in diagnostic download"},"limits":"Synthetic repeated queries and culled feature count on this machine; no FPS or production-scale guarantee."}

@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@layer base {
+  button, select, input:not([type="checkbox"]), summary {
+    min-height: 44px;
+  }
+  button, select, summary { cursor: pointer; }
+  :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  button:disabled { cursor: not-allowed; opacity: .45; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+}
+
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;

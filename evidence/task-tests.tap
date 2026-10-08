@@ -1,0 +1,41 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> ai-studio-applet@0.1.0 test
+> node --experimental-strip-types --test tests/aurum/*.test.ts
+
+✔ RTA RMA: independently reviewed replay evidence required for upgrades (197.328836ms)
+✔ RT2 RM2: last finite unit, recipe balance and delivered construction (75.10087ms)
+✔ RTE RME: supplied map hashes, 4,977 free existing roads and protected placement (151.039365ms)
+✔ RTF RMF: real-map delivery, inhabited home, solar, substation and identical replay (3331.034203ms)
+✔ RTF RMF: finite distribution and blackout remove service without creating materials (18.977025ms)
+✔ DEV-03: wood physically reaches sawmill, planks reach depot, stocks remain conserved (3126.073801ms)
+✔ RT5 RM5: false success rejected and matched runs independently checked (577.025397ms)
+✔ DEV-31/32/68: reload verifies rules and state; tampering and quota preserve prior save (33.177681ms)
+✔ RT8 RM8: authenticated boundary and cross-territory rights (0.844119ms)
+✔ RTD RMD: view cannot mutate nested canonical state (1.745456ms)
+✔ DEV-02/17/18/26/27/37/38/46/47: projection is read-only, totals reconcile and blocked cargo explains route (9.22023ms)
+✔ DEV-38: current-state prediction matches an operational house when state has not changed (404.537872ms)
+✔ RTC RMC: provenance required, append corrections and never relabel fiction as reality (4.094039ms)
+✔ RTB RMB: permanent idempotent monuments, explicit era bounds and forged awards rejected (78.911753ms)
+✔ RT6 RM6: all archetypes explicit, region topology and production advantages (1.411944ms)
+✔ DEV-14/15/19/65: bounded camera, minimap positions and feature culling (33.045994ms)
+✔ RT4 RM4: exact replay, tampering, truncation and incompatible rules (175.296977ms)
+✔ DEV-48: cache is equivalent, invalidates mutations and refuses caller poisoning (2.176515ms)
+✔ RT0 RM0: mandatory numeric contracts and recipe versions (2.52619ms)
+✔ RT1 RM1: deterministic ticks, exact ordering and rejected commands (13.432318ms)
+✔ RT7 RM7: explicit hunger, finite harvest and bounded regeneration (0.879192ms)
+✔ RT3 RM3: persistent progress and measured connected-road benefit (54.936525ms)
+✔ RT3 RM3: disconnected road blocks without teleporting or dropping cargo (56.179595ms)
+✔ RT3 RM3: base inventory physically supplies sawmill and bounded delivery waits (55.166551ms)
+✔ DEV-25: stages require observed house, physical delivery, construction and service (2.606151ms)
+✔ RT9/RT4 RM9/RM4: ordered cross-city replay reproduces canonical checkpoint (26.938154ms)
+✔ RT9 RM9: shared order, finite transit, retries, concurrent claims and checkpoint recovery (1.779247ms)
+✔ RT9 RM9: disconnected routes and capacity-limited arrival conserve transit (0.414614ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3541.079784

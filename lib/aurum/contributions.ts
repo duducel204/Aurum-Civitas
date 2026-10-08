@@ -4,6 +4,11 @@ import { hash } from "./replay.ts";
 import type { Trace } from "./replay.ts";
 import type { Principal } from "./membership.ts";
 export const semanticId = "RMA";
+// DEV-81: explicit registry includes AC-IM1. Unknown/future IDs stay rejected.
+export const contributionModuleIds = new Set([
+  ...Array.from({ length: 10 }, (_, i) => `RM${i}`),
+  'RMA', 'RMB', 'RMC', 'RMD', 'RME', 'RMF',
+]);
 export type Contribution = {
   id: string;
   actorId: string;
@@ -45,7 +50,7 @@ export async function qualify(
     submission.sourceRef === submission.parentRef ||
     !/^[a-f0-9]{64}$/.test(submission.diffHash) ||
     !submission.semanticIds.length ||
-    submission.semanticIds.some((id) => !/^RM[0-9A-D]$/.test(id)) ||
+    submission.semanticIds.some((id) => !contributionModuleIds.has(id)) ||
     !submission.era ||
     !["founder", "route", "upgrade"].includes(submission.kind) ||
     !review.accepted ||

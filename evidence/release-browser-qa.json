@@ -1,0 +1,64 @@
+{
+  "browser": "153.0.8010.0",
+  "origin": "http://127.0.0.1:3020",
+  "releaseServer": ".release/app/server.js",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "DEV-01",
+      "flow": "install/build → select lot → construct → deliver → serviced home",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-32",
+      "flow": "export/import verified replay",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-31",
+      "flow": "reload recovers exact journal, remains paused",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-68",
+      "flow": "bad file preserves valid session",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-19",
+      "flow": "keyboard pause, input suppression",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-23/25",
+      "flow": "preferences survive reload without changing game hash; tutorial only completes on observed service",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-13/14/15/24",
+      "flow": "layers, zoom, pause help",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-20/21/22/67",
+      "flow": "390px touch select/build/pause/save, no horizontal main overflow; accessible list",
+      "status": "PASS"
+    },
+    {
+      "id": "DEV-16",
+      "flow": "optional real WebAudio signal follows canonical event; camera renders do not repeat sound",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "limits": "Chromium desktop and touch emulation; no physical phone, Firefox or Safari certification"
+}

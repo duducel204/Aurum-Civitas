@@ -1,0 +1,32 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { fixture } from './fixture.ts';
+import { canonical } from '../../lib/aurum/rules.ts';
+import { constructionPreview,logisticsReport,guidance,houseImpact,distributionReport } from '../../lib/aurum/presentation.ts';
+import { step } from '../../lib/aurum/simulation.ts';
+import { createState } from '../../lib/aurum/simulation.ts';
+import { readFileSync } from 'node:fs';
+test('DEV-02/17/18/26/27/37/38/46/47: projection is read-only, totals reconcile and blocked cargo explains route',()=>{
+  const f=fixture(),before=canonical(f.state);
+  const report=logisticsReport(f.state,f.rules);
+  for(const r of Object.keys(report.total))assert.equal(report.total[r],(report.stored[r]??0)+(report.transit[r]??0)+(report.work[r]??0)+(report.incorporated[r]??0));
+  assert.equal(canonical(f.state),before);
+  f.state.carriers[0].phase='blocked';f.state.carriers[0].route=[];
+  assert.equal(logisticsReport(f.state,f.rules).blocked[0].reason,'no-route');
+  f.state.carriers[0].phase='idle';
+  assert.equal(logisticsReport(f.state,f.rules).blocked.length,0);
+  assert.ok(guidance['no-delivery-route'].includes('Depósito'));
+  const preview=constructionPreview({x:20,y:20},'house',f.state,f.rules);
+  assert.equal(preview.reason,'unknown-construction');
+});
+test('DEV-38: current-state prediction matches an operational house when state has not changed',()=>{
+  const f=JSON.parse(readFileSync(new URL('../../fixtures/itaipu-scenario.json',import.meta.url),'utf8'));
+  const s=createState(f.rules,f.stores,f.carriers),p=f.suggestions[0],before=canonical(s);
+  const prediction=houseImpact(p,'house',s,f.rules)!;
+  assert.equal(canonical(s),before);
+  let next=step(s,[{id:'forecast',kind:'build',role:'house',...p}],f.rules);
+  while(next.tick<300 && next.stores.find(s=>s.id==='site:forecast')!.status!=='operational')next=step(next,[],f.rules);
+  assert.equal(next.services!.demand-s.services!.demand,prediction.addedDemand);
+  assert.equal(next.services!.residents-s.services!.residents,prediction.addedResidents);
+  assert.equal(distributionReport(next,f.rules).reduce((a,d)=>a+d.allocated,0),next.services!.supplied);
+});

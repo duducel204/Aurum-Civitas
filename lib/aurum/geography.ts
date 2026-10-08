@@ -76,7 +76,7 @@ export function roadAccess(p: Point, state: State, rules: Rules): string | null 
   }
   return candidates.sort((a, b) => a.d - b.d || a.key.localeCompare(b.key, "en"))[0]?.key ?? null;
 }
-export function roadDistances(start: string, roads: State["roads"]): Map<string, number> {
+export function uncachedRoadDistances(start: string, roads: State["roads"]): Map<string, number> {
   const distances = new Map<string, number>();
   if (!roads[start]) return distances;
   distances.set(start, 0);
@@ -87,6 +87,16 @@ export function roadDistances(start: string, roads: State["roads"]): Map<string,
     queue.push(n);
   }
   return distances;
+}
+// DEV-48: bounded transient cache. Key contains the complete current graph;
+// additions, deletions and false flags invalidate it without canonical fields.
+const distanceCache=new Map<string,Map<string,number>>();
+export function roadDistances(start:string,roads:State['roads']):Map<string,number> {
+  const signature=Object.keys(roads).filter(k=>roads[k]).sort().join(';');
+  const key=start+'|'+signature;
+  let result=distanceCache.get(key);
+  if(!result){result=uncachedRoadDistances(start,roads);if(distanceCache.size>=32)distanceCache.delete(distanceCache.keys().next().value!);distanceCache.set(key,result);}
+  return new Map(result); // callers cannot poison the cached tree
 }
 export function geographicRoute(origin: Point, target: Point, state: State, rules: Rules): Carrier["route"] {
   const start = roadAccess(origin, state, rules), end = roadAccess(target, state, rules);
