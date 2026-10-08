@@ -24,6 +24,7 @@ type Scenario = {
 };
 const initialScenario = fixture as Scenario;
 export default function GameWorld() {
+  const [zoom, setZoom] = useState(100);
   const [scenario, setScenario] = useState<Scenario>(initialScenario);
   const [state, setState] = useState<State>(() =>
     createState(
@@ -254,11 +255,42 @@ export default function GameWorld() {
           /{scenario.rules.mission.delivered} ·{" "}
           {state.completed ? "MISSÃO CONCLUÍDA" : ""}
         </p>
+        <div className="flex items-center gap-3 text-sm" role="group" aria-label="Zoom do mapa">
+          <button
+            type="button"
+            aria-label="Diminuir zoom"
+            disabled={zoom <= 50}
+            onClick={() => setZoom((value) => Math.max(50, value - 25))}
+            className="rounded bg-slate-800 px-3 py-2 disabled:opacity-40"
+          >
+            −
+          </button>
+          <output aria-live="polite" className="min-w-14 text-center">{zoom}%</output>
+          <button
+            type="button"
+            aria-label="Aumentar zoom"
+            disabled={zoom >= 300}
+            onClick={() => setZoom((value) => Math.min(300, value + 25))}
+            className="rounded bg-slate-800 px-3 py-2 disabled:opacity-40"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            onClick={() => setZoom(100)}
+            className="rounded bg-slate-800 px-3 py-2"
+          >
+            Restaurar 100%
+          </button>
+        </div>
+        <div className="max-h-[60vh] overflow-auto rounded border border-slate-700">
         <canvas
           ref={canvas}
           width={760}
           height={400}
-          className="w-full rounded border border-slate-700"
+          aria-label="Mapa da cidade"
+          className="mx-auto block max-w-none"
+          style={{ width: `${zoom}%`, height: "auto", imageRendering: "pixelated" }}
           onClick={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             queue.current.push({
@@ -270,6 +302,7 @@ export default function GameWorld() {
             });
           }}
         />
+        </div>
         <p className="break-all text-xs text-slate-400">{message}</p>
         <section className="rounded bg-slate-900 p-3 text-xs">
           {state.events.slice(-8).map((e, i) => (
