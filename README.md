@@ -92,6 +92,8 @@ Ainda faltam multiplayer de produção, balanceamento com jogadores, reposição
 
 ## Melhorar o jogo: tarefas para participantes
 
+**Itaipu é o mapa base de todo o desenvolvimento inicial.** A [listagem de 80 novas tarefas para issues](docs/TAREFAS_ITAIPU.md) cobre visual, jogabilidade, construção, economia, população, cooperação e contribuição, comparando as necessidades com a projeção e a materialização existentes. IDs DEV-09 a DEV-88 complementam os oito abaixo; cada tarefa tem entrega, critério de conclusão e dependências.
+
 O jogo precisa evoluir com quem joga. Participantes podem contribuir com testes, relatos de bugs, documentação, dados regionais, arte ou código. A tabela abaixo transforma as necessidades atuais em tarefas escolhíveis. **É um plano de contribuição; essas tarefas ainda não são missões disponíveis dentro do jogo.**
 
 Os IDs DEV identificam propostas de trabalho. Ao implementar uma delas, vincule-a aos IDs do Seed, aos arquivos alterados e à evidência de conclusão. A ordem prioriza tornar a experiência local sustentável antes de ampliar o mundo compartilhado.
@@ -104,7 +106,7 @@ Os IDs DEV identificam propostas de trabalho. Ao implementar uma delas, vincule-
 | DEV-04 | **Balancear construção e energia.** Ajustar custos, tempos, estoques e alcance com base em partidas registradas. | Comparar cenários antes/depois com métricas de tempo de construção, consumo e casas atendidas; versionar regras e justificar mudanças. | DEV-01, DEV-03 |
 | DEV-05 | **Dar função aos moradores.** Definir uma primeira necessidade, como alimentação, e sua cadeia de atendimento. | Necessidade, consumo e efeito da falta ficam explícitos; uma missão demonstra abastecimento e escassez, sem criar recursos do nada. | DEV-03 |
 | DEV-06 | **Adicionar características regionais.** Implementar primeiro um fator, como irradiância afetando geração solar, com dados e premissas declarados. | Duas condições regionais produzem efeitos diferentes e reproduzíveis; fonte, unidade, versão e regra de dados ausentes estão documentadas. | DEV-04 |
-| DEV-07 | **Adicionar outra região jogável.** Criar um cenário versionado com mapa, recursos e infraestrutura próprios. | A região inicia sem alterar Itaipu; atribuição e hashes das fontes são preservados; construção, transporte e replay passam nas verificações. | DEV-03 |
+| DEV-07 | **Adicionar outra região jogável — adiada.** Todo o desenvolvimento inicial usa o mapa de Itaipu. | Retomar apenas após definir uma fase de expansão; preservar fontes, regras e compatibilidade. | Fora da fase inicial |
 | DEV-08 | **Criar uma sessão compartilhada mínima.** Fazer dois participantes agir no mesmo mundo sob validação de um servidor. | Ambos observam o mesmo estado; comandos inválidos e duplicados são tratados; reconexão recupera a sessão e o histórico pode ser verificado. | Contrato de sessão, identidade, persistência e ordem de comandos definidos antes da implementação |
 
 ### Escolher e entregar uma tarefa
