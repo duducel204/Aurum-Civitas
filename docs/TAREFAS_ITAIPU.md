@@ -1,6 +1,6 @@
-# Desenvolvimento de Aurum Civitas em Itaipu: 80 novas tarefas
+# Desenvolvimento de Aurum Civitas em Itaipu: tarefas para issues
 
-Status: **LISTAGEM PARA ISSUES**, não implementação nem certificação. Não foram executados testes ou alterações de gameplay para produzir esta listagem. São exatamente **80 tarefas adicionais, DEV-09 a DEV-88**. Os oito IDs DEV-01 a DEV-08 do README são preservados; o total de propostas passa a 88.
+Status: **LISTAGEM PARA ISSUES**, não implementação nem certificação. Não foram executados testes ou alterações de gameplay para produzir esta listagem. A matriz original contém **80 tarefas adicionais, DEV-09 a DEV-88**. A extensão digital acrescenta **12 tarefas, DEV-89 a DEV-100**. Os oito IDs DEV-01 a DEV-08 do README são preservados; o total passa a 100 IDs, com DEV-07 adiada.
 
 ## Mapa base e direção
 
@@ -240,3 +240,40 @@ Fluxo esperado: **tarefa → escopo/Seed quando necessário → implementação 
 
 `REPOSITORY_PROJECTION.md` e AC-M2 preservam estados de planejamento, incluindo “gameplay não implementado” e `PROJECTED_NOT_CREATED`; a materialização posterior relata módulos executáveis. Esses documentos descrevem momentos diferentes. DEV-87 deve adicionar uma visão de estado atual com evidências, sem apagar a projeção original nem confundir proposta com entrega.
 
+
+## Infraestrutura digital e demanda futura — DEV-89 a DEV-100
+
+Extensão do caderno fornecido pelo usuário: **“Construa para o que sua região tem. Prepare-se para o que o mundo precisará.”** Referências de autoria: projeto Stitch 5218493143151832165, telas 2ba23324c02e4496937813e007113465 e ff63f735543c4a568cac97845206db06. Esta inclusão usa o texto fornecido; não presume conteúdo adicional das telas.
+
+Todas as tarefas continuam no mapa de Itaipu. O fluxo proposto é **materiais e equipamentos → infraestrutura → capacidade disponível → atendimento de demanda**. Os 80 IDs anteriores são preservados; estas 12 tarefas ampliam a lista para **92 tarefas adicionais (DEV-09 a DEV-100)** e **100 IDs incluindo DEV-01 a DEV-08**, com DEV-07 adiada.
+
+São propostas de extensão **[S]**, não funções já implementadas. RM0/RM1/RM2/RM3/RM4/RM5/RM6/RM7/RMD/RME/RMF são contratos relacionados; novas responsabilidades e IDs dependem de Seed diff e projeção. Não foram executados testes nem implementado gameplay nesta atualização.
+
+| ID | Entrega | Critério de conclusão | Depende de |
+| --- | --- | --- | --- |
+| DEV-89 | **Formalizar economia digital no Seed [S].** Separar armazenamento, compute batch, edge, banda e valor informacional; definir estados, unidades, ações e constraints sem atribuir novos IDs RM antes da projeção. | Seed versionado e trajetória calculada distinguem capacidade instalada, disponível e serviço entregue; dados/compute/valor não se confundem. | DEV-43, DEV-87 |
+| DEV-90 | **Perfil digital das áreas de Itaipu [S].** Declarar energia acessível, água, temperatura, conectividade, terreno e riscos por área do mapa-base. | Cada valor possui fonte, unidade, versão ou classificação de hipótese; abundância regional não concede acesso ilimitado nem licença fictícia. | DEV-89, DEV-56 |
+| DEV-91 | **Hardware e data center modular [S].** Criar cadeia simplificada de equipamentos, construção e manutenção com logística física e lead time. | Obra exige entrega de materiais e equipamentos; capacidade só entra após conclusão; silício/cobre ausentes no mapa exigem origem virtual ou importação declarada. | DEV-89, DEV-43, DEV-40 |
+| DEV-92 | **Energia concorrente para serviços digitais [S].** Integrar carga digital ao balanço elétrico de casas e produção, com prioridade explícita. | Demanda total e distribuição são conservadas; déficit limita serviço de acordo com regra conhecida, sem geração dedicada gratuita. | DEV-89, DEV-37 |
+| DEV-93 | **Refrigeração e balanço hídrico [S].** Definir remoção de calor, consumo elétrico e água retirada, recirculada e perdida por sistema. | Serviço respeita capacidade de cooling; recirculação não elimina perdas automaticamente; déficit térmico/hídrico limita operação com efeito declarado. | DEV-90, DEV-91, DEV-92 |
+| DEV-94 | **Fibra, banda e latência [S].** Criar ligações digitais construídas no mapa com equipamentos, capacidade, acesso e atraso de serviço. | Sem conexão não há atendimento remoto; gargalos respeitam banda; fibra não é automaticamente concedida por haver uma rua e não exige comprar ruas. | DEV-89, DEV-91 |
+| DEV-95 | **Serviços e contratos de demanda [S].** Criar consumidores locais ou externos simulados, com prazo, volume e requisitos distintos para storage, batch e edge. | Atendimento exige hardware, energia, cooling e rede; serviço fora do requisito não conta como entrega; consumidores externos não exigem novo mapa. | DEV-91, DEV-92, DEV-93, DEV-94 |
+| DEV-96 | **Demanda futura e choques reproduzíveis [S].** Definir séries por tick e cenários de crescimento/queda com sinais conhecidos, incerteza e eventos versionados. | Replay preserva choques; o jogador vê apenas informações autorizadas; percentuais e horizontes são parâmetros de cenário, não previsões reais garantidas. | DEV-95 |
+| DEV-97 | **Projeção de expansão e lead time [S].** Calcular planos de geração, distribuição, cooling, fibra e compute para atender demanda ao longo do horizonte. | Planos respeitam recursos e tempo de obra; futuro não é revelado indevidamente; caso inviável retorna restrições/gaps e não um plano narrativo. | DEV-96, DEV-39 |
+| DEV-98 | **Custos e impacto da capacidade [S].** Definir custos comparáveis de obra, operação, déficit, ociosidade, manutenção e pressão ambiental. | Unidades são normalizadas ou custos convertidos com pesos explícitos; J de custo é minimizado; utilidade é separada; pesos e objetivos são versionados. | DEV-95, DEV-52, DEV-59 |
+| DEV-99 | **Painel digital e missões de atendimento [S].** Mostrar capacidade instalada/disponível, serviço entregue, gargalos, horizonte e impactos no mapa de Itaipu. | Indicadores vêm do núcleo; missão exige entrega dentro dos requisitos e limites; construir muitos data centers não equivale a concluir a missão. | DEV-17, DEV-95, DEV-97, DEV-98 |
+| DEV-100 | **Comparar políticas reativas e antecipatórias [S].** Definir experiência controlada com mesmos estoques, demanda realizada e horizonte para estratégias de expansão. | Relatório compara déficit, ociosidade, custo e impacto por horizonte; não presume vitória projetiva; erro de previsão pode inverter o resultado. | DEV-96, DEV-97, DEV-98, DEV-99 |
+
+### Relação com o roadmap existente
+
+| Capacidade nova | Base a aproveitar | Extensão |
+| --- | --- | --- |
+| Hardware, construção e manutenção | DEV-33–48; economia e transporte | DEV-91 |
+| Energia disputada por casas e compute | DEV-37/38; RMF | DEV-92 |
+| Refrigeração e pressão hídrica | DEV-52/54/56; ecologia e perfis locais | DEV-90/93 |
+| Comunicação e atendimento digital | Logística física para construir; novo fluxo de rede para operar | DEV-94/95 |
+| Projeção de demanda e planejamento | DEV-39/59/61; Seed e cálculo | DEV-96/97/98 |
+| Missões, painel e evidência | DEV-17/29/62/69; replay e juiz | DEV-99/100 |
+| Utilidade externa de dados | DEV-80/88; proveniência | Serviço digital simulado não resolve ACE/GF automaticamente |
+
+Os valores do exemplo R17 — percentuais, latência, PFlops e PB — permanecem ilustrativos e não viram parâmetros de Itaipu. Custos precisam de unidades comparáveis; “valor estratégico” precisa de critério próprio e não nasce de acumular arquivos. Floresta não é creditada automaticamente como capacidade de refrigeração. Metas e prioridades devem declarar competição com habitação e preservação. Exportação de compute pode começar com contratos externos simulados, sem implementar novos territórios ou assumir clientes reais.
