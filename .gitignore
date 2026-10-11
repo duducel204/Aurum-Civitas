@@ -1,13 +1,7 @@
 node_modules/
 .next/
 coverage/
-.release/
 .DS_Store
 *.log
 .env*
 !.env.example
-
-!evidence/*.log
-*.tsbuildinfo
-
-__pycache__/
